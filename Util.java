@@ -55,7 +55,7 @@ public class Util
 		if (minutesToAdd > 60 - minutes)
 		{
 			hours = hours + 1;
-			minutesToAdd = minutes + minutesToAdd % 60;
+			minutesToAdd = (minutes + minutesToAdd) % 60;
 			minutes = minutesToAdd;
 		}
 		else

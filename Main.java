@@ -9,7 +9,5 @@ public class Main
 		List<Person> list = new ArrayList<Person>();
 		Generator.generate(20, list);
 		Test.displayInfo(list);
-		//int k = list.size();
-		//System.out.println(k);	
 	}
 }
