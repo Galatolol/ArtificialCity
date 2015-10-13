@@ -1,4 +1,3 @@
-import java.sql.Time;
 import java.util.List;
 import java.util.Random;
 
@@ -52,7 +51,7 @@ public class Generator
 	
 	private static int[] generateAgeAndProfession()
 	{
-		int age, profession, r;
+		int r;
 		int[] result = new int[2]; // wiek, zajecie
 		r = rand.nextInt(10);
 		if (r < 1)
@@ -147,65 +146,65 @@ public class Generator
 	
 	private static String generateGoingOut(int profession)
 	{
-		int r1, r2;
-		Integer time1;
-		String time;
+		int r;
+		Integer time;
+		String goingOut;
 		if (profession == 0)
 		{
-			r1 = rand.nextInt(6);
-			if (r1 < 1)
+			r = rand.nextInt(6);
+			if (r < 1)
 			{
-				time = Util.substractTime("09:30", rand.nextInt(59));
+				goingOut = Util.substractTime("09:30", rand.nextInt(59));
 			}
-			else if (r1 < 3)
+			else if (r < 3)
 			{
-				time = Util.substractTime("08:45", rand.nextInt(59));
+				goingOut = Util.substractTime("08:45", rand.nextInt(59));
 			}
 			else
 			{
-				time = Util.substractTime("08:00", rand.nextInt(59));
+				goingOut = Util.substractTime("08:00", rand.nextInt(59));
 			}
 		}
 		else if (profession == 1)
 		{
-			r1 = rand.nextInt(19);
-			time1 = new Integer(rand.nextInt(19) + 8);
-			time = Util.substractTime(time1.toString() + ":00", rand.nextInt(40));
+			r = rand.nextInt(19);
+			time = new Integer(rand.nextInt(19) + 8);
+			goingOut = Util.substractTime(time.toString() + ":00", rand.nextInt(40));
 		}
 		else
 		{
-			r1 = rand.nextInt(22);
-			if (r1 < 2)
+			r = rand.nextInt(22);
+			if (r < 2)
 			{
-				time = Util.substractTime("06:00", rand.nextInt(30));
+				goingOut = Util.substractTime("06:00", rand.nextInt(30));
 			}
-			else if (r1 < 5)
+			else if (r < 5)
 			{
-				time = Util.substractTime("07:00", rand.nextInt(30));
+				goingOut = Util.substractTime("07:00", rand.nextInt(30));
 			}
-			else if (r1 < 10)
+			else if (r < 10)
 			{
-				time = Util.substractTime("08:00", rand.nextInt(59));
+				goingOut= Util.substractTime("08:00", rand.nextInt(59));
 			}
-			else if (r1 < 15)
+			else if (r < 15)
 			{
-				time = Util.substractTime("09:00", rand.nextInt(59));
+				goingOut = Util.substractTime("09:00", rand.nextInt(59));
 			}
-			else if (r1 < 18)
+			else if (r < 18)
 			{
-				time = Util.substractTime("10:00", rand.nextInt(59));
+				goingOut = Util.substractTime("10:00", rand.nextInt(59));
 			}
-			else if (r1 < 20)
-			{
-				time = Util.substractTime("11:00", rand.nextInt(40));
+			else if (r < 20)
+			{		System.out.println(Util.addTime("02:56", 400));
+					goingOut = Util.substractTime("11:00", rand.nextInt(40));
 			}
 			else
 			{
-				time1 = new Integer(rand.nextInt(23) + 1);
-				time = Util.substractTime(time1.toString() + ":00", rand.nextInt(59));
+				time = new Integer(rand.nextInt(23) + 1);
+				goingOut = Util.substractTime(time.toString() + ":00", rand.nextInt(59));
 			}
 		}
-		return time;
+		return goingOut;
 	}
 	
 	private static String generateGoingBack(String goingOut, int profession)
