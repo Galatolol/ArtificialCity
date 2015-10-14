@@ -62,6 +62,7 @@ public class Util
 		{
 			minutes = minutes + minutesToAdd;
 		}
+		hours = hours % 24;
 		return hours.toString() + ":" + minutes.toString();
 	}
 }

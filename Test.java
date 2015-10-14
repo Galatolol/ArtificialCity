@@ -18,4 +18,5 @@ public class Test
 			System.out.println("Z pracy/szkoły wraca o " + elem.getGoingBack());
 		}
 	}
+	
 }

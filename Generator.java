@@ -71,7 +71,7 @@ public class Generator
 		}
 		else
 		{
-			result[0] = rand.nextInt(26) + 65; //66 - 90
+			result[0] = rand.nextInt(26) + 66; //66 - 90
 			result[1] = 3;
 		}
 		return result;
@@ -173,7 +173,7 @@ public class Generator
 		}
 		else
 		{
-			r = rand.nextInt(22);
+			r = rand.nextInt(23);
 			if (r < 2)
 			{
 				goingOut = Util.substractTime("06:00", rand.nextInt(30));
@@ -186,15 +186,15 @@ public class Generator
 			{
 				goingOut= Util.substractTime("08:00", rand.nextInt(59));
 			}
-			else if (r < 15)
+			else if (r < 16)
 			{
 				goingOut = Util.substractTime("09:00", rand.nextInt(59));
 			}
-			else if (r < 18)
+			else if (r < 19)
 			{
 				goingOut = Util.substractTime("10:00", rand.nextInt(59));
 			}
-			else if (r < 20)
+			else if (r < 21)
 			{		System.out.println(Util.addTime("02:56", 400));
 					goingOut = Util.substractTime("11:00", rand.nextInt(40));
 			}
