@@ -168,7 +168,7 @@ public class Generator
 		else if (profession == 1)
 		{
 			r = rand.nextInt(19);
-			time = new Integer(rand.nextInt(19) + 8);
+			time = new Integer(rand.nextInt(11) + 8);
 			goingOut = Util.substractTime(time.toString() + ":00", rand.nextInt(40));
 		}
 		else

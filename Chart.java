@@ -39,7 +39,7 @@ public class Chart extends JFrame
 	    }
 	    else if (tab[0].contains(":"))
 	    {
-	    	for (Integer i = 0; i < 24; i++)
+	    	for (Integer i = -3; i < 29; i++)
 	    	{
 		    	dataset.addValue(howMany(i.toString()), "jakWywalićToPole?", i.toString());
 	    	}
