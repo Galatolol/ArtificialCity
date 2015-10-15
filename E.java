@@ -20,17 +20,33 @@ public class E {
 		this.speedLimit = _speedLimit;
 		this.lanesNum = _lanesNum;
 		
-		cellsNum = (int) (length / CELL_SIZE);
+		cellsNum =  length / CELL_SIZE;
 		cellTab = new CellList[lanesNum];
 		
 		for(int i = 0; i < lanesNum; i++) {
-			cellTab[i] = new CellList(cellsNum);
+			cellTab[i] = new CellList(cellsNum, this.begin, this.end);
 		}
 		
 	}
 	
 	public int getLength() {
 		return this.length;
+	}
+	
+	public String toString() {
+		return this.begin.toString() + " - " + this.end.toString();
+	}
+	
+	public String cellsToString() {
+		String output = "";
+		for(int i = 0; i < lanesNum; i++) {
+			for(int j = 0; j < cellsNum; j++) {
+				output += cellTab[i].cellList[j].toString();
+			}
+		output += "\n------------------------------\n";
+		}
+		
+		return output;
 	}
 	
 }

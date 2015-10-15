@@ -1,6 +1,16 @@
 
 public class Cell {
-	int x;
-	int y;
+	private int x;
+	private int y;
+	private boolean state;
+	
+	Cell(double _x, double _y) {
+		this.x = (int) _x;
+		this.y = (int) _y;
+	}
 
+	public String toString() {
+		return " ( " + this.x + "," + this.y + ")  "; 
+	}
+	
 }

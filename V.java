@@ -14,5 +14,13 @@ public class V {
 	public String toString() {
 		return String.valueOf(id);
 	}
+	
+	public int getX() {
+		return this.x;
+	}
+	
+	public int getY() {
+		return this.y;
+	}
 
 }

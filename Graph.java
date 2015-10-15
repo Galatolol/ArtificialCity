@@ -74,28 +74,28 @@ public class Graph {
 	}
 	
 	private void createGraph() {
-		 graph.addEdge(new E(vertices.get(2),vertices.get(17), 500, 50, 3), 
+		 graph.addEdge(new E(vertices.get(2),vertices.get(17), 50, 50, 3), 
 				 vertices.get(2), vertices.get(17), EdgeType.DIRECTED);
 		 
-		 graph.addEdge(new E(vertices.get(17),vertices.get(16), 500, 50 ,1), 
+		 graph.addEdge(new E(vertices.get(17),vertices.get(16), 50, 50 ,1), 
 				 vertices.get(17), vertices.get(16), EdgeType.DIRECTED);
 		 
-		 graph.addEdge(new E(vertices.get(16),vertices.get(15), 500, 50, 1), 
+		 graph.addEdge(new E(vertices.get(16),vertices.get(15), 50, 50, 1), 
 				 vertices.get(16), vertices.get(15), EdgeType.DIRECTED);
 		 
-		 graph.addEdge(new E(vertices.get(15),vertices.get(16), 500, 50, 1), 
+		 graph.addEdge(new E(vertices.get(15),vertices.get(16), 50, 50, 1), 
 				 vertices.get(15), vertices.get(16), EdgeType.DIRECTED);
 		 
-		 graph.addEdge(new E(vertices.get(16),vertices.get(17), 500, 50, 1), 
+		 graph.addEdge(new E(vertices.get(16),vertices.get(17), 50, 50, 1), 
 				 vertices.get(16), vertices.get(17), EdgeType.DIRECTED);
 		 
-		 graph.addEdge(new E(vertices.get(16),vertices.get(1), 500, 50, 1), 
+		 graph.addEdge(new E(vertices.get(16),vertices.get(1), 50, 50, 1), 
 				 vertices.get(16), vertices.get(1), EdgeType.DIRECTED);
 		 
-		 graph.addEdge(new E(vertices.get(17),vertices.get(29), 500, 50, 1), 
+		 graph.addEdge(new E(vertices.get(17),vertices.get(29), 50, 50, 1), 
 				 vertices.get(17), vertices.get(29), EdgeType.DIRECTED);
 		 
-		 graph.addEdge(new E(vertices.get(17),vertices.get(29), 500, 50, 3), 
+		 graph.addEdge(new E(vertices.get(17),vertices.get(29), 50, 50, 3), 
 				 vertices.get(17), vertices.get(29), EdgeType.DIRECTED);
 		 
 		 graph.addEdge(new E(vertices.get(29),vertices.get(30), 500, 50, 1), 
@@ -177,7 +177,14 @@ public class Graph {
         
         double distance = (double)alg.getDistance(start, end);
         System.out.println("The shortest weighted path from " + start.toString()  + " to " + end.toString() + " is:");
-        System.out.println(path.toString());
+        //System.out.println(path.toString());
+        
+        for(E e : path) {
+        	System.out.println(e.toString());
+        	System.out.println(e.cellsToString());
+        }
+        
+        
         System.out.println("and the length of the path is: " + distance);
     }
 	
@@ -185,8 +192,8 @@ public class Graph {
         Graph myApp = new Graph();
         myApp.init();
         
-        System.out.println(myApp.graph.toString());
-        myApp.calcWeightedShortestPath(vertices.get(2), vertices.get(15));
+        //System.out.println(myApp.graph.toString());
+        myApp.calcWeightedShortestPath(vertices.get(2), vertices.get(20));
         
         Transformer<V, Paint> edgeStroke = new Transformer<V, Paint>() {
 		    public Paint transform(V s) {
