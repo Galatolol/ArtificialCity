@@ -1,0 +1,22 @@
+// Vertex class
+
+public class V {
+	private int id;
+	private int x;
+	private int y;
+	
+	V(int _id, int _x, int _y) {
+		this.id = _id;
+		this.x = _x;
+		this.y = _y;
+	}
+	
+	public String toString() {
+		return String.valueOf(id);
+	}
+	
+	public int getX() {
+		return this.x;
+	}
+
+}

@@ -1,0 +1,39 @@
+
+public class CellList {
+	public Cell[] cellList;
+	
+	CellList(int n, V start, V end) {
+		cellList = new Cell[n];
+		for(int i = 0; i < n; i++) {
+			cellList[i] = createCell(i, n, start, end);
+		}
+	}
+	
+	private Cell createCell(int i, int n, V start, V end) {
+		int x;
+		int y;
+		
+		if(end.getX() > start.getX()) {
+			x = end.getX() - start.getX();
+		} else {
+			x = start.getX() - end.getX() ;
+		}
+		
+		if(end.getY() > start.getY()) {
+			y = end.getY() - start.getY();
+		} else {
+			y = start.getY() - end.getY() ;
+		}
+		
+		System.out.println(x + "  " +y);
+		x = (1 / n) * x;
+		y = (1 / n) * y;
+		System.out.println(x + "  " +y);
+		System.out.println(n);
+		
+		return new Cell((start.getX() + x * i), (start.getY() + y * i));
+	 	
+		
+	}
+
+}

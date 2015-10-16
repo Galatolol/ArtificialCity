@@ -1,0 +1,54 @@
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.MediaTracker;
+import java.awt.Toolkit;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class Frame extends JFrame {
+	
+	public static final int WIDTH = 1000;
+	public static final int HEIGHT = 1000;
+	public static final int RAD = 5;
+ 
+	Frame() {
+		add(new ContentPanel());
+		setSize(WIDTH, HEIGHT);
+	}
+
+	public static void main(String[] args) {
+		Frame myFrame = new Frame();
+		myFrame.setVisible(true);
+	}
+
+}
+
+class ContentPanel extends JPanel {
+	private Image bgImage = null;
+	private Image carImage = null;
+
+	ContentPanel() {
+		MediaTracker mt = new MediaTracker(this);
+		bgImage = Toolkit.getDefaultToolkit().getImage("res/map.jpg");
+		carImage = Toolkit.getDefaultToolkit().getImage("res/car.jpg");
+		mt.addImage(bgImage, 0);
+		mt.addImage(carImage, 0);
+		try {
+			mt.waitForAll();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		int imWidth = bgImage.getWidth(null);
+		int imHeight = bgImage.getHeight(null);
+		g.drawImage(bgImage, 0, 0, this.getWidth(), this.getHeight(), null);
+		
+		g.setColor(Color.RED);
+		g.fillOval(500 - Frame.RAD, 500-Frame.RAD, Frame.RAD*2, Frame.RAD*2);
+  }
+}

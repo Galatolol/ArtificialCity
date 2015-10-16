@@ -2,38 +2,43 @@
 public class CellList {
 	public Cell[] cellList;
 	
-	CellList(int n, V start, V end) {
+	CellList(int n, V begin, V end) {
 		cellList = new Cell[n];
 		for(int i = 0; i < n; i++) {
-			cellList[i] = createCell(i, n, start, end);
+			cellList[i] = createCell(i, n, begin, end);
 		}
 	}
 	
-	private Cell createCell(int i, int n, V start, V end) {
+	private Cell createCell(int i, int n, V begin, V end) {
 		double x;
 		double y;
 		
-		if(end.getX() > start.getX()) {
-			x = end.getX() - start.getX();
-		} else {
-			x = start.getX() - end.getX() ;
-		}
+		//if(end.getX() > begin.getX()) {
+			x = Math.abs(end.getX() - begin.getX());
+		//} else {
+		//	x = begin.getX() - end.getX() ;
+		//}
+		//
+		//if(end.getY() > begin.getY()) {
+			y = Math.abs(end.getY() - begin.getY());
+		//} else {
+		//	y = begin.getY() - end.getY() ;
+		//}
 		
-		if(end.getY() > start.getY()) {
-			y = end.getY() - start.getY();
-		} else {
-			y = start.getY() - end.getY() ;
-		}
-		
-		System.out.println(x + "  " +y);
 		x = (1f / n) * x;
-		y = (1f / n) * y;
-		//System.out.println(x + "  " +y);
-		//System.out.println(1f/n);
+		y = (1f / n) * y;		
 		
-		return new Cell((start.getX() + x * i), (start.getY() - y * i));
+		if(end.getX() >= begin.getX() && (end.getY() >= begin.getY())) 
+			return new Cell((begin.getX()+ x * i), (begin.getY() + y * i));
+		
+		else if(end.getX() >= begin.getX() && (end.getY() < begin.getY()))
+			return new Cell((begin.getX()+ x * i), (begin.getY() - y * i));
 	 	
+		else if(end.getX() < begin.getX() && (end.getY() < begin.getY()))
+			return new Cell((begin.getX()- x * i), (begin.getY() - y * i));
 		
+		else 
+			return new Cell((begin.getX()- x * i), (begin.getY() + y * i));
 	}
 
 }

@@ -38,10 +38,10 @@ public class Graph {
 		vertices.add(new V(0, 0, 0));
 		
 		
-		vertices.add(new V(1, 50, 1000));
-		vertices.add(new V(2, 70, 1000));
-		vertices.add(new V(3, 300, 1000));
-		vertices.add(new V(4, 400, 1000));
+		vertices.add(new V(1, 55, 965));
+		vertices.add(new V(2, 90, 965));
+		vertices.add(new V(3, 280, 965));
+		vertices.add(new V(4, 450, 1000));
 		vertices.add(new V(5, 650, 1000));
 		vertices.add(new V(6, 750, 1000));
 		vertices.add(new V(7, 1000, 1000));
@@ -49,16 +49,16 @@ public class Graph {
 		vertices.add(new V(9, 800, 900));
 		vertices.add(new V(10, 650, 900));
 		vertices.add(new V(11, 550, 900));
-		vertices.add(new V(12, 400, 920));
-		vertices.add(new V(13, 350, 940));
-		vertices.add(new V(14, 300, 970));
-		vertices.add(new V(15, 0, 850));
-		vertices.add(new V(16, 100, 920));
-		vertices.add(new V(17, 120, 920));
-		vertices.add(new V(18, 130, 920));
-		vertices.add(new V(19, 300, 850));
-		vertices.add(new V(20, 380, 850));
-		vertices.add(new V(21, 350, 750));
+		vertices.add(new V(12, 425, 880));
+		vertices.add(new V(13, 390, 905));
+		vertices.add(new V(14, 325, 935));
+		vertices.add(new V(15, 0, 800));
+		vertices.add(new V(16, 80, 825));
+		vertices.add(new V(17, 110, 830));
+		vertices.add(new V(18, 140, 830));
+		vertices.add(new V(19, 315, 820));
+		vertices.add(new V(20, 405, 820));
+		vertices.add(new V(21, 395, 735));
 		vertices.add(new V(22, 530, 730));
 		vertices.add(new V(23, 700, 650));
 		vertices.add(new V(24, 730, 760));
@@ -66,10 +66,10 @@ public class Graph {
 		vertices.add(new V(26, 950, 700));
 		vertices.add(new V(27, 1000, 730));
 		
-		vertices.add(new V(42, 400, 650)); //28
-		vertices.add(new V(43, 200, 550)); //29
-		vertices.add(new V(44, 180, 530)); // 30
-		vertices.add(new V(45, 0, 500));   //31
+		vertices.add(new V(42, 360, 625)); //28
+		vertices.add(new V(43, 165, 555)); //29
+		vertices.add(new V(44, 130, 540)); // 30
+		vertices.add(new V(45, 0, 470));   //31
 		
 	}
 	
@@ -98,70 +98,70 @@ public class Graph {
 		 graph.addEdge(new E(vertices.get(17),vertices.get(29), 50, 50, 3), 
 				 vertices.get(17), vertices.get(29), EdgeType.DIRECTED);
 		 
-		 graph.addEdge(new E(vertices.get(29),vertices.get(30), 500, 50, 1), 
+		 graph.addEdge(new E(vertices.get(29),vertices.get(30), 50, 50, 1), 
 				 vertices.get(29), vertices.get(30), EdgeType.DIRECTED);
 		 
-		 graph.addEdge(new E(vertices.get(30),vertices.get(31), 500, 50, 2), 
+		 graph.addEdge(new E(vertices.get(30),vertices.get(31), 50, 50, 2), 
 				 vertices.get(30), vertices.get(31), EdgeType.DIRECTED);
 		 
-		 graph.addEdge(new E(vertices.get(31),vertices.get(30), 500, 50, 1), 
+		 graph.addEdge(new E(vertices.get(31),vertices.get(30), 50, 50, 1), 
 				 vertices.get(31), vertices.get(30), EdgeType.DIRECTED);
 		 
-		 graph.addEdge(new E(vertices.get(30),vertices.get(29), 500, 50, 1), 
+		 graph.addEdge(new E(vertices.get(30),vertices.get(29), 50, 50, 1), 
 				 vertices.get(30), vertices.get(29), EdgeType.DIRECTED);
 		 
-		 graph.addEdge(new E(vertices.get(30),vertices.get(16), 500, 50, 1), 
+		 graph.addEdge(new E(vertices.get(30),vertices.get(16), 50, 50, 1), 
 				 vertices.get(30), vertices.get(16), EdgeType.DIRECTED);
 		 
-		 graph.addEdge(new E(vertices.get(18),vertices.get(19), 500, 50, 1), 
+		 graph.addEdge(new E(vertices.get(18),vertices.get(19), 50, 50, 1), 
 				 vertices.get(18), vertices.get(19), EdgeType.DIRECTED);
 		 
-		 graph.addEdge(new E(vertices.get(19),vertices.get(18), 500, 50, 1), 
+		 graph.addEdge(new E(vertices.get(19),vertices.get(18), 50, 50, 1), 
 				 vertices.get(19), vertices.get(18), EdgeType.DIRECTED);
 		 
-		 graph.addEdge(new E(vertices.get(14),vertices.get(19), 500, 50, 1), 
+		 graph.addEdge(new E(vertices.get(14),vertices.get(19), 50, 50, 1), 
 				 vertices.get(14), vertices.get(19), EdgeType.DIRECTED);
 		 
-		 graph.addEdge(new E(vertices.get(3),vertices.get(14), 500, 50, 1), 
+		 graph.addEdge(new E(vertices.get(3),vertices.get(14), 50, 50, 1), 
 				 vertices.get(3), vertices.get(14), EdgeType.DIRECTED);
 		 
-		 graph.addEdge(new E(vertices.get(14),vertices.get(3), 500, 50, 1), 
+		 graph.addEdge(new E(vertices.get(14),vertices.get(3), 50, 50, 1), 
 				 vertices.get(14), vertices.get(3), EdgeType.DIRECTED);
 		 
-		 graph.addEdge(new E(vertices.get(14),vertices.get(13), 500, 50, 1), 
+		 graph.addEdge(new E(vertices.get(14),vertices.get(13), 50, 50, 1), 
 				 vertices.get(14), vertices.get(13), EdgeType.DIRECTED);
 		 
-		 graph.addEdge(new E(vertices.get(13),vertices.get(14), 500, 50, 1), 
+		 graph.addEdge(new E(vertices.get(13),vertices.get(14), 50, 50, 1), 
 				 vertices.get(13), vertices.get(14), EdgeType.DIRECTED);
 		 
-		 graph.addEdge(new E(vertices.get(4),vertices.get(3), 500, 50, 1), 
+		 graph.addEdge(new E(vertices.get(4),vertices.get(3), 50, 50, 1), 
 				 vertices.get(4), vertices.get(3), EdgeType.DIRECTED);
 		 
-		 graph.addEdge(new E(vertices.get(13),vertices.get(12), 500, 50, 1), 
+		 graph.addEdge(new E(vertices.get(13),vertices.get(12), 50, 50, 1), 
 				 vertices.get(13), vertices.get(12), EdgeType.DIRECTED);
 		 
-		 graph.addEdge(new E(vertices.get(12),vertices.get(13), 500, 50, 1), 
+		 graph.addEdge(new E(vertices.get(12),vertices.get(13), 50, 50, 1), 
 				 vertices.get(12), vertices.get(13), EdgeType.DIRECTED);
 		 
-		 graph.addEdge(new E(vertices.get(20),vertices.get(12), 500, 50, 1), 
+		 graph.addEdge(new E(vertices.get(20),vertices.get(12), 50, 50, 1), 
 				 vertices.get(20), vertices.get(12), EdgeType.DIRECTED);
 		 
-		 graph.addEdge(new E(vertices.get(19),vertices.get(20), 500, 50, 1), 
+		 graph.addEdge(new E(vertices.get(19),vertices.get(20), 50, 50, 1), 
 				 vertices.get(19), vertices.get(20), EdgeType.DIRECTED);
 		 
-		 graph.addEdge(new E(vertices.get(20),vertices.get(19), 500, 50, 1), 
+		 graph.addEdge(new E(vertices.get(20),vertices.get(19), 50, 50, 1), 
 				 vertices.get(20), vertices.get(19), EdgeType.DIRECTED);
 		 
-		 graph.addEdge(new E(vertices.get(21),vertices.get(20), 500, 50, 1), 
+		 graph.addEdge(new E(vertices.get(21),vertices.get(20), 50, 50, 1), 
 				 vertices.get(21), vertices.get(20), EdgeType.DIRECTED);
 		 
-		 graph.addEdge(new E(vertices.get(28),vertices.get(21), 500, 50, 1), 
+		 graph.addEdge(new E(vertices.get(28),vertices.get(21), 50, 50, 1), 
 				 vertices.get(28), vertices.get(21), EdgeType.DIRECTED);
 		 
-		 graph.addEdge(new E(vertices.get(29),vertices.get(28), 500, 50, 1), 
+		 graph.addEdge(new E(vertices.get(29),vertices.get(28), 50, 50, 1), 
 				 vertices.get(29), vertices.get(28), EdgeType.DIRECTED);
 		 
-		 graph.addEdge(new E(vertices.get(28),vertices.get(29), 500, 50, 1), 
+		 graph.addEdge(new E(vertices.get(28),vertices.get(29), 50, 50, 1), 
 				 vertices.get(29), vertices.get(28), EdgeType.DIRECTED);
 	}
 	
@@ -188,7 +188,7 @@ public class Graph {
         System.out.println("and the length of the path is: " + distance);
     }
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
         Graph myApp = new Graph();
         myApp.init();
         
@@ -228,5 +228,5 @@ public class Graph {
     	frame.getContentPane().add(vv); 
     	frame.pack();
     	frame.setVisible(true);  
-    }
+    }*/
 }

@@ -1,0 +1,8 @@
+
+import edu.uci.ics.jung.graph.Graph;
+
+public class Graph {
+	public Graph<Vertex, Edge> graph; 
+	
+	
+}

@@ -1,0 +1,8 @@
+
+import edu.uci.ics.jung.graph.DirectedGraph;
+
+public class Graph {
+	public DirectedGraph<V, E> graph;
+	
+	
+}

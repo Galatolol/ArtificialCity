@@ -237,7 +237,7 @@ public class Generator
 		}
 		else
 		{
-			goingBack = Util.addTime(goingOut, (rand.nextInt(4) + 7) * 60);
+			goingBack = Util.addTime(goingOut, (rand.nextInt(5) + 6) * 60);
 		}
 		return Util.addTime(goingBack, rand.nextInt(15));
 	}

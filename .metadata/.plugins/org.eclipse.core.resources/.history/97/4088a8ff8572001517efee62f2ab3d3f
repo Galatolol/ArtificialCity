@@ -1,0 +1,8 @@
+
+public class Edgee {
+	private Vertexx begin;
+	private Vertexx end;
+	
+	private double length;
+	
+}

@@ -1,0 +1,30 @@
+import java.util.LinkedList;
+
+// Edge class
+
+public class E {
+	private V begin;
+	private V end;
+	private int length;
+	private int speedLimit;
+	private int lanesNum;
+	private CellList[] cellTabl
+	private LinkedList<Cell> cells;
+	private int cellsNum;
+	
+	E (V _begin, V _end, int _length, int _speedLimit, int _lanesNum) {
+		this.begin = _begin;
+		this.end = _end;
+		this.length = _length;
+		this.speedLimit = _speedLimit;
+		this.lanesNum = _lanesNum;
+		
+		cellsNum = (int) (length / 5); 
+		
+	}
+	
+	public Double getLength() {
+		return this.length;
+	}
+	
+}

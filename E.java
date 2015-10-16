@@ -8,7 +8,7 @@ public class E {
 	private int length;
 	private int speedLimit;
 	private int lanesNum;
-	private CellList[] cellTab;
+	public CellList[] cellTab;
 	private int cellsNum;
 	
 	public static final int CELL_SIZE = 5;
@@ -16,7 +16,10 @@ public class E {
 	E (V _begin, V _end, int _length, int _speedLimit, int _lanesNum) {
 		this.begin = _begin;
 		this.end = _end;
-		this.length = _length;
+		this.length = (int) Math.sqrt((end.getX()-begin.getX()) * (end.getX()-begin.getX()) +
+				            (end.getY()-begin.getY()) * (end.getY()-begin.getY()));
+		
+		System.out.println(begin.toString() + " - " + end.toString() + " : " + length);
 		this.speedLimit = _speedLimit;
 		this.lanesNum = _lanesNum;
 		
@@ -35,6 +38,26 @@ public class E {
 	
 	public String toString() {
 		return this.begin.toString() + " - " + this.end.toString();
+	}
+	
+	public int getBeginX() {
+		return begin.getX();
+	}
+	
+	public int getBeginY() {
+		return begin.getY();
+	}
+	
+	public int getEndX() {
+		return end.getX();
+	}
+	
+	public int getEndY() {
+		return end.getY();
+	}
+	
+	public int getLanesNum() {
+		return lanesNum;
 	}
 	
 	public String cellsToString() {

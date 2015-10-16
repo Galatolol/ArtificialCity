@@ -1,0 +1,8 @@
+
+public class E {
+	private V begin;
+	private V end;
+	
+	private double length;
+	
+}

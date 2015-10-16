@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="OverviewSectionTreeExpansionState3154">
+		<item value="true" key="Runtime"/>
+		<item value="false" key="Class loading"/>
+		<item value="false" key="Compilation"/>
+		<item value="true" key="Memory"/>
+		<item value="false" key="System properties"/>
+		<item value="true" key="Garbage collector"/>
+		<item value="true" key="Operating system"/>
+		<item value="false" key="Thread"/>
+	</section>
+	<section name="org.jvmmonitor.internal.ui.properties.cpu.CpuSection">
+	</section>
+</section>
