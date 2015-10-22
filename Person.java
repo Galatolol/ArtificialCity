@@ -12,7 +12,10 @@ public class Person
 	private String firstName;
 	private String lastName;
 	
-	Person(int _age, String _residence, String _destination, String _from, String _goingOut, String _goingBack, String _firstName, String _lastName)
+	public boolean driving;
+	
+	Person(int _age, String _residence, String _destination, String _from, String _goingOut, String _goingBack, 
+			String _firstName, String _lastName, boolean _driving)
 	{
 		age = _age;
 		residence = _residence;
@@ -22,6 +25,7 @@ public class Person
 		goingBack = _goingBack;
 		firstName = _firstName;
 		lastName = _lastName;
+		driving = _driving;
 	}
 	
 	//------------------------------------
@@ -34,4 +38,5 @@ public class Person
 	public String getFrom() { return from; }
 	public String getFirstName() { return firstName; }
 	public String getLastName() { return lastName; }
+	public boolean getIsDriving() { return driving; }
 }

@@ -8,6 +8,7 @@ public class Generator
 	public static void generate(int n, List<Person> list)
 	{
 		String destination, residence, from, goingOut, goingBack, firstName, lastName;
+		boolean driving;
 		int[] ageAndProfession;
 		int age, profession;
 		for (int i = 0; i < n; i++)
@@ -43,7 +44,8 @@ public class Generator
 				goingOut = "";
 				goingBack = "";
 			}
-			Person p = new Person(age, residence, destination, from, goingOut, goingBack, firstName, lastName);
+			driving = generateDriving(age, residence);
+			Person p = new Person(age, residence, destination, from, goingOut, goingBack, firstName, lastName, driving);
 			list.add(p);
 		}
 
@@ -256,5 +258,33 @@ public class Generator
 		return lastNames[rand.nextInt(lastNames.length)];
 	}
 
-	
+	private static boolean generateDriving(int age, String residence)
+	{
+		if (age > 19 && age < 25)
+		{
+			if (rand.nextInt(9) < 1)
+			{
+				return true;
+			}
+		}
+		else if (age >= 25 && age < 75)
+		{
+			int r = rand.nextInt(10);
+			if (residence.length() == 1)
+			{
+				if (r < 8)
+				{
+					return true;
+				}
+			}
+			else
+			{
+				if (r < 2)
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 }

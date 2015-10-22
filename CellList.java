@@ -1,15 +1,21 @@
 
 public class CellList {
 	public Cell[] cellList;
+	public int howManyToLeft; //ile pasow do lewa
+	public int howManyToRight;
+	public int length;
 	
-	CellList(int n, V begin, V end) {
+	public CellList(int n, V begin, V end, int _howManyToRight, int _howManyToLeft) {
 		cellList = new Cell[n];
-		for(int i = 0; i < n; i++) {
-			cellList[i] = createCell(i, n, begin, end);
+		length = n;
+		howManyToRight = _howManyToRight;
+		howManyToLeft = _howManyToLeft;
+		for (int i = 0; i < n; i++) {
+			cellList[i] = createCell(i, n, begin, end, n - i);
 		}
 	}
 	
-	private Cell createCell(int i, int n, V begin, V end) {
+	private Cell createCell(int i, int n, V begin, V end, int howManyCellsToCrossroad) {
 		double x;
 		double y;
 		
@@ -29,16 +35,19 @@ public class CellList {
 		y = (1f / n) * y;		
 		
 		if(end.getX() >= begin.getX() && (end.getY() >= begin.getY())) 
-			return new Cell((begin.getX()+ x * i), (begin.getY() + y * i));
+			return new Cell((begin.getX()+ x * i), (begin.getY() + y * i), howManyCellsToCrossroad, i);
 		
 		else if(end.getX() >= begin.getX() && (end.getY() < begin.getY()))
-			return new Cell((begin.getX()+ x * i), (begin.getY() - y * i));
+			return new Cell((begin.getX()+ x * i), (begin.getY() - y * i), howManyCellsToCrossroad, i);
 	 	
 		else if(end.getX() < begin.getX() && (end.getY() < begin.getY()))
-			return new Cell((begin.getX()- x * i), (begin.getY() - y * i));
+			return new Cell((begin.getX()- x * i), (begin.getY() - y * i), howManyCellsToCrossroad, i);
 		
 		else 
-			return new Cell((begin.getX()- x * i), (begin.getY() + y * i));
+			return new Cell((begin.getX()- x * i), (begin.getY() + y * i), howManyCellsToCrossroad, i);
 	}
+	
+	public int getHowManyToRight() { return howManyToRight; }
+	public int getHowManyToLeft() { return howManyToLeft; }
 
 }

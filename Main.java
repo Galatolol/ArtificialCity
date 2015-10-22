@@ -3,59 +3,45 @@ import java.util.List;
 
 public class Main 
 {
+	private static List<Person> personList = new ArrayList<Person>();
+	private static List<Vehicle> vehicleList = new ArrayList<Vehicle>();
+ 	
 	public static void main(String[] args)
 	{	
-		List<Person> list = new ArrayList<Person>();
-		Generator.generate(2000, list);
-		Test.displayInfo(list);
-
-		//------------WYKRESY-------------------
-		//------------wiek----------------------
-		Integer tmp;
-		String[] tab = new String[list.size()];
-		for (int i = 0; i < list.size(); i ++)
+		//createLists();		
+		//Test.displayInfo(personList);
+		//Charts.createCharts(personList); 
+		CellList[] cellListTab = new CellList[3];
+		cellListTab[0] = new CellList(15, new V(2, 90, 965), new V(1, 55, 965), 2, 0);
+		cellListTab[1] = new CellList(15, new V(2, 90, 965), new V(1, 55, 965), 1, 1);
+		cellListTab[2] = new CellList(15, new V(2, 90, 965), new V(1, 55, 965), 0, 2);
+		
+		Vehicle auto = new Car(null);
+		auto.setCellListTab(cellListTab);
+		auto.setCurrentListNr(1);
+		auto.setCurrentCell(cellListTab[0].cellList[0]);
+		auto.setSpeed(1);
+		auto.curveLeft();
+		
+		vehicleList.add(auto);
+		
+		for (Integer i = 0; i < cellListTab[0].length; i++)
 		{
-			tmp = list.get(i).getAge();
-			tab[i] = tmp.toString();
+			System.out.println("Jednostka czasu: " + i);
+			Test.displayInfoAboutCar(auto);
+			Movement.move(vehicleList);
 		}
-	    Chart chart = new Chart("Wykres wieku", "Rozłożenie wieku w populacji", "Wiek", "Wystąpienia", tab);
-	    chart.pack();
-	    chart.setVisible(true);
-	    
-	    //----------miejsceZamieszkania---------
-		for (int i = 0; i < list.size(); i ++)
+	}
+	
+	public static void createLists()
+	{
+		Generator.generate(20, personList);
+		for (int i = 0; i < personList.size(); i++)
 		{
-			tab[i] = list.get(i).getResidence();
+			if (personList.get(i).getIsDriving())
+			{
+				vehicleList.add(new Car(personList.get(i)));
+			}
 		}
-	    Chart chart1 = new Chart("Wykres zamieszkania", "Rozłożenie miejsca zamieszkania w populacji", "Miejsce zamieszkania", "Wystąpienia", tab);
-	    chart1.pack();
-	    chart1.setVisible(true);
-	    
-	    //----------miejsceDocelowe---------
-		for (int i = 0; i < list.size(); i ++)
-		{
-			tab[i] = list.get(i).getDestination();
-		}
-	    Chart chart2 = new Chart("Wykres celu", "Rozłożenie miejsca docelowego w populacji", "Miejsce docelowe", "Wystąpienia", tab);
-	    chart2.pack();
-	    chart2.setVisible(true);
-	    
-	    //--------godzinaWyjsciaZDomu-------------
-		for (int i = 0; i < list.size(); i ++)
-		{
-			tab[i] = list.get(i).getGoingOut();
-		}
-	    Chart chart3 = new Chart("Wykres wyjścia", "Rozłożenie godziny wyjścia z domu w czasie", "Godzina", "Wystąpienia", tab);
-	    chart3.pack();
-	    chart3.setVisible(true);
-	    
-	    //--------godzinaWyjsciaZPracy-------------
-		for (int i = 0; i < list.size(); i ++)
-		{
-			tab[i] = list.get(i).getGoingBack();
-		}
-	    Chart chart4 = new Chart("Wykres powrotu", "Rozłożenie godziny wyjścia z pracy w czasie", "Godzina", "Wystąpienia", tab);
-	    chart4.pack();
-	    chart4.setVisible(true);
 	}
 }

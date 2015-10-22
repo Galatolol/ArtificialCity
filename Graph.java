@@ -22,16 +22,12 @@ import edu.uci.ics.jung.visualization.renderers.Renderer.VertexLabel.Position;
 public class Graph {
 	public SparseMultigraph<V, E> graph;
 	public static LinkedList<V> vertices = new LinkedList<V>();
-
-	
 	
 	public void init() {
 		graph = new SparseMultigraph<V, E>();
 		
 		this.createVertices();
-		this.createGraph();
-		
-		
+		this.createGraph();	
 	}
 	
 	private void createVertices() {
@@ -188,7 +184,7 @@ public class Graph {
         System.out.println("and the length of the path is: " + distance);
     }
 	
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
         Graph myApp = new Graph();
         myApp.init();
         
@@ -228,5 +224,5 @@ public class Graph {
     	frame.getContentPane().add(vv); 
     	frame.pack();
     	frame.setVisible(true);  
-    }*/
+    }
 }

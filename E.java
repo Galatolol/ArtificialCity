@@ -27,7 +27,7 @@ public class E {
 		cellTab = new CellList[lanesNum];
 		
 		for(int i = 0; i < lanesNum; i++) {
-			cellTab[i] = new CellList(cellsNum, this.begin, this.end);
+			cellTab[i] = new CellList(cellsNum, this.begin, this.end, -1, -1);
 		}
 		
 	}
