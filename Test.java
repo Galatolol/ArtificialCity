@@ -21,11 +21,11 @@ public class Test
 	
 	public static void displayInfoAboutCar(Vehicle car)
 	{
-		Integer listNr = car.getCurrentListNr();
-		Integer cellNr = car.getCurrentCell().getNr();
-		Integer speed = car.getCurrentSpeed();
-		Integer howMany = car.getCurrentCell().getHowManyCellsToCrossroad();
-		Integer howManyToRight = car.getCellListTab()[listNr].getHowManyToRight();
+		int listNr = car.getCurrentListNr();
+		int cellNr = car.getCurrentCell().getNr();
+		int speed = car.getCurrentSpeed();
+		int howMany = car.getCurrentCell().getHowManyCellsToCrossroad();
+		int howManyToRight = car.getCellListTab()[listNr].getHowManyToRight();
 		System.out.println("Pas: " + listNr + "  komorka: " + cellNr + "  predkosc: " + speed
 				+ "  ile do konca: " + howMany + "  ile do prawa : " + howManyToRight);
 	}

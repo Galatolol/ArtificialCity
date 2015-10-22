@@ -11,6 +11,7 @@ public class Main
 		//createLists();		
 		//Test.displayInfo(personList);
 		//Charts.createCharts(personList); 
+		
 		CellList[] cellListTab = new CellList[3];
 		cellListTab[0] = new CellList(15, new V(2, 90, 965), new V(1, 55, 965), 2, 0);
 		cellListTab[1] = new CellList(15, new V(2, 90, 965), new V(1, 55, 965), 1, 1);
@@ -22,10 +23,9 @@ public class Main
 		auto.setCurrentCell(cellListTab[0].cellList[0]);
 		auto.setSpeed(1);
 		auto.curveLeft();
-		
 		vehicleList.add(auto);
 		
-		for (Integer i = 0; i < cellListTab[0].length; i++)
+		for (int i = 0; i < 15; i++)
 		{
 			System.out.println("Jednostka czasu: " + i);
 			Test.displayInfoAboutCar(auto);
