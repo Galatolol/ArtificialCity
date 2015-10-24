@@ -11,7 +11,7 @@ public class E {
 	public CellList[] cellTab;
 	private int cellsNum;
 	
-	public static final int CELL_SIZE = 5;
+	public static final int CELL_SIZE = 4;
 	
 	E (V _begin, V _end, int _length, int _speedLimit, int _lanesNum) {
 		this.begin = _begin;
@@ -19,7 +19,7 @@ public class E {
 		this.length = (int) Math.sqrt((end.getX()-begin.getX()) * (end.getX()-begin.getX()) +
 				            (end.getY()-begin.getY()) * (end.getY()-begin.getY()));
 		
-		System.out.println(begin.toString() + " - " + end.toString() + " : " + length);
+		//System.out.println(begin.toString() + " - " + end.toString() + " : " + length);
 		this.speedLimit = _speedLimit;
 		this.lanesNum = _lanesNum;
 		

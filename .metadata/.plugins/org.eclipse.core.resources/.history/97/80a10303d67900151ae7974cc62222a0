@@ -1,0 +1,102 @@
+import java.awt.EventQueue;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.MediaTracker;
+import java.awt.Toolkit;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+
+import javax.swing.ScrollPaneConstants;
+
+public class Ramka {
+
+	private JFrame frame;
+	static ContentPanel panel;
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				Ramka window = null;
+				try {
+				   window = new Ramka();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				Graph myGraph = new Graph();
+			    myGraph.init();
+				
+				Collection<E> edges = myGraph.graph.getOutEdges(Graph.vertices.get(16));
+			    LinkedList<E> le = new LinkedList(edges);
+			    CellList[] cellListTab = new CellList[3];
+			    List<Vehicle> vehicleList = new ArrayList<Vehicle>();
+			    cellListTab = le.getFirst().cellTab;
+				//cellListTab[0] = new CellList(15, new V(2, 90, 965), new V(1, 55, 965), 2, 0);
+				//cellListTab[1] = new CellList(15, new V(2, 90, 965), new V(1, 55, 965), 1, 1);
+				//cellListTab[2] = new CellList(15, new V(2, 90, 965), new V(1, 55, 965), 0, 2);
+				
+				Vehicle auto = new Car(null);
+				auto.setCellListTab(cellListTab);
+				auto.setCurrentListNr(1);
+				auto.setCurrentCell(cellListTab[0].cellList[0]);
+				auto.setSpeed(1);
+				auto.curveLeft();
+				vehicleList.add(auto);
+				
+				for (int i = 0; i < 15; i++)
+				{
+					System.out.println("Jednostka czasu: " + i);
+					Test.displayInfoAboutCar(auto);
+					Movement.move(vehicleList);
+					vehicleList.get(0).paintVehicle(panel.getGraphics());
+					window.frame.repaint();
+				}
+				panel.getGraphics().fillOval(50, 50, 60, 60);
+				window.frame.repaint();
+				window.frame.revalidate();
+				
+				
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Ramka() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(0, 0, 500, 500);
+		frame.setMaximumSize(new Dimension(1050, 1050));
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		panel = new ContentPanel();
+		panel.setPreferredSize(new Dimension(1000, 1000));
+		
+		JScrollPane scrollpane = new JScrollPane(panel);
+		scrollpane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollpane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		scrollpane.setAutoscrolls(true);
+		frame.getContentPane().add(scrollpane, BorderLayout.CENTER);
+		frame.pack();
+	}
+}
+
+

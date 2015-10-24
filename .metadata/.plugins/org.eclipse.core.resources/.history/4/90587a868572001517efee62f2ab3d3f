@@ -1,8 +1,0 @@
-
-public class Edge {
-	private Vertex begin;
-	private Vertex end;
-	
-	private double length;
-	
-}

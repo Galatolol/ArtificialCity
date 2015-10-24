@@ -3,8 +3,11 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Paint;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.swing.JFrame;
 
@@ -26,8 +29,14 @@ public class Graph {
 	public void init() {
 		graph = new SparseMultigraph<V, E>();
 		
-		this.createVertices();
-		this.createGraph();	
+		try {
+			this.getVertices("res/vertices.txt");
+			this.getEdges("res/edges.txt");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//this.createGraph();	
 	}
 	
 	private void createVertices() {
@@ -189,7 +198,7 @@ public class Graph {
         myApp.init();
         
         //System.out.println(myApp.graph.toString());
-        myApp.calcWeightedShortestPath(vertices.get(2), vertices.get(20));
+        myApp.calcWeightedShortestPath(vertices.get(19), vertices.get(5));
         
         Transformer<V, Paint> edgeStroke = new Transformer<V, Paint>() {
 		    public Paint transform(V s) {
@@ -225,4 +234,42 @@ public class Graph {
     	frame.pack();
     	frame.setVisible(true);  
     }
+
+
+	private void getVertices(String path) throws FileNotFoundException {
+	    File file = new File(path);
+	    Scanner in = new Scanner(file);
+	            
+	    String scanLine;
+	    vertices.add(new V(0,0,0));
+	    while(in.hasNextLine()) {
+		    scanLine = in.nextLine();
+	        String[] v = scanLine.split(",");
+	        vertices.add(new V(Integer.parseInt(v[0]), 
+	        				   Integer.parseInt(v[1]), 
+	        				   Integer.parseInt(v[2])));      	    	  
+		}
+	    in.close();
+	}
+	
+	private void getEdges(String path) throws FileNotFoundException {
+	    File file = new File(path);
+	    Scanner in = new Scanner(file);
+	            
+	    String scanLine;
+	    while(in.hasNextLine()) {
+		    scanLine = in.nextLine();
+	        String[] v = scanLine.split(",");
+	        
+	        graph.addEdge(new E(vertices.get(Integer.parseInt(v[0])),
+	        					vertices.get(Integer.parseInt(v[1])), 
+	        					Integer.parseInt(v[2]), 
+	        					Integer.parseInt(v[3]),
+	        					Integer.parseInt(v[4])), 
+	        					vertices.get(Integer.parseInt(v[0])), 
+	        					vertices.get(Integer.parseInt(v[1])), 
+	        					EdgeType.DIRECTED);
+		}
+	    in.close();
+	}
 }

@@ -1,0 +1,60 @@
+import java.awt.EventQueue;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.MediaTracker;
+import java.awt.Toolkit;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+
+import javax.swing.ScrollPaneConstants;
+
+public class Ramka {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Ramka window = new Ramka();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Ramka() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 500, 500);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		ContentPanel panel = new ContentPanel();
+		panel.setPreferredSize(new Dimension(1000, 1000));
+		JScrollPane scrollpane = new JScrollPane(panel);
+		scrollpane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollpane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		frame.getContentPane().add(scrollpane, BorderLayout.CENTER);
+	}
+}
+
+

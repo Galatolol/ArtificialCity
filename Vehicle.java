@@ -1,3 +1,6 @@
+import java.awt.Color;
+import java.awt.Graphics;
+
 public abstract class Vehicle 
 {
 	protected boolean curvingRight;
@@ -83,5 +86,13 @@ public abstract class Vehicle
 	public int getCurrentListNr() { return currentListNr; }
 	public Cell getCurrentCell() { return currentCell; }
 	public Cell getNextCell() { return nextCell; }
-	public Cell getTmpCell() { return tmpCell; }	
+	public Cell getTmpCell() { return tmpCell; }
+	
+	public void paintVehicle(Graphics g)
+	{	
+		g.setColor(Color.BLUE);
+		g.fillOval(this.getCurrentCell().getX()-5, 
+				   this.getCurrentCell().getY()-5, 
+				   10, 10);
+	}
 }

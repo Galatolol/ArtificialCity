@@ -11,7 +11,6 @@
 <fullyQualifiedTypeName name="edu.uci.ics.jung.graph.UndirectedSparseMultigraph"/>
 <fullyQualifiedTypeName name="edu.uci.ics.jung.algorithms.layout.CircleLayout"/>
 <fullyQualifiedTypeName name="edu.uci.ics.jung.algorithms.layout.Layout"/>
-<fullyQualifiedTypeName name="java.awt.Dimension"/>
 <fullyQualifiedTypeName name="edu.uci.ics.jung.visualization.BasicVisualizationServer"/>
 <fullyQualifiedTypeName name="javax.swing.JFrame"/>
 <fullyQualifiedTypeName name="com.sun.prism.paint.Paint"/>
@@ -24,5 +23,20 @@
 <fullyQualifiedTypeName name="edu.uci.ics.jung.algorithms.layout.ISOMLayout"/>
 <fullyQualifiedTypeName name="edu.uci.ics.jung.visualization.decorators.ToStringLabeller"/>
 <fullyQualifiedTypeName name="edu.uci.ics.jung.visualization.renderers.Renderer.VertexLabel.Position"/>
+<fullyQualifiedTypeName name="java.awt.GridBagLayout"/>
+<fullyQualifiedTypeName name="java.awt.FlowLayout"/>
+<fullyQualifiedTypeName name="com.sun.xml.internal.ws.api.server.Container"/>
+<fullyQualifiedTypeName name="java.awt.Container"/>
+<fullyQualifiedTypeName name="java.awt.GridLayout"/>
+<fullyQualifiedTypeName name="javax.swing.JScrollPane"/>
+<fullyQualifiedTypeName name="java.awt.BorderLayout"/>
+<fullyQualifiedTypeName name="java.awt.Dimension"/>
+<fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="java.util.Scanner"/>
 <fullyQualifiedTypeName name="java.util.LinkedList"/>
+<fullyQualifiedTypeName name="java.awt.Graphics"/>
+<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+<fullyQualifiedTypeName name="javax.swing.Timer"/>
+<fullyQualifiedTypeName name="java.awt.event.ActionEvent"/>
 </qualifiedTypeNameHistroy>

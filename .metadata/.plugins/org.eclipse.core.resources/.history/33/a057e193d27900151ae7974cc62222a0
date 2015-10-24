@@ -1,0 +1,99 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.MediaTracker;
+import java.awt.Toolkit;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
+public class ContentPanel extends JPanel {
+	private Image bgImage = null;
+
+	ContentPanel() {
+		setLayout(new BorderLayout());
+		MediaTracker mt = new MediaTracker(this);
+		bgImage = Toolkit.getDefaultToolkit().getImage("res/map.jpg");
+		mt.addImage(bgImage, 0);
+		try {
+			mt.waitForAll();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		int imWidth = bgImage.getWidth(null);
+		int imHeight = bgImage.getHeight(null);
+		
+		Graph myGraph = new Graph();
+	    myGraph.init();
+		
+	    g.drawImage(bgImage, 0, 0, 1000, 1000, null);
+	    
+	    g.setColor(Color.GREEN);
+	    //g.fillOval(0,0, 20,20);
+	    //drawCircle(0,1000,20,g);
+		/*for(int i = 0; i < myGraph.vertices.size(); i++) {
+			g.setColor(Color.RED);
+			drawCircle(myGraph.vertices.get(i).getX(),myGraph.vertices.get(i).getY(), 
+					   20,g);
+			
+			g.setColor(Color.GREEN);
+			g.drawChars(myGraph.vertices.get(i).toString().toCharArray(),0, myGraph.vertices.get(i).toString().toCharArray().length, 
+					myGraph.vertices.get(i).getX()-7,
+					myGraph.vertices.get(i).getY()+5);
+		}
+		
+		Collection<E> edges = myGraph.graph.getEdges();
+		for(E e : edges) {
+			g.setColor(Color.BLUE);
+			for(int i = 0; i < e.getLanesNum(); i++) {
+				for(int j = 0; j < e.cellTab[i].cellList.length; j++) {
+					g.fillRect(e.cellTab[i].cellList[j].getX(), e.cellTab[i].cellList[j].getY(), 5, 2);
+				}
+			}
+			
+			
+			
+			g.setColor(Color.GREEN);
+			g.drawLine(e.getBeginX(), e.getBeginY(), e.getEndX(), e.getEndY());
+		}
+		*/
+	    Collection<E> edges = myGraph.graph.getOutEdges(myGraph.vertices.get(16)));
+	    LinkedList<E> le = new LinkedList(edges);
+	    CellList[] cellListTab = new CellList[3];
+	    List<Vehicle> vehicleList = new ArrayList<Vehicle>();
+	    cellListTab = le.getFirst().cellTab;
+		//cellListTab[0] = new CellList(15, new V(2, 90, 965), new V(1, 55, 965), 2, 0);
+		//cellListTab[1] = new CellList(15, new V(2, 90, 965), new V(1, 55, 965), 1, 1);
+		//cellListTab[2] = new CellList(15, new V(2, 90, 965), new V(1, 55, 965), 0, 2);
+		
+		Vehicle auto = new Car(null);
+		auto.setCellListTab(cellListTab);
+		auto.setCurrentListNr(1);
+		auto.setCurrentCell(cellListTab[0].cellList[0]);
+		auto.setSpeed(1);
+		auto.curveLeft();
+		vehicleList.add(auto);
+		
+		for (int i = 0; i < 15; i++)
+		{
+			System.out.println("Jednostka czasu: " + i);
+			//Test.displayInfoAboutCar(auto);
+			Movement.move(vehicleList);
+		}
+  }
+	
+	private void drawCircle(int x, int y, int r, Graphics g) {
+		g.setColor(Color.RED);
+		g.fillOval(x-r/2, y-r/2, r, r);
+	}
+}

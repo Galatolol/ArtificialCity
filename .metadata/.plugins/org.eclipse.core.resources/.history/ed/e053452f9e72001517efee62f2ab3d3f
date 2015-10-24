@@ -1,5 +1,0 @@
-
-public class CellList {
-	public LinkeList<Cell> cellList;
-
-}
