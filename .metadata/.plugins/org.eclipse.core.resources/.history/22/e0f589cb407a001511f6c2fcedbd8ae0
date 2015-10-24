@@ -11,7 +11,7 @@ public class E {
 	public CellList[] cellTab;
 	private int cellsNum;
 	
-	public static final int CELL_SIZE = 1;
+	public static final int CELL_SIZE = 4;
 	
 	E (V _begin, V _end, int _length, int _speedLimit, int _lanesNum) {
 		this.begin = _begin;
@@ -27,37 +27,9 @@ public class E {
 		cellTab = new CellList[lanesNum];
 		
 		for(int i = 0; i < lanesNum; i++) {
-			cellTab[i] = new CellList(cellsNum, this.begin, this.end, 0, -1, -1);
-			
-			if(i == 1) { // 2 pasy
-				for(int j = 0; j < cellTab[i].cellList.length; j++) {
-					cellTab[i].cellList[j].setX(cellTab[i].cellList[j].getX() + 4);
-					cellTab[i].cellList[j].setY(cellTab[i].cellList[j].getY() + 4);
-				}				
-			}
-			
-			if(i == 2) { // 3 pasy
-				for(int j = 0; j < cellTab[i].cellList.length; j++) {
-					cellTab[i].cellList[j].setX(cellTab[i].cellList[j].getX() - 4);
-					cellTab[i].cellList[j].setY(cellTab[i].cellList[j].getY() - 4);
-				}
-			}
+			cellTab[i] = new CellList(cellsNum, this.begin, this.end, -1, -1);
 		}
 		
-		/*switch (lanesNum) {
-			case 1: cellTab[0] = new CellList(cellsNum, this.begin, this.end, 0, -1, -1);
-					break;
-			
-			case 2: cellTab[0] = new CellList(cellsNum, this.begin, this.end, 0, -1, -1);
-			        cellTab[1] = new CellList(cellsNum, this.begin, this.end, 1, -1, -1);
-				    break;
-			
-			case 3: cellTab[0] = new CellList(cellsNum, this.begin, this.end,0, -1, -1);
-			 		cellTab[1] = new CellList(cellsNum, this.begin, this.end,1, -1, -1);
-			 		cellTab[2] = new CellList(cellsNum, this.begin, this.end,2, -1, -1);
-					break;
-										
-		}	*/	
 	}
 	
 	public int getLength() {

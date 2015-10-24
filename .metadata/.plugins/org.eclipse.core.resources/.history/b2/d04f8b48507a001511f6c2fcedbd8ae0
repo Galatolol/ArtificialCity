@@ -11,7 +11,7 @@ public class E {
 	public CellList[] cellTab;
 	private int cellsNum;
 	
-	public static final int CELL_SIZE = 1;
+	public static final int CELL_SIZE = 5;
 	
 	E (V _begin, V _end, int _length, int _speedLimit, int _lanesNum) {
 		this.begin = _begin;
@@ -31,15 +31,15 @@ public class E {
 			
 			if(i == 1) { // 2 pasy
 				for(int j = 0; j < cellTab[i].cellList.length; j++) {
-					cellTab[i].cellList[j].setX(cellTab[i].cellList[j].getX() + 4);
-					cellTab[i].cellList[j].setY(cellTab[i].cellList[j].getY() + 4);
+					cellTab[i].cellList[j].setX(cellTab[i].cellList[j].getX() + 5);
+					cellTab[i].cellList[j].setY(cellTab[i].cellList[j].getY() + 5);
 				}				
 			}
 			
 			if(i == 2) { // 3 pasy
 				for(int j = 0; j < cellTab[i].cellList.length; j++) {
-					cellTab[i].cellList[j].setX(cellTab[i].cellList[j].getX() - 4);
-					cellTab[i].cellList[j].setY(cellTab[i].cellList[j].getY() - 4);
+					cellTab[i].cellList[j].setX(cellTab[i].cellList[j].getX() - 5);
+					cellTab[i].cellList[j].setY(cellTab[i].cellList[j].getY() - 5);
 				}
 			}
 		}

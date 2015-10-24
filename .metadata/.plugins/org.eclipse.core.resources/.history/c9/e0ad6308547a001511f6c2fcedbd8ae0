@@ -95,7 +95,9 @@ public class ContentPanel extends JPanel implements ActionListener {
 	    }			
 	}
 	
-	public void actionPerformed(ActionEvent e) {		
+	public void actionPerformed(ActionEvent e) {
+		System.out.println("Jednostka czasu: " + counter);
+		//Test.displayInfoAboutCar(vehicleList.get(0));
 		Movement.move(vehicleList);
 		
 		counter++;

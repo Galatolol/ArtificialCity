@@ -286,20 +286,4 @@ public class Graph {
 						v.getY()+5);
 		}
 	}
-
-	public void paintEdges(Graphics g) {
-		for(E e : graph.getEdges()) {
-	    	g.setColor(Color.green);
-	    	g.drawLine(e.getBeginX(), e.getBeginY(), e.getEndX(), e.getEndY());
-	    	
-	    	for(int i = 0; i < e.cellTab.length; i++) {
-	    		for(int j = 0; j < e.cellTab[i].length; j++) {
-	    			g.fillRect(e.cellTab[i].cellList[j].getX(),
-	    					   e.cellTab[i].cellList[j].getY(), 
-	    					   4, 4);
-	    		}
-	    	}
-	    	
-		}
-	}
 }

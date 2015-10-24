@@ -5,39 +5,31 @@ public class CellList {
 	public int howManyToRight;
 	public int length;
 	
-	public CellList(int n, V begin, V end, int lane, int _howManyToRight, int _howManyToLeft) {
+	public CellList(int n, V begin, V end, int _howManyToRight, int _howManyToLeft) {
 		cellList = new Cell[n];
 		length = n;
 		howManyToRight = _howManyToRight;
 		howManyToLeft = _howManyToLeft;
 		for (int i = 0; i < n; i++) {
-			cellList[i] = createCell(i, n, begin, end, lane, n - i);
+			cellList[i] = createCell(i, n, begin, end, n - i);
 		}
 	}
 	
-	private Cell createCell(int i, int n, V begin, V end, int lane, int howManyCellsToCrossroad) {
+	private Cell createCell(int i, int n, V begin, V end, int howManyCellsToCrossroad) {
 		double x;
 		double y;
 		
-		switch (lane) {
-			case 0: x = Math.abs(end.getX() - begin.getX());
-					y = Math.abs(end.getY() - begin.getY());
-					break;
-			
-			case 1: x = Math.abs(end.getX() - begin.getX())-5;
-					y = Math.abs(end.getY() - begin.getY())-5;
-					break;	
-					
-			case 2: x = Math.abs(end.getX() - begin.getX())+5;
-					y = Math.abs(end.getY() - begin.getY())+5;
-					break;	
-			
-			default: x = Math.abs(end.getX() - begin.getX());
-					 y = Math.abs(end.getY() - begin.getY());
-					 break;
-				
-		}
-		
+		//if(end.getX() > begin.getX()) {
+			x = Math.abs(end.getX() - begin.getX());
+		//} else {
+		//	x = begin.getX() - end.getX() ;
+		//}
+		//
+		//if(end.getY() > begin.getY()) {
+			y = Math.abs(end.getY() - begin.getY());
+		//} else {
+		//	y = begin.getY() - end.getY() ;
+		//}
 		
 		x = (1f / n) * x;
 		y = (1f / n) * y;		

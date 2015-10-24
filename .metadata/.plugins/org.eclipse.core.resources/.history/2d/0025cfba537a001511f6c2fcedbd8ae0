@@ -11,7 +11,7 @@ public class E {
 	public CellList[] cellTab;
 	private int cellsNum;
 	
-	public static final int CELL_SIZE = 1;
+	public static final int CELL_SIZE = 5;
 	
 	E (V _begin, V _end, int _length, int _speedLimit, int _lanesNum) {
 		this.begin = _begin;

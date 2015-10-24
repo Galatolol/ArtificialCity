@@ -17,7 +17,7 @@ import javax.swing.Timer;
 public class ContentPanel extends JPanel implements ActionListener {
 	private Image bgImage = null;
 	
-	private Timer tm = new Timer(100, this);
+	private Timer tm = new Timer(500, this);
 	
 	static int counter = 0;
 	
@@ -39,7 +39,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 		myGraph = new Graph();
 	    myGraph.init();
 		
-	    Collection<E> edges = myGraph.graph.getOutEdges(Graph.vertices.get(16));
+	    Collection<E> edges = myGraph.graph.getOutEdges(Graph.vertices.get(13));
 	    LinkedList<E> le = new LinkedList(edges);
 	    CellList[] cellListTab = new CellList[3];
 	    
@@ -53,30 +53,14 @@ public class ContentPanel extends JPanel implements ActionListener {
 		auto1.curveLeft();
 		vehicleList.add(auto1);
 		
-		Vehicle auto2 = new Car(null);
-		auto2.setCellListTab(le.get(0).cellTab);
-		auto2.setCurrentListNr(0);
-		auto2.setCurrentCell(le.get(0).cellTab[1].cellList[10]);
+		/*Vehicle auto2 = new Car(null);
+		auto2.setCellListTab(le.get(1).cellTab);
+		auto2.setCurrentListNr(1);
+		auto2.setCurrentCell(le.get(1).cellTab[0].cellList[0]);
 		auto2.setSpeed(1);
 		auto2.curveLeft();
 		vehicleList.add(auto2);
-		
-		Vehicle auto3 = new Car(null);
-		auto3.setCellListTab(le.get(0).cellTab);
-		auto3.setCurrentListNr(2);
-		auto3.setCurrentCell(le.get(0).cellTab[1].cellList[20]);
-		auto3.setSpeed(1);
-		auto3.curveRight();
-		vehicleList.add(auto3);
-		
-		Vehicle auto4 = new Car(null);
-		auto4.setCellListTab(le.get(0).cellTab);
-		auto4.setCurrentListNr(1);
-		auto4.setCurrentCell(le.get(0).cellTab[2].cellList[20]);
-		auto4.setSpeed(1);
-		auto4.moveForward();
-		vehicleList.add(auto4);
-		//*/
+		*/
 		
 		
 		tm.start();
@@ -87,15 +71,25 @@ public class ContentPanel extends JPanel implements ActionListener {
 	
 	    g.drawImage(bgImage, 0, 0, 1000, 1000, null);
 	    
-	    myGraph.paintVertices(g);
-	    //myGraph.paintEdges(g);
+	    for(V v : myGraph.vertices) {
+	    	g.setColor(Color.RED);
+	    	this.drawCircle(v.getX(), v.getY(), 20, g);
+			
+	    	g.setColor(Color.BLACK);
+			g.drawChars(v.toString().toCharArray(), 0,
+						v.toString().length(), 
+						v.getX()-6, 
+						v.getY()+5);
+		}
 	    
 	    for(Vehicle v :vehicleList) {
 	    	v.paintVehicle(g);
 	    }			
 	}
 	
-	public void actionPerformed(ActionEvent e) {		
+	public void actionPerformed(ActionEvent e) {
+		System.out.println("Jednostka czasu: " + counter);
+		//Test.displayInfoAboutCar(vehicleList.get(0));
 		Movement.move(vehicleList);
 		
 		counter++;
@@ -103,7 +97,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 		repaint();
 	}
 	
-	public static void drawCircle(int x, int y, int r, Graphics g) {
+	private void drawCircle(int x, int y, int r, Graphics g) {
 		//g.setColor(Color.RED);
 		g.fillOval(x-r/2, y-r/2, r, r);
 	}

@@ -13,9 +13,9 @@ public class Main
 		//Charts.createCharts(personList); 
 		
 		CellList[] cellListTab = new CellList[3];
-		cellListTab[0] = new CellList(15, new V(2, 90, 965), new V(1, 55, 965),0, 2, 0);
-		cellListTab[1] = new CellList(15, new V(2, 90, 965), new V(1, 55, 965),0, 1, 1);
-		cellListTab[2] = new CellList(15, new V(2, 90, 965), new V(1, 55, 965),0, 0, 2);
+		cellListTab[0] = new CellList(15, new V(2, 90, 965), new V(1, 55, 965), 2, 0);
+		cellListTab[1] = new CellList(15, new V(2, 90, 965), new V(1, 55, 965), 1, 1);
+		cellListTab[2] = new CellList(15, new V(2, 90, 965), new V(1, 55, 965), 0, 2);
 		
 		Vehicle auto = new Car(null);
 		auto.setCellListTab(cellListTab);
