@@ -96,8 +96,6 @@ public class ContentPanel extends JPanel implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {		
-		Test.displayInfoAboutCar(vehicleList.get(0));
-		Test.displayInfoAboutCar(vehicleList.get(1));
 		Movement.move(vehicleList);
 		
 		counter++;

@@ -20,20 +20,20 @@ public class CellList {
 		double y;
 		
 		switch (lane) {
-			case 0: x = Math.abs(end.getX() - begin.getX());
-					y = Math.abs(end.getY() - begin.getY());
+			case 0: x = Math.abs(end.getX() - begin.getX())+5;
+					y = Math.abs(end.getY() - begin.getY())+5;
 					break;
 			
 			case 1: x = Math.abs(end.getX() - begin.getX());
 					y = Math.abs(end.getY() - begin.getY());
 					break;	
 					
-			case 2: x = Math.abs(end.getX() - begin.getX());
-					y = Math.abs(end.getY() - begin.getY());
+			case 2: x = Math.abs(end.getX() - begin.getX())-5;
+					y = Math.abs(end.getY() - begin.getY())-5;
 					break;	
 			
-			default: x = Math.abs(end.getX() - begin.getX());
-					 y = Math.abs(end.getY() - begin.getY());
+			default: x = Math.abs(end.getX() - begin.getX())+5;
+					 y = Math.abs(end.getY() - begin.getY())+5;
 					 break;
 				
 		}

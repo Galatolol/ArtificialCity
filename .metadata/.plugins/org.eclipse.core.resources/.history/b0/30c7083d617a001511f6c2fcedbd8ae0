@@ -27,10 +27,9 @@ public class E {
 		cellTab = new CellList[lanesNum];
 		
 		for(int i = 0; i < lanesNum; i++) {
-			
+			cellTab[i] = new CellList(cellsNum, this.begin, this.end, 0, -1, -1);
 			
 			if(i == 0) { // 1 pasy
-				cellTab[i] = new CellList(cellsNum, this.begin, this.end, 0, 2, 0);
 				for(int j = 0; j < cellTab[i].cellList.length; j++) {
 					cellTab[i].cellList[j].setX(cellTab[i].cellList[j].getX() -4);
 					cellTab[i].cellList[j].setY(cellTab[i].cellList[j].getY() - 4);
@@ -38,11 +37,13 @@ public class E {
 			}
 			
 			if(i == 1) { // 2 pasy
-				cellTab[i] = new CellList(cellsNum, this.begin, this.end, 0, 1, 1);				
+				for(int j = 0; j < cellTab[i].cellList.length; j++) {
+					cellTab[i].cellList[j].setX(cellTab[i].cellList[j].getX() -4);
+					cellTab[i].cellList[j].setY(cellTab[i].cellList[j].getY() - 4);
+				}				
 			}
 			
 			if(i == 2) { // 3 pasy
-				cellTab[i] = new CellList(cellsNum, this.begin, this.end, 0, 0, 2);
 				for(int j = 0; j < cellTab[i].cellList.length; j++) {
 					cellTab[i].cellList[j].setX(cellTab[i].cellList[j].getX() + 4);
 					cellTab[i].cellList[j].setY(cellTab[i].cellList[j].getY() + 4);

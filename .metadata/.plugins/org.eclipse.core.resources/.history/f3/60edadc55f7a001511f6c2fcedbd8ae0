@@ -63,16 +63,16 @@ public class ContentPanel extends JPanel implements ActionListener {
 		*/
 		Vehicle auto3 = new Car(null);
 		auto3.setCellListTab(le.get(0).cellTab);
-		auto3.setCurrentListNr(0);
-		auto3.setCurrentCell(le.get(0).cellTab[0].cellList[10]);
+		auto3.setCurrentListNr(1);
+		auto3.setCurrentCell(le.get(0).cellTab[1].cellList[10]);
 		auto3.setSpeed(1);
-		auto3.curveRight();
+		auto3.moveForward();
 		vehicleList.add(auto3);
 		
 		Vehicle auto4 = new Car(null);
 		auto4.setCellListTab(le.get(0).cellTab);
 		auto4.setCurrentListNr(2);
-		auto4.setCurrentCell(le.get(0).cellTab[2].cellList[0]);
+		auto4.setCurrentCell(le.get(0).cellTab[2].cellList[10]);
 		auto4.setSpeed(1);
 		auto4.curveLeft();
 		vehicleList.add(auto4);
@@ -96,8 +96,6 @@ public class ContentPanel extends JPanel implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {		
-		Test.displayInfoAboutCar(vehicleList.get(0));
-		Test.displayInfoAboutCar(vehicleList.get(1));
 		Movement.move(vehicleList);
 		
 		counter++;
