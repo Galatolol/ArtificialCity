@@ -2,6 +2,8 @@ import java.util.List;
 
 public class Movement 
 {
+	private static Cell tmpCell;
+	
 	public static void move(List<Vehicle> vehicleList)
 	{
 		for (int i = 0; i < vehicleList.size(); i++)
@@ -32,6 +34,7 @@ public class Movement
 				}
 			}
 			car.setNextCell(car.getTmpCell());
+			car.getNextCell().setOccupied(true);
 		}
 		for (int i = 0; i < vehicleList.size(); i++)
 		{
@@ -43,28 +46,35 @@ public class Movement
 	{
 		try
 		{
-			if (car.isCurvingRight() && cell.getHowManyCellsToCrossroad() == cellListTab[listNr].getHowManyToRight() + 1
+			if (car.isCurvingRight() && cell.getHowManyCellsToCrossroad() == cellListTab[listNr].getHowManyToRight() + 3
 				&& !cellListTab[listNr + 1].cellList[cellNr + 1].isForbidden())
 			{
 				car.setSpeed(1);
 				car.setCurrentListNr(listNr + 1);
-				car.setTmpCell(cellListTab[listNr + 1].cellList[cellNr + 1]);
-				return;
+				tmpCell = cellListTab[listNr + 1].cellList[cellNr + 1];
 			}
-			else if (car.isCurvingLeft() && cell.getHowManyCellsToCrossroad() == cellListTab[listNr].getHowManyToLeft() + 1
+			else if (car.isCurvingLeft() && cell.getHowManyCellsToCrossroad() == cellListTab[listNr].getHowManyToLeft() + 3
 				&& !cellListTab[listNr - 1].cellList[cellNr + 1].isForbidden())
 			{
 				car.setSpeed(1);
-				car.setTmpCell(cellListTab[listNr - 1].cellList[cellNr + 1]);
 				car.setCurrentListNr(listNr - 1);
-				return;
+				tmpCell = cellListTab[listNr - 1].cellList[cellNr + 1];
 			}
 		}
 		catch(Exception e)
 		{
 			System.out.println("wyjatek");
 		}
-		car.setTmpCell(cellListTab[listNr].cellList[cellNr + 1]);
+		tmpCell = cellListTab[listNr].cellList[cellNr + 1];
+		if (tmpCell.isOccupied())
+		{
+			car.setSpeed(0);
+			
+		}
+		else
+		{
+			car.setTmpCell(tmpCell);
+		}
 	}
 	
 	public static void moveToNextCell(Vehicle car)
