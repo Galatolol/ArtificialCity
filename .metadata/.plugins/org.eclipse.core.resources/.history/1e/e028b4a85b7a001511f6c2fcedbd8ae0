@@ -88,7 +88,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 	    g.drawImage(bgImage, 0, 0, 1000, 1000, null);
 	    
 	    myGraph.paintVertices(g);
-	    myGraph.paintEdges(g);
+	    //myGraph.paintEdges(g);
 	    
 	    for(Vehicle v :vehicleList) {
 	    	v.paintVehicle(g);

@@ -31,15 +31,15 @@ public class E {
 			
 			if(i == 0) { // 2 pasy
 				for(int j = 0; j < cellTab[i].cellList.length; j++) {
-					cellTab[i].cellList[j].setX(cellTab[i].cellList[j].getX() -4);
-					cellTab[i].cellList[j].setY(cellTab[i].cellList[j].getY() - 4);
+					cellTab[i].cellList[j].setX(cellTab[i].cellList[j].getX() + 4);
+					cellTab[i].cellList[j].setY(cellTab[i].cellList[j].getY() + 4);
 				}				
 			}
 			
 			if(i == 2) { // 3 pasy
 				for(int j = 0; j < cellTab[i].cellList.length; j++) {
-					cellTab[i].cellList[j].setX(cellTab[i].cellList[j].getX() + 4);
-					cellTab[i].cellList[j].setY(cellTab[i].cellList[j].getY() + 4);
+					cellTab[i].cellList[j].setX(cellTab[i].cellList[j].getX() - 4);
+					cellTab[i].cellList[j].setY(cellTab[i].cellList[j].getY() - 4);
 				}
 			}
 		}

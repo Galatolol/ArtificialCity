@@ -45,7 +45,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 	    
 	    cellListTab = le.getFirst().cellTab;
 			
-		/*Vehicle auto1 = new Car(null);
+		Vehicle auto1 = new Car(null);
 		auto1.setCellListTab(le.get(0).cellTab);
 		auto1.setCurrentListNr(1);
 		auto1.setCurrentCell(le.get(0).cellTab[0].cellList[0]);
@@ -68,11 +68,11 @@ public class ContentPanel extends JPanel implements ActionListener {
 		auto3.setSpeed(1);
 		auto3.curveRight();
 		vehicleList.add(auto3);
-		*/
+		
 		Vehicle auto4 = new Car(null);
 		auto4.setCellListTab(le.get(0).cellTab);
 		auto4.setCurrentListNr(1);
-		auto4.setCurrentCell(le.get(0).cellTab[2].cellList[30]);
+		auto4.setCurrentCell(le.get(0).cellTab[2].cellList[20]);
 		auto4.setSpeed(1);
 		auto4.moveForward();
 		vehicleList.add(auto4);
@@ -88,7 +88,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 	    g.drawImage(bgImage, 0, 0, 1000, 1000, null);
 	    
 	    myGraph.paintVertices(g);
-	    myGraph.paintEdges(g);
+	    //myGraph.paintEdges(g);
 	    
 	    for(Vehicle v :vehicleList) {
 	    	v.paintVehicle(g);
