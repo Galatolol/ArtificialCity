@@ -58,4 +58,16 @@ public class CellList {
 	
 	public int getHowManyToRight() { return howManyToRight; }
 	public int getHowManyToLeft() { return howManyToLeft; }
+	
+	public String toString() {
+		String output = "";
+
+		for(int j = 0; j < length; j++) {
+			output += cellList[j].toString();
+		}
+		output += "\n------------------------------\n";
+		
+		
+		return output;
+	}
 }

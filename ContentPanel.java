@@ -39,12 +39,30 @@ public class ContentPanel extends JPanel implements ActionListener {
 		myGraph = new Graph();
 	    myGraph.init();
 		
+	    //myGraph.graph.get
 	    Collection<E> edges = myGraph.graph.getOutEdges(Graph.vertices.get(16));
 	    LinkedList<E> le = new LinkedList(edges);
-	    CellList[] cellListTab = new CellList[3];
 	    
-	    cellListTab = le.getFirst().cellTab;
-			
+	    Collection<E> edges13 = myGraph.graph.getOutEdges(Graph.vertices.get(13));
+	    LinkedList<E> le13 = new LinkedList(edges13);
+	    
+	    for(E e : le13) {
+	    	System.out.println(e);
+	    }
+	    
+	    for(int i = 0; i < le13.size(); i++) {
+	    	if(myGraph.graph.isDest(Graph.vertices.get(5), le13.get(i)))
+	    		le.get(0).cellTab[1].forward = le13.get(i).cellTab[1];
+	    	
+	    	if(myGraph.graph.isDest(Graph.vertices.get(12), le13.get(i)))
+	    		le.get(0).cellTab[1].left = le13.get(i).cellTab[0];
+	    }
+	    //CellList[] cellListTab = new CellList[3];	    
+	    //cellListTab = le.getFirst().cellTab;
+	    	
+	    System.out.println(le.get(0).cellTab[1].forward.toString());
+	    System.out.println(le.get(0).cellTab[1].left.toString());
+	    
 		Vehicle auto1 = new Car(null);
 		auto1.setCellListTab(le.get(0).cellTab);
 		auto1.setCurrentListNr(1);
@@ -77,14 +95,6 @@ public class ContentPanel extends JPanel implements ActionListener {
 		auto4.curveLeft();
 		vehicleList.add(auto4);
 		
-		Vehicle auto5 = new Car(null);
-		auto5.setCellListTab(le.get(0).cellTab);
-		auto5.setCurrentListNr(2);
-		auto5.setCurrentCell(le.get(0).cellTab[2].cellList[3]);
-		auto5.setSpeed(1);
-		auto5.curveLeft();
-		vehicleList.add(auto5);
-		
 		tm.start();
 	}
 
@@ -94,7 +104,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 	    g.drawImage(bgImage, 0, 0, 1000, 1000, null);
 	    
 	    myGraph.paintVertices(g);
-	    myGraph.paintEdges(g);
+	    //myGraph.paintEdges(g);
 	    
 	    for(Vehicle v :vehicleList) {
 	    	v.paintVehicle(g);
