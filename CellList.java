@@ -4,6 +4,9 @@ public class CellList {
 	public int howManyToLeft; //ile pasow do lewa
 	public int howManyToRight;
 	public int length;
+	public CellList left;
+	public CellList right;
+	public CellList forward;
 	
 	public CellList(int n, V begin, V end, int lane, int _howManyToRight, int _howManyToLeft) {
 		cellList = new Cell[n];
@@ -34,10 +37,8 @@ public class CellList {
 			
 			default: x = Math.abs(end.getX() - begin.getX());
 					 y = Math.abs(end.getY() - begin.getY());
-					 break;
-				
+					 break;		
 		}
-		
 		
 		x = (1f / n) * x;
 		y = (1f / n) * y;		
@@ -57,5 +58,4 @@ public class CellList {
 	
 	public int getHowManyToRight() { return howManyToRight; }
 	public int getHowManyToLeft() { return howManyToLeft; }
-
 }

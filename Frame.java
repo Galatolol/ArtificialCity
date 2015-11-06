@@ -13,7 +13,7 @@ import java.awt.Dimension;
 
 import javax.swing.ScrollPaneConstants;
 
-public class Ramka {
+public class Frame {
 
 	private JFrame frame;
 
@@ -24,7 +24,7 @@ public class Ramka {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Ramka window = new Ramka();
+					Frame window = new Frame();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,7 +36,7 @@ public class Ramka {
 	/**
 	 * Create the application.
 	 */
-	public Ramka() {
+	public Frame() {
 		initialize();
 	}
 

@@ -77,6 +77,14 @@ public class ContentPanel extends JPanel implements ActionListener {
 		auto4.curveLeft();
 		vehicleList.add(auto4);
 		
+		Vehicle auto5 = new Car(null);
+		auto5.setCellListTab(le.get(0).cellTab);
+		auto5.setCurrentListNr(2);
+		auto5.setCurrentCell(le.get(0).cellTab[2].cellList[3]);
+		auto5.setSpeed(1);
+		auto5.curveLeft();
+		vehicleList.add(auto5);
+		
 		tm.start();
 	}
 

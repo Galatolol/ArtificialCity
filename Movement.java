@@ -1,7 +1,9 @@
 import java.util.List;
+import java.util.Random;
 
 public class Movement 
 {
+	private static Random rand = new Random();
 	private static Cell tmpCell;
 	
 	public static void move(List<Vehicle> vehicleList)
@@ -13,10 +15,10 @@ public class Movement
 			CellList[] cellListTab = car.getCellListTab();
 			int listNr = car.getCurrentListNr();
 			int cellNr = cell.getNr();
-
-			if (cellNr < cellListTab[listNr].length - 1 && !cellListTab[listNr].cellList[cellNr + 1].isOccupied())
+			car.modifySpeed(1);
+			if (rand.nextInt(5) == 0)
 			{
-				car.modifySpeed(1);
+				car.modifySpeed(-1);
 			}
 			
 			car.setTmpCell(cell);
@@ -26,6 +28,10 @@ public class Movement
 				cellNr = cell.getNr();
 				if (cellNr >= cellListTab[listNr].length - 1)
 				{
+					
+					// miejsce na zmiane ulicy
+					
+					
 					System.out.println("   Jest już na skrzyzowaniu, co teraz?!");
 				}
 				else
