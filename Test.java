@@ -21,13 +21,16 @@ public class Test
 	
 	public static void displayInfoAboutCar(Vehicle car)
 	{
-		int listNr = car.getCurrentListNr();
+		int listNr = car.getLaneNr();
 		int cellNr = car.getCurrentCell().getNr();
 		int speed = car.getCurrentSpeed();
 		int howMany = car.getCurrentCell().getHowManyCellsToCrossroad();
-		int howManyToRight = car.getCellListTab()[listNr].getHowManyToRight();
+		int howManyToRight = car.getRoad()[listNr].getHowManyToRight();
+		int howManyToLeft = car.getRoad()[listNr].getHowManyToLeft();
+		String str = car.getRoad()[0].toString();
 		System.out.println("Pas: " + listNr + "  komorka: " + cellNr + "  predkosc: " + speed
-				+ "  ile do konca: " + howMany + "  ile do prawa : " + howManyToRight);
+				+ "  ile do konca: " + howMany + "  ile do prawa: " + howManyToRight + 
+				"  ile do lewa: " + howManyToLeft + "  id drogi: " + str.substring(0, 10));
 	}
 	
 }

@@ -12,14 +12,14 @@ public class Main
 		//Test.displayInfo(personList);
 		//Charts.createCharts(personList); 
 		
-		CellList[] cellListTab = new CellList[3];
-		cellListTab[0] = new CellList(15, new V(2, 90, 965), new V(1, 55, 965),0, 2, 0);
-		cellListTab[1] = new CellList(15, new V(2, 90, 965), new V(1, 55, 965),0, 1, 1);
-		cellListTab[2] = new CellList(15, new V(2, 90, 965), new V(1, 55, 965),0, 0, 2);
+		Lane[] cellListTab = new Lane[3];
+		cellListTab[0] = new Lane(15, new V(2, 90, 965), new V(1, 55, 965),0, 2, 0);
+		cellListTab[1] = new Lane(15, new V(2, 90, 965), new V(1, 55, 965),0, 1, 1);
+		cellListTab[2] = new Lane(15, new V(2, 90, 965), new V(1, 55, 965),0, 0, 2);
 		
 		Vehicle auto = new Car(null);
-		auto.setCellListTab(cellListTab);
-		auto.setCurrentListNr(1);
+		auto.setRoad(cellListTab);
+		auto.setLaneNr(1);
 		auto.setCurrentCell(cellListTab[0].cellList[0]);
 		auto.setSpeed(1);
 		auto.curveLeft();

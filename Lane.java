@@ -1,28 +1,28 @@
 
-public class CellList {
+public class Lane {
 	public Cell[] cellList;
 	public int howManyToLeft; //ile pasow do lewa
 	public int howManyToRight;
 	public int length;
-	public CellList left;
-	public CellList right;
-	public CellList forward;
+	public Lane[] left;
+	public Lane[] right;
+	public Lane[] forward;
 	
-	public CellList(int n, V begin, V end, int lane, int _howManyToRight, int _howManyToLeft) {
+	public Lane(int n, V begin, V end, int laneNr, int _howManyToRight, int _howManyToLeft) {
 		cellList = new Cell[n];
 		length = n;
 		howManyToRight = _howManyToRight;
 		howManyToLeft = _howManyToLeft;
 		for (int i = 0; i < n; i++) {
-			cellList[i] = createCell(i, n, begin, end, lane, n - i);
+			cellList[i] = createCell(i, n, begin, end, laneNr, n - i);
 		}
 	}
 	
-	private Cell createCell(int i, int n, V begin, V end, int lane, int howManyCellsToCrossroad) {
+	private Cell createCell(int i, int n, V begin, V end, int laneNr, int howManyCellsToCrossroad) {
 		double x;
 		double y;
 		
-		switch (lane) {
+		switch (laneNr) {
 			case 0: x = Math.abs(end.getX() - begin.getX());
 					y = Math.abs(end.getY() - begin.getY());
 					break;
@@ -56,9 +56,6 @@ public class CellList {
 			return new Cell((begin.getX()- x * i), (begin.getY() + y * i), howManyCellsToCrossroad, i);
 	}
 	
-	public int getHowManyToRight() { return howManyToRight; }
-	public int getHowManyToLeft() { return howManyToLeft; }
-	
 	public String toString() {
 		String output = "";
 
@@ -70,4 +67,8 @@ public class CellList {
 		
 		return output;
 	}
+	
+	public int getHowManyToRight() { return howManyToRight; }
+	public int getHowManyToLeft() { return howManyToLeft; }
+
 }

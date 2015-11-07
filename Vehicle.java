@@ -8,8 +8,8 @@ public abstract class Vehicle
 	protected boolean movingForward;
 	protected int currentSpeed;
 	protected int maxSpeed;
-	protected CellList[] cellListTab; 
-	protected int currentListNr;
+	protected Lane[] road; 
+	protected int laneNr;
 	protected Cell currentCell;
 	protected Cell nextCell;
 	protected Cell tmpCell;
@@ -30,7 +30,7 @@ public abstract class Vehicle
 	
 	public void moveForward()
 	{
-		curvingRight = true;
+		curvingRight = false;
 		curvingLeft = false;
 		movingForward = true;
 	}
@@ -53,14 +53,14 @@ public abstract class Vehicle
 		setSpeed(currentSpeed + speed);
 	}
 	
-	public void setCellListTab(CellList[] _cellListTab)
+	public void setRoad(Lane[] _road)
 	{
-		cellListTab = _cellListTab;
+		road = _road;
 	}
 	
-	public void setCurrentListNr(int _nr)
+	public void setLaneNr(int _nr)
 	{
-		currentListNr = _nr;
+		laneNr = _nr;
 	}
 	
 	public void setCurrentCell(Cell _cell)
@@ -82,8 +82,8 @@ public abstract class Vehicle
 	public boolean isCurvingRight() { return curvingRight; }
 	public boolean isCurvingLeft() { return curvingLeft; }
 	public boolean isMovingForward() { return movingForward; }
-	public CellList[] getCellListTab() { return cellListTab; }
-	public int getCurrentListNr() { return currentListNr; }
+	public Lane[] getRoad() { return road; }
+	public int getLaneNr() { return laneNr; }
 	public Cell getCurrentCell() { return currentCell; }
 	public Cell getNextCell() { return nextCell; }
 	public Cell getTmpCell() { return tmpCell; }
