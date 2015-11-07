@@ -50,20 +50,35 @@ public class ContentPanel extends JPanel implements ActionListener {
 	    for(int i = 0; i < le13.size(); i++) {
 	    	Lane[] road = new Lane[3];
 	    	if(myGraph.graph.isDest(Graph.vertices.get(5), le13.get(i))) {
-	    		road[0] = le13.get(i).cellTab[0];
-	    		road[1] = le13.get(i).cellTab[1];
-	    		road[2] = le13.get(i).cellTab[2];
-		    	for (int j = 0; j < road.length; j++) {
+	    		for(int j = 0; j < le13.get(i).cellTab.length; j++) {
+	    			road[j] = le13.get(i).cellTab[0];
+	    			road[j].speedLimit = 4; System.out.println(road[0].cellList.length);
+	    		}
+		    	for(int j = 0; j < road.length; j++) {
 		    		le.get(0).cellTab[j].forward = road;
 	    		}
+    			for(int k = 0; k < road[2].cellList.length - 1; k++)
+    			{
+    				road[2].cellList[k].setForbidden(true); //buspas
+    			}
 	    	}
 	    	else if(myGraph.graph.isDest(Graph.vertices.get(12), le13.get(i))) {
 	    		road[0] = le13.get(i).cellTab[0];
+	    		road[0].speedLimit = 2;
 		    	for (int j = 0; j < road.length; j++) {
 		    		le.get(0).cellTab[j].left = road;
 	    		}
 	    	}
 	    }
+	    
+	    for(int i = 0; i < 3; i++)
+	    {
+	    		le.get(0).cellTab[i].speedLimit = 3;
+	    }
+		for(int k = 0; k < le.get(0).cellTab[2].cellList.length - 1; k++)
+		{
+			le.get(0).cellTab[2].cellList[k].setForbidden(true); //buspas
+		}
 	
 	    System.out.println(le.get(0).cellTab[1].forward.toString());
 	    System.out.println(le.get(0).cellTab[1].left.toString());
@@ -71,10 +86,10 @@ public class ContentPanel extends JPanel implements ActionListener {
 		Vehicle auto1 = new Car(null);
 		auto1.setRoad(le.get(0).cellTab);
 		auto1.setLaneNr(1);
-		auto1.setCurrentCell(le.get(0).cellTab[0].cellList[1]);
+		auto1.setCurrentCell(le.get(0).cellTab[1].cellList[0]);
 		auto1.setSpeed(1);
-		auto1.curveLeft();
-		//vehicleList.add(auto1);
+		auto1.curveRight();
+		vehicleList.add(auto1);
 		
 		Vehicle auto2 = new Car(null);
 		auto2.setRoad(le.get(0).cellTab);
@@ -90,12 +105,12 @@ public class ContentPanel extends JPanel implements ActionListener {
 		auto3.setCurrentCell(le.get(0).cellTab[1].cellList[0]);
 		auto3.setSpeed(1);
 		auto3.curveLeft();
-		vehicleList.add(auto3);
+		//vehicleList.add(auto3);
 		
 		Vehicle auto4 = new Car(null);
 		auto4.setRoad(le.get(0).cellTab);
-		auto4.setLaneNr(2);
-		auto4.setCurrentCell(le.get(0).cellTab[2].cellList[0]);
+		auto4.setLaneNr(1);
+		auto4.setCurrentCell(le.get(0).cellTab[1].cellList[0]);
 		auto4.setSpeed(1);
 		auto4.moveForward();
 		//vehicleList.add(auto4);

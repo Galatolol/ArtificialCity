@@ -14,10 +14,16 @@ public class Cell {
 		howManyCellsToCrossroad = _howManyCellsToCrossroad;
 		nr = _nr;
 		occupied = false;
+		forbidden = false;
 	}
 	
 	public void setOccupied(boolean _occupied){
 		occupied = _occupied;
+	}
+	
+	public void setForbidden(boolean _forbidden)
+	{
+		forbidden = _forbidden;
 	}
 	
 	public void setX(int _x) {

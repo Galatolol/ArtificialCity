@@ -4,6 +4,7 @@ public class Lane {
 	public int howManyToLeft; //ile pasow do lewa
 	public int howManyToRight;
 	public int length;
+	public int speedLimit;
 	public Lane[] left;
 	public Lane[] right;
 	public Lane[] forward;
@@ -16,6 +17,7 @@ public class Lane {
 		for (int i = 0; i < n; i++) {
 			cellList[i] = createCell(i, n, begin, end, laneNr, n - i);
 		}
+		speedLimit = 3;
 	}
 	
 	private Cell createCell(int i, int n, V begin, V end, int laneNr, int howManyCellsToCrossroad) {

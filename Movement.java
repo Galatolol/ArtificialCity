@@ -14,7 +14,10 @@ public class Movement
 			Lane[] Road = car.getRoad();
 			int listNr = car.getLaneNr();
 			int cellNr = cell.getNr();
-			car.modifySpeed(1);
+			if (car.getCurrentSpeed() < car.getRoad()[0].speedLimit)
+			{
+				car.modifySpeed(1);
+			}
 			if (rand.nextInt(3) == 0)
 			{
 				car.modifySpeed(-1);
