@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Paint;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -159,6 +160,18 @@ public class Graph {
 	        				   Integer.parseInt(v[2])));      	    	  
 		}
 	    in.close();
+	}
+	
+	public E getEdge(int v1nr, int v2nr)
+	{
+		Collection<E> edges = this.graph.getOutEdges(Graph.vertices.get(v1nr));
+	    LinkedList<E> le = new LinkedList<E>(edges);
+	    for(int i = 0; i < le.size(); i++) {
+	    	if(this.graph.isDest(Graph.vertices.get(v2nr), le.get(i))) {
+	    		return le.get(i);
+	    	}
+	    }
+	    return null;
 	}
 	
 	private void getEdges(String path) throws FileNotFoundException {

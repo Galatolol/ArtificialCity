@@ -36,82 +36,31 @@ public class ContentPanel extends JPanel implements ActionListener {
 		myGraph = new Graph();
 	    myGraph.init();
 		
-	    //myGraph.graph.get
-	    Collection<E> edges = myGraph.graph.getOutEdges(Graph.vertices.get(16));
-	    LinkedList<E> le = new LinkedList(edges);
-	    
-	    Collection<E> edges13 = myGraph.graph.getOutEdges(Graph.vertices.get(13));
-	    LinkedList<E> le13 = new LinkedList(edges13);
-	    
-	    for(E e : le13) {
-	    	System.out.println(e);
-	    }
-	    
-	    for(int i = 0; i < le13.size(); i++) {
-	    	Lane[] road = new Lane[3];
-	    	if(myGraph.graph.isDest(Graph.vertices.get(5), le13.get(i))) {
-	    		for(int j = 0; j < le13.get(i).street.length; j++) {
-	    			road[j] = le13.get(i).street[0];
-	    			road[j].speedLimit = 4; System.out.println(road[0].cellList.length);
-	    		}
-		    	for(int j = 0; j < road.length; j++) {
-		    		le.get(0).street[j].forward = road;
-	    		}
-    			for(int k = 0; k < road[2].cellList.length - 1; k++)
-    			{
-    				road[2].cellList[k].setForbidden(true); //buspas
-    			}
-	    	}
-	    	else if(myGraph.graph.isDest(Graph.vertices.get(12), le13.get(i))) {
-	    		road[0] = le13.get(i).street[0];
-	    		road[0].speedLimit = 2;
-		    	for (int j = 0; j < road.length; j++) {
-		    		le.get(0).street[j].right = road;
-	    		}
-	    	}
-	    }
-	    
-	    for(int i = 0; i < 3; i++)
-	    {
-	    		le.get(0).street[i].speedLimit = 3;
-	    }
-		for(int k = 0; k < le.get(0).street[2].cellList.length - 1; k++)
-		{
-			le.get(0).street[2].cellList[k].setForbidden(true); //buspas
-		}
-	
+	    Lane[] street = Util.createStreets(myGraph);
 	    
 		Vehicle auto1 = new Car(null);
-		auto1.setRoad(le.get(0).street);
+		auto1.setStreet(street);
 		auto1.setLaneNr(1);
-		auto1.setCurrentCell(le.get(0).street[1].cellList[0]);
-		auto1.setSpeed(1);
+		auto1.setCurrentCell(street[1].cellList[2]);
+		auto1.setSpeed(4);
 		auto1.curveRight();
-		vehicleList.add(auto1);
+		//vehicleList.add(auto1);
 		
 		Vehicle auto2 = new Car(null);
-		auto2.setRoad(le.get(0).street);
+		auto2.setStreet(street[0].right);
 		auto2.setLaneNr(0);
-		auto2.setCurrentCell(le.get(0).street[0].cellList[0]);
+		auto2.setCurrentCell(street[0].right[0].cellList[0]);
 		auto2.setSpeed(1);
-		auto2.moveForward();
-		vehicleList.add(auto2);
+		auto2.curveLeft();
+		//vehicleList.add(auto2);
 		
-		Vehicle auto3 = new Car(null); 
-		auto3.setRoad(le.get(0).street);
+		Vehicle auto3 = new Car(null);
+		auto3.setStreet(street[0].right[0].left);
 		auto3.setLaneNr(0);
-		auto3.setCurrentCell(le.get(0).street[0].cellList[0]);
+		auto3.setCurrentCell(street[0].right[0].left[0].cellList[0]);
 		auto3.setSpeed(1);
-		auto3.curveLeft();
-		//vehicleList.add(auto3);
-		
-		Vehicle auto4 = new Car(null);
-		auto4.setRoad(le.get(0).street);
-		auto4.setLaneNr(1);
-		auto4.setCurrentCell(le.get(0).street[1].cellList[0]);
-		auto4.setSpeed(1);
-		auto4.moveForward();
-		//vehicleList.add(auto4);
+		auto3.moveForward();
+		vehicleList.add(auto3);
 		
 		tm.start();
 	}
@@ -122,8 +71,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 	    g.drawImage(bgImage, 0, 0, 1000, 1000, null);
 	    
 	    myGraph.paintEdges(g);
-	    //myGraph.paintVertices(g);
-	    
+	    myGraph.paintVertices(g);
 	    
 	    for(Vehicle v : vehicleList) {
 	    	v.paintVehicle(g);
@@ -133,10 +81,8 @@ public class ContentPanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {		
 		Test.displayInfoAboutCar(vehicleList.get(0));
 		//Test.displayInfoAboutCar(vehicleList.get(1));
-		Movement.move(vehicleList);
-		
+		Movement.move(vehicleList);	
 		counter++;
-		
 		repaint();
 	}
 	

@@ -8,7 +8,7 @@ public abstract class Vehicle
 	protected boolean movingForward;
 	protected int currentSpeed;
 	protected int maxSpeed;
-	protected Lane[] road; 
+	protected Lane[] street; 
 	protected int laneNr;
 	protected Cell currentCell;
 	protected Cell nextCell;
@@ -53,9 +53,9 @@ public abstract class Vehicle
 		setSpeed(currentSpeed + speed);
 	}
 	
-	public void setRoad(Lane[] _road)
+	public void setStreet(Lane[] _street)
 	{
-		road = _road;
+		street = _street;
 	}
 	
 	public void setLaneNr(int _nr)
@@ -82,7 +82,7 @@ public abstract class Vehicle
 	public boolean isCurvingRight() { return curvingRight; }
 	public boolean isCurvingLeft() { return curvingLeft; }
 	public boolean isMovingForward() { return movingForward; }
-	public Lane[] getRoad() { return road; }
+	public Lane[] getStreet() { return street; }
 	public int getLaneNr() { return laneNr; }
 	public Cell getCurrentCell() { return currentCell; }
 	public Cell getNextCell() { return nextCell; }

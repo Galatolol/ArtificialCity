@@ -18,7 +18,7 @@ public class Main
 		cellListTab[2] = new Lane(15, new V(2, 90, 965), new V(1, 55, 965),0, 0, 2);
 		
 		Vehicle auto = new Car(null);
-		auto.setRoad(cellListTab);
+		auto.setStreet(cellListTab);
 		auto.setLaneNr(1);
 		auto.setCurrentCell(cellListTab[0].cellList[0]);
 		auto.setSpeed(1);
