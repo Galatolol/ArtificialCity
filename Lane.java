@@ -8,16 +8,20 @@ public class Lane {
 	public Lane[] left;
 	public Lane[] right;
 	public Lane[] forward;
+	public V begin;
+	public V end;
 	
-	public Lane(int n, V begin, V end, int laneNr, int _howManyToRight, int _howManyToLeft) {
+	public Lane(int n, V _begin, V _end, int laneNr, int _howManyToRight, int _howManyToLeft) {
 		cellList = new Cell[n];
 		length = n;
 		howManyToRight = _howManyToRight;
 		howManyToLeft = _howManyToLeft;
 		for (int i = 0; i < n; i++) {
-			cellList[i] = createCell(i, n, begin, end, laneNr, n - i);
+			cellList[i] = createCell(i, n, _begin, _end, laneNr, n - i);
 		}
 		speedLimit = 3;
+		begin = _begin;
+		end = _end;
 	}
 	
 	private Cell createCell(int i, int n, V begin, V end, int laneNr, int howManyCellsToCrossroad) {

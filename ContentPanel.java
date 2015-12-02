@@ -38,7 +38,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 		
 	    Lane[] street = Util.createStreets(myGraph);
 	    
-		Vehicle auto1 = new Car(null);
+		/*Vehicle auto1 = new Car(null);
 		auto1.setStreet(street);
 		auto1.setLaneNr(1);
 		auto1.setCurrentCell(street[1].cellList[2]);
@@ -53,16 +53,26 @@ public class ContentPanel extends JPanel implements ActionListener {
 		auto2.setSpeed(1);
 		auto2.curveLeft();
 		//vehicleList.add(auto2);
-		
+		*/
 		Vehicle auto3 = new Car(null);
-		auto3.setStreet(street[0].right[0].left);
+		auto3.setStreet(street);
 		auto3.setLaneNr(0);
-		auto3.setCurrentCell(street[0].right[0].left[0].cellList[0]);
+		auto3.setCurrentCell(street[0].cellList[0]);
 		auto3.setSpeed(1);
 		auto3.moveForward();
 		vehicleList.add(auto3);
 		
+		Vehicle bus1 = new Bus();
+		bus1.setStreet(street);
+		bus1.setLaneNr(2);
+		bus1.setCurrentCell(street[2].cellList[0]);
+		bus1.setSpeed(1);
+		bus1.moveForward();
+		vehicleList.add(bus1);
+		
 		tm.start();
+		System.out.println(bus1 instanceof Bus);
+		//System.out.println(Util.getDirection(street[0], myGraph.vertices.get(12)));
 	}
 
 	protected void paintComponent(Graphics g) {
@@ -74,7 +84,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 	    myGraph.paintVertices(g);
 	    
 	    for(Vehicle v : vehicleList) {
-	    	v.paintVehicle(g);
+	    	v.paintVehicle(g, v.getColor());
 	    }			
 	}
 	

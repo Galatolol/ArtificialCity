@@ -52,6 +52,18 @@ public class Movement
 	{
 		try
 		{
+			if (((car instanceof Bus && Util.isBusStop(Street[0], cellNr)) || (car instanceof Bus && Util.isBusStop(Street[0], cellNr))) 
+					&& car.waiting < 5)
+			{
+				car.isWaiting = true;
+				car.waiting++;
+				return;
+			}
+			else if ((car instanceof Bus || car instanceof Tram) && car.waiting >= 5)
+			{
+				car.waiting = 0;
+				car.isWaiting = false;
+			}
 			if (car.isCurvingRight() && cell.getHowManyCellsToCrossroad() == Street[listNr].getHowManyToRight() + 1
 				&& !Street[listNr + 1].cellList[cellNr + 1].isForbidden())
 			{

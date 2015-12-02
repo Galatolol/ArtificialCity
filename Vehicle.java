@@ -13,6 +13,9 @@ public abstract class Vehicle
 	protected Cell currentCell;
 	protected Cell nextCell;
 	protected Cell tmpCell;
+	protected String color;
+	public int waiting;
+	public boolean isWaiting;
 	
 	public void curveRight()
 	{
@@ -87,10 +90,20 @@ public abstract class Vehicle
 	public Cell getCurrentCell() { return currentCell; }
 	public Cell getNextCell() { return nextCell; }
 	public Cell getTmpCell() { return tmpCell; }
+	public String getColor() { return color; }
 	
-	public void paintVehicle(Graphics g)
+	public void paintVehicle(Graphics g, String color)
 	{	
-		g.setColor(Color.BLUE);
+		Color col = null;
+		if (color.equals("red"))
+		{
+			col = Color.RED;
+		}
+		else if (color.equals("blue"))
+		{
+			col = Color.BLUE;
+		}
+		g.setColor(col);
 		g.fillOval(this.getCurrentCell().getX()-5, 
 				   this.getCurrentCell().getY()-5, 
 				   10, 10);
