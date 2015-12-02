@@ -36,36 +36,30 @@ public class ContentPanel extends JPanel implements ActionListener {
 		myGraph = new Graph();
 	    myGraph.init();
 		
-	    Lane[] street = Util.createStreets(myGraph);
-	    
-		/*Vehicle auto1 = new Car(null);
-		auto1.setStreet(street);
-		auto1.setLaneNr(1);
-		auto1.setCurrentCell(street[1].cellList[2]);
-		auto1.setSpeed(4);
-		auto1.curveRight();
-		//vehicleList.add(auto1);
-		
+	    Lane[][] streetTab = Util.createStreets(myGraph);
+	    Lane[] street1 = streetTab[0];
+	    Lane[] street2 = streetTab[1];
+	    		
 		Vehicle auto2 = new Car(null);
-		auto2.setStreet(street[0].right);
+		auto2.setStreet(street2);
 		auto2.setLaneNr(0);
-		auto2.setCurrentCell(street[0].right[0].cellList[0]);
+		auto2.setCurrentCell(street2[0].cellList[0]);
 		auto2.setSpeed(1);
 		auto2.curveLeft();
-		//vehicleList.add(auto2);
-		*/
+		vehicleList.add(auto2);
+		
 		Vehicle auto3 = new Car(null);
-		auto3.setStreet(street);
+		auto3.setStreet(street1);
 		auto3.setLaneNr(0);
-		auto3.setCurrentCell(street[0].cellList[0]);
+		auto3.setCurrentCell(street1[0].cellList[0]);
 		auto3.setSpeed(1);
 		auto3.moveForward();
 		vehicleList.add(auto3);
 		
 		Vehicle bus1 = new Bus();
-		bus1.setStreet(street);
+		bus1.setStreet(street1);
 		bus1.setLaneNr(2);
-		bus1.setCurrentCell(street[2].cellList[0]);
+		bus1.setCurrentCell(street1[2].cellList[0]);
 		bus1.setSpeed(1);
 		bus1.moveForward();
 		vehicleList.add(bus1);
