@@ -796,6 +796,12 @@ public class Util
 		Lane[] street22_26 = new Lane[1];
 		street22_26[0] = edge.street[0];
 		
+		//--
+	    edge = myGraph.getEdge(24, 25);
+	    edge.street[0].speedLimit = -1;
+	    Lane[] streetToNowhere = new Lane[1];
+	    streetToNowhere[0] = edge.street[0];
+		
 		//-----------------------------------------------
 		
 		for (int i = 0; i < 3; i++)
@@ -900,6 +906,20 @@ public class Util
 	    street1_25[0].left = street25_26;
 	    
 	    street22_26[0].right = street26_27;
+	    
+	    //streetToNowhere
+	    
+	    for (int i = 0; i < 3; i++)
+	    {
+	    	street13_5[i].forward = streetToNowhere;
+	    	street13_5[i].right = streetToNowhere;
+	    	street13_5[i].left = streetToNowhere;
+	    }
+	    //street14_3[]
+	    street27_2[0].forward = streetToNowhere;
+	    street27_2[0].right = streetToNowhere;
+	    street27_2[0].left = streetToNowhere;
+
 	    
 		Lane[][] laneTab = {street13_5, street12_11};
 		return laneTab;
