@@ -17,6 +17,17 @@ public class Car extends Vehicle
 		return driver.getDestination();
 	}
 	
+	public void setDestinationVertex(V v) {
+		driver.setDestinationVertex(v);
+	}
+	
+	public void setCurrentVertex(V v) {
+		driver.setCurrentVertex(v);
+	}
+	
+	public void setPrevVertex(V v) {
+		driver.setPrevVertex(v);
+	}
 	public void paintVehicle(Graphics g)
 	{	
 		g.setColor(Color.getColor(color));

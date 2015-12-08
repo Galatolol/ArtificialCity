@@ -110,6 +110,14 @@ public class E {
 		return cellListsNum;
 	}
 	
+	public V getBegin() {
+		return begin;
+	}
+	
+	public V getEnd() {
+		return end;
+	}
+	
 	public String cellsToString() {
 		String output = "";
 		for(int i = 0; i < cellListsNum; i++) {

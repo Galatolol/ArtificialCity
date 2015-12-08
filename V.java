@@ -1,7 +1,7 @@
 // Vertex class
 
 public class V {
-	private int id;
+	public int id;
 	private int x;
 	private int y;
 	

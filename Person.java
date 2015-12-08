@@ -4,6 +4,9 @@ public class Person
 	private int age;
 	private String residence;
 	private String destination;
+	private V destinationVertex;
+	private V currentVertex;
+	private V prevVertex;
 	private String from; // po to, by wracali do siebie na weekend, moze miec wartosc ""
 	
 	private String goingOut;
@@ -14,12 +17,15 @@ public class Person
 	
 	public boolean driving;
 	
-	Person(int _age, String _residence, String _destination, String _from, String _goingOut, String _goingBack, 
+	Person(int _age, String _residence, String _destination, V _destinationVertex , V _currentVertex, String _from, String _goingOut, String _goingBack, 
 			String _firstName, String _lastName, boolean _driving)
 	{
 		age = _age;
 		residence = _residence;
 		destination = _destination;
+		currentVertex = _currentVertex;
+		destinationVertex = _destinationVertex;
+		prevVertex = currentVertex;
 		from = _from;
 		goingOut = _goingOut;
 		goingBack = _goingBack;
@@ -39,4 +45,20 @@ public class Person
 	public String getFirstName() { return firstName; }
 	public String getLastName() { return lastName; }
 	public boolean getIsDriving() { return driving; }
+	
+	public V getDestinationVertex() { return destinationVertex; }
+	public V getCurrentVertex() { return currentVertex; }
+	public V getPrevVertex() { return prevVertex; }
+	
+	public void setCurrentVertex(V v) {
+		this.currentVertex = v;
+	}
+	
+	public void setPrevVertex(V v) {
+		this.prevVertex = v;
+	}
+	
+	public void setDestinationVertex(V v) {
+		this.destinationVertex = v;
+	}
 }

@@ -25,9 +25,21 @@ import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 import edu.uci.ics.jung.visualization.renderers.Renderer.VertexLabel.Position;
 
 public class Graph {
-	public SparseMultigraph<V, E> graph;
+	public static SparseMultigraph<V, E> graph;
 	public static LinkedList<V> vertices = new LinkedList<V>();
 	
+	
+	public Graph() {
+		graph = new SparseMultigraph<V, E>();
+		
+		try {
+			this.getVertices("res/vertices.txt");
+			this.getEdges("res/edges.txt");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	public void init() {
 		graph = new SparseMultigraph<V, E>();
 		
@@ -80,72 +92,41 @@ public class Graph {
 		
 	}
 	
-	public void calcWeightedShortestPath(V start, V end) {
+	public static void calcWeightedShortestPath(Car c) {
         Transformer<E, Integer> wtTransformer = new Transformer<E,Integer>() {
             public Integer transform(E edge) {
                 return edge.getLength();
             }
         };
         
+        V prev = c.driver.getPrevVertex();
+        V current = c.driver.getCurrentVertex();
+        V end = c.driver.getDestinationVertex();
+        
+        
         DijkstraShortestPath<V,E> alg = new DijkstraShortestPath<V, E>(graph, wtTransformer);
-        List<E> path = alg.getPath(start, end);
+        List<E> path = alg.getPath(current, end);
+        V nextVertex = path.get(0).getEnd();
         
-        double distance = (double)alg.getDistance(start, end);
-        System.out.println("The shortest weighted path from " + start.toString()  + " to " + end.toString() + " is:");
-        //System.out.println(path.toString());
+        Lane lane = getEdge(prev,current).street[c.getLaneNr()];
         
-        for(E e : path) {
-        	System.out.println(e.toString());
-        	System.out.println(e.cellsToString());
+        String direction = Util.getDirection(lane, nextVertex);
+        
+        switch (direction) {
+        case "forward": c.moveForward();
+        	break;
+        
+        case "left": c.curveLeft();;
+    	break;
+        
+        case "right": c.curveRight();;
+    	break;
         }
         
-        
-        System.out.println("and the length of the path is: " + distance);
+        c.driver.setPrevVertex(current);
+        c.driver.setCurrentVertex(nextVertex);
     }
 	
-	public static void main(String[] args) {
-        Graph myApp = new Graph();
-        myApp.init();
-        
-        //System.out.println(myApp.graph.toString());
-        myApp.calcWeightedShortestPath(vertices.get(19), vertices.get(5));
-        
-        Transformer<V, Paint> edgeStroke = new Transformer<V, Paint>() {
-		    public Paint transform(V s) {
-		    	
-		    	new BasicStroke();
-		        return Color.GREEN;
-		    }
-		};
-	
-       Transformer<V,Paint> vertexColor = new Transformer<V,Paint>() {
-            public Paint transform(V i) {
-
-	    			return Color.ORANGE;
-	    		} 
-            
-        };
-	
-        Layout<V, E> layout;
-
-        	layout = new ISOMLayout<V, E>(myApp.graph); 
- 
-        layout.setSize(new Dimension(500, 500)); 
-        BasicVisualizationServer<V,E> vv = new BasicVisualizationServer<V,E>(layout);
-        vv.setPreferredSize(new Dimension(500, 500)); 
-        vv.getRenderContext().setVertexLabelTransformer(new ToStringLabeller<V>());
-        vv.getRenderContext().setVertexFillPaintTransformer(vertexColor);
-        //vv.getRenderContext().setEdgeDrawPaintTransformer(edgeStroke);
-        vv.getRenderer().getVertexLabelRenderer().setPosition(Position.CNTR);
-        
-        JFrame frame = new JFrame("Graf");
-    	frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-    	frame.getContentPane().add(vv); 
-    	frame.pack();
-    	frame.setVisible(true);  
-    }
-
-
 	private void getVertices(String path) throws FileNotFoundException {
 	    File file = new File(path);
 	    Scanner in = new Scanner(file);
@@ -168,6 +149,18 @@ public class Graph {
 	    LinkedList<E> le = new LinkedList<E>(edges);
 	    for(int i = 0; i < le.size(); i++) {
 	    	if(this.graph.isDest(Graph.vertices.get(v2nr), le.get(i))) {
+	    		return le.get(i);
+	    	}
+	    }
+	    return null;
+	}
+	
+	public static E getEdge(V v1, V v2)
+	{
+		Collection<E> edges = graph.getOutEdges(v1);
+	    LinkedList<E> le = new LinkedList<E>(edges);
+	    for(int i = 0; i < le.size(); i++) {
+	    	if(graph.isDest(v2, le.get(i))) {
 	    		return le.get(i);
 	    	}
 	    }
@@ -208,7 +201,19 @@ public class Graph {
 						v.getY()+5);
 		}
 	}
+	
+	public V getVertexById(int id){
+		Collection<V> edges = graph.getVertices();
+	    LinkedList<V> le = new LinkedList<V>(edges);
 
+	    for(int i = 0; i < le.size(); i++) {
+	    	if(le.get(i).id == id) {
+	    		return le.get(i);
+	    	}
+	    }
+	    return null;
+	}
+	
 	public void paintEdges(Graphics g) {
 		for(E e : graph.getEdges()) {
 	    	g.setColor(Color.green);

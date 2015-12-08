@@ -45,8 +45,11 @@ public class Generator
 				goingBack = "";
 			}
 			driving = generateDriving(age, residence);
-			Person p = new Person(age, residence, destination, from, goingOut, goingBack, firstName, lastName, driving);
-			list.add(p);
+			
+			
+			//trzeba dodac w konsrtuktorze : wierzcholki destionation i current
+			//Person p = new Person(age, residence, destination, goingOut, goingBack, firstName, lastName, driving);
+			//list.add(p);
 		}
 
 	}
