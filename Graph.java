@@ -103,24 +103,29 @@ public class Graph {
         V current = c.driver.getCurrentVertex();
         V end = c.driver.getDestinationVertex();
         
+        System.out.println(prev);
+        System.out.println(current);
+        System.out.println(end);
         
         DijkstraShortestPath<V,E> alg = new DijkstraShortestPath<V, E>(graph, wtTransformer);
         List<E> path = alg.getPath(current, end);
         V nextVertex = path.get(0).getEnd();
-        
-        Lane lane = getEdge(prev,current).street[c.getLaneNr()];
+
+        Lane lane = getEdge(prev, current).street[c.getLaneNr()];
         
         String direction = Util.getDirection(lane, nextVertex);
         
+        System.out.println("Kierunke: " + direction);
+        
         switch (direction) {
-        case "forward": c.moveForward();
-        	break;
-        
-        case "left": c.curveLeft();;
-    	break;
-        
-        case "right": c.curveRight();;
-    	break;
+	        case "forward": c.moveForward();
+	        break;
+	        
+	        case "left": c.curveLeft();
+	    	break;
+	        
+	        case "right": c.curveRight();
+	    	break;
         }
         
         c.driver.setPrevVertex(current);

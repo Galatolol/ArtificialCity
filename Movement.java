@@ -5,6 +5,7 @@ import java.util.Random;
 
 public class Movement 
 {
+	private static Graph myGraph;
 	private static Random rand = new Random();
 	private static Cell tmpCell;
 	private static List<Vehicle> vehicleList1 = new ArrayList<Vehicle>();
@@ -62,8 +63,7 @@ public class Movement
 	{
 		try
 		{
-			if (((car instanceof Bus && Util.isBusStop(Street[0], cellNr)) || (car instanceof Bus && Util.isBusStop(Street[0], cellNr))) 
-					&& car.waiting < 5)
+			if (((car instanceof Bus && Util.isBusStop(Street[0], cellNr)) || (car instanceof Tram && Util.isTramStop(Street[0], cellNr))) && car.waiting < 5)
 			{
 				car.isWaiting = true;
 				car.waiting++;
@@ -73,6 +73,7 @@ public class Movement
 			{
 				car.waiting = 0;
 				car.isWaiting = false;
+				System.out.println("dupa");
 			}
 			if (car.isCurvingRight() && cell.getHowManyCellsToCrossroad() == Street[listNr].getHowManyToRight() + 1
 				&& !Street[listNr + 1].cellList[cellNr + 1].isForbidden())
@@ -140,6 +141,15 @@ public class Movement
 			}
 			try{car.setLaneNr(0);}catch (Exception e) {System.out.println("-----2");}
 			try{car.setTmpCell(car.getStreet()[car.getLaneNr()].cellList[1]);}catch (Exception e) {System.out.println("-----3");}
+		}
+		
+		if (car instanceof Car)
+		{System.out.println("dupa2");
+			myGraph.calcWeightedShortestPath((Car)car);
+		}
+		if (car instanceof Tram)
+		{
+			((Tram) car).changeDirection();
 		}
 
 		return true;

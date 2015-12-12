@@ -99,6 +99,10 @@ public abstract class Vehicle
 		{
 			col = Color.RED;
 		}
+		else if (color.equals("cyan"))
+		{
+			col = Color.CYAN;
+		}
 		else if (color.equals("blue"))
 		{
 			col = Color.BLUE;
