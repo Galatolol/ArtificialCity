@@ -130,7 +130,7 @@ public class Movement
 				return false;
 			}
 			try{car.setLaneNr(0);}catch (Exception e) {System.out.println("-----2");}
-			try{car.setTmpCell(car.getStreet()[car.getLaneNr()].cellList[1]);}catch (Exception e) {System.out.println("-----3");}
+			try{car.setTmpCell(car.getStreet()[car.getLaneNr()].cellList[2]);}catch (Exception e) {System.out.println("-----3");}
 		}
 		else
 		{
@@ -144,7 +144,7 @@ public class Movement
 		}
 		
 		if (car instanceof Car)
-		{System.out.println("dupa2");
+		{
 			myGraph.calcWeightedShortestPath((Car)car);
 		}
 		if (car instanceof Tram)

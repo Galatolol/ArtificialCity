@@ -41,8 +41,8 @@ public class ContentPanel extends JPanel implements ActionListener {
 	    Lane[] street2 = streetTab[1];
 	    Lane[] street3 = streetTab[2];
 	    
-	    Person driver1 = new Person(50, null, null, myGraph.vertices.get(11), myGraph.vertices.get(16), null, null, null, null, null, true);
-	    driver1.setPrevVertex(myGraph.vertices.get(28));
+	    Person driver1 = new Person(50, null, null, myGraph.vertices.get(11), myGraph.vertices.get(13), null, null, null, null, null, true);
+	    driver1.setPrevVertex(myGraph.vertices.get(16));
 	    
 		Vehicle auto2 = new Car(driver1);
 		auto2.setStreet(street2);

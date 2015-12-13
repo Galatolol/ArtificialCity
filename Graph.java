@@ -108,14 +108,18 @@ public class Graph {
         System.out.println(end);
         
         DijkstraShortestPath<V,E> alg = new DijkstraShortestPath<V, E>(graph, wtTransformer);
+        System.out.println("dfdf_3");
         List<E> path = alg.getPath(current, end);
+        System.out.println("dfdf_4");
         V nextVertex = path.get(0).getEnd();
-
+        System.out.println("dfdf");
         Lane lane = getEdge(prev, current).street[c.getLaneNr()];
-        
+        System.out.println("dfdf_2");
+
+        System.out.println(lane.begin.toString() + lane.end + nextVertex);
         String direction = Util.getDirection(lane, nextVertex);
-        
-        System.out.println("Kierunke: " + direction);
+        System.out.println("Kierunkeeeeeeeeee");
+        System.out.println("Kierunke: " + direction + nextVertex);
         
         switch (direction) {
 	        case "forward": c.moveForward();

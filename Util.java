@@ -72,15 +72,15 @@ public class Util
 	
 	public static String getDirection(Lane lane, V vertex)
 	{
-		if (lane.forward[0].end == vertex)
+		if (lane.forward != null && lane.forward[0].end == vertex)
 		{
 			return "forward";
 		}
-		else if (lane.right[0].end == vertex)
+		else if (lane.right != null && lane.right[0].end == vertex)
 		{
 			return "right";
 		}
-		else if (lane.left[0].end == vertex)
+		else if (lane.left != null && lane.left[0].end == vertex)
 		{
 			return "left";
 		}
