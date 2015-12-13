@@ -46,7 +46,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 		auto2.setLaneNr(0);
 		auto2.setCurrentCell(auto2.getStreet()[0].cellList[0]);
 		auto2.setSpeed(1);
-		//vehicleList.add(auto2);
+		vehicleList.add(auto2);
 		
 		Vehicle tram1 = Generator.generatePubTran(8, 1); //numer linii, kierunek jazdy
 		Vehicle tram2 = Generator.generatePubTran(8, 2);
@@ -62,12 +62,12 @@ public class ContentPanel extends JPanel implements ActionListener {
 		Vehicle bus5 = Generator.generatePubTran(179, 1);
 		Vehicle bus6 = Generator.generatePubTran(179, 2);
 		
-		//vehicleList.add(tram1);
-		//vehicleList.add(tram2);
-		//vehicleList.add(tram3);
-		//vehicleList.add(tram4);
-		//vehicleList.add(tram5);
-		//vehicleList.add(tram6);
+		vehicleList.add(tram1);
+		vehicleList.add(tram2);
+		vehicleList.add(tram3);
+		vehicleList.add(tram4);
+		vehicleList.add(tram5);
+		vehicleList.add(tram6);
 		vehicleList.add(bus1);
 		vehicleList.add(bus2);
 		vehicleList.add(bus3);

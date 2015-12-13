@@ -304,8 +304,8 @@ public class Generator
 		String[] linia18_1 = {"forward", "forward", "forward", "forward", "B", "56", "55"};
 		String[] linia18_2 = {"forward", "forward", "forward", "forward", "C", "52", "60"};
 		
-		String[] linia179_1 = {"forward", "forward", "forward", "forward", "forward", "forward", "forward", "C", "4", "14"};
-		String[] linia179_2 = {"forward", "forward", "forward", "forward", "forward", "forward", "forward", "A", "81", "80"};
+		String[] linia179_1 = {"forward", "forward", "forward", "forward", "forward", "forward", "forward", "forward", "C", "4", "14"};
+		String[] linia179_2 = {"forward", "forward", "forward", "forward", "forward", "forward", "forward", "forward", "A", "81", "80"};
 		
 		String[] linia173_1 = {"forward", "right", "forward", "forward", "forward", "forward", "forward", "C", "23", "22"};
 		String[] linia173_2 = {"forward", "forward", "left",  "forward", "forward", "forward", "forward", "D", "81", "80"};
