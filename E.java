@@ -72,12 +72,20 @@ public class E {
 			street[0] = new Lane(cellsNum, this.begin, this.end, 0, 2, 0);
 			street[1] = new Lane(cellsNum, this.begin, this.end, 1, 1, 1);
 			street[2] = new Lane(cellsNum, this.begin, this.end, 2, 0, 2);
-			
-			for(int j = 0; j < street[1].cellList.length; j++) {
-				street[0].cellList[j].setX(street[0].cellList[j].getX() - 4);
-				street[0].cellList[j].setY(street[0].cellList[j].getY() - 4);
-				street[2].cellList[j].setX(street[2].cellList[j].getX() + 4);
-				street[2].cellList[j].setY(street[2].cellList[j].getY() + 4);
+			if(this.end.getY() < this.begin.getY()) {
+				for(int j = 0; j < street[1].cellList.length; j++) {
+					street[0].cellList[j].setX(street[0].cellList[j].getX() - 4);
+					street[0].cellList[j].setY(street[0].cellList[j].getY() - 4);
+					street[2].cellList[j].setX(street[2].cellList[j].getX() + 4);
+					street[2].cellList[j].setY(street[2].cellList[j].getY() + 4);
+				}
+			} else {
+				for(int j = 0; j < street[1].cellList.length; j++) {
+					street[0].cellList[j].setX(street[0].cellList[j].getX() + 4);
+					street[0].cellList[j].setY(street[0].cellList[j].getY() + 4);
+					street[2].cellList[j].setX(street[2].cellList[j].getX() - 4);
+					street[2].cellList[j].setY(street[2].cellList[j].getY() - 4);
+				}
 			}
 		}
 	}
