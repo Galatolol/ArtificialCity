@@ -46,10 +46,12 @@ public class Generator
 			}
 			driving = generateDriving(age, residence);
 			
+			V prevVertex = null;
+			V currentVertex = null;
+			V destinationVertex = null;
 			
-			//trzeba dodac w konsrtuktorze : wierzcholki destionation i current
-			//Person p = new Person(age, residence, destination, goingOut, goingBack, firstName, lastName, driving);
-			//list.add(p);
+			Person p = new Person(age, residence, destination, prevVertex, currentVertex, destinationVertex, from, goingOut, goingBack, firstName, lastName, driving);
+			list.add(p);
 		}
 
 	}
@@ -293,14 +295,20 @@ public class Generator
 	
 	public static Tram generateTram(int nr, int directionn)
 	{
-		String[] linia8_1 = {"forward", "forward", "forward", "forward", "forward", "forward", "forward", "right", "C"};
-		String[] linia8_2 = {"left", "forward", "forward", "forward", "forward", "forward", "forward", "forward", "A"};	
+		String[] linia8_1 = {"forward", "forward", "forward", "forward", "forward", "forward", "forward", "right", "forward", "C"};
+		String[] linia8_2 = {"left", "forward", "forward", "forward", "forward", "forward", "forward", "forward", "forward", "A"};	
 		
 		String[] linia4_1 = {"forward", "forward", "forward", "forward", "forward", "forward", "forward", "right", "forward", "forward", "B"};
 		String[] linia4_2 = {"forward", "forward", "right", "forward", "forward", "forward", "forward", "forward", "forward", "forward", "A"};
 		
 		String[] linia18_1 = {"forward", "forward", "forward", "forward", "B"};
 		String[] linia18_2 = {"forward", "forward", "forward", "forward", "C"};
+		
+		String[] linia179_1 = {"forward", "forward", "forward", "forward", "forward", "forward", "forward", "C"};
+		String[] linia179_2 = {"forward", "forward", "forward", "forward", "forward", "forward", "forward", "A"};
+		
+		String[] linia173_1 = {"forward", "forward", "forward", "forward", "forward", "forward", "forward", "C"};
+		String[] linia173_2 = {"forward", "forward", "forward", "forward", "forward", "forward", "forward", "D"};
 		
 		Tram tram;
 		Lane[] street = null;

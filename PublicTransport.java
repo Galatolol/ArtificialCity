@@ -40,7 +40,7 @@ public class PublicTransport extends Vehicle
 		{
 			this.curveLeft();
 		}
-		System.out.println(next);
+		System.out.println("pubTrans: " + next);
 		n++;
 	}
 	

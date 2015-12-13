@@ -15,43 +15,42 @@ public class Movement
 		Iterator<Vehicle> iter = vehicleList.iterator();
 		while (iter.hasNext())
 		{
-			Vehicle car = iter.next();
-			Cell cell = car.getCurrentCell();
-			Lane[] Street = car.getStreet();
-			int listNr = car.getLaneNr();
+			Vehicle veh = iter.next();
+			Cell cell = veh.getCurrentCell();
+			Lane[] Street = veh.getStreet();
+			int listNr = veh.getLaneNr();
 			int cellNr = cell.getNr();
-			if (car.getCurrentSpeed() < car.getStreet()[0].speedLimit)
+			if (veh.getCurrentSpeed() < veh.getStreet()[0].speedLimit)
 			{
-				car.modifySpeed(1);
+				veh.modifySpeed(1);
 			}
 			if (rand.nextInt(3) == 0)
 			{
-				car.modifySpeed(-1);
+				veh.modifySpeed(-1);
 			}
 			
-			car.setTmpCell(cell);
-			for (int i = 0; i < car.getCurrentSpeed(); i++)
+			veh.setTmpCell(cell);
+			for (int i = 0; i < veh.getCurrentSpeed(); i++)
 			{
-				cell = car.getTmpCell();
+				cell = veh.getTmpCell();
 				cellNr = cell.getNr();
 				if (cellNr >= Street[listNr].length - 1)
 				{
-					if (!changeStreet(car, cell.getHowManyCellsToCrossroad()))
+					if (!changeStreet(veh, cell.getHowManyCellsToCrossroad()))
 					{
+						vehicleList1.add(veh);
 						iter.remove();
-						vehicleList1.add(car);
 						continue;
 					}
 					break;
-					//System.out.println("   Jest już na skrzyzowaniu, co teraz?!");
 				}
 				else
 				{
-					determineNextCell(car, cell, Street, listNr, cellNr);
+					determineNextCell(veh, cell, Street, listNr, cellNr);
 				}
 			}
-			car.setNextCell(car.getTmpCell());
-			car.getNextCell().setOccupied(true);
+			veh.setNextCell(veh.getTmpCell());
+			veh.getNextCell().setOccupied(true);
 		}
 		for (Vehicle vehicle : vehicleList)
 		{
@@ -59,34 +58,33 @@ public class Movement
 		}
 	}
 	
-	public static void determineNextCell(Vehicle car, Cell cell, Lane[] Street, int listNr, int cellNr)
+	public static void determineNextCell(Vehicle veh, Cell cell, Lane[] Street, int listNr, int cellNr)
 	{
 		try
 		{
-			if (((car instanceof Bus && Util.isBusStop(Street[0], cellNr)) || (car instanceof Tram && Util.isTramStop(Street[0], cellNr))) && car.waiting < 5)
+			if (((veh instanceof Bus && Util.isBusStop(Street[0], cellNr)) || (veh instanceof Tram && Util.isTramStop(Street[0], cellNr))) && veh.waiting < 5)
 			{
-				car.isWaiting = true;
-				car.waiting++;
+				veh.isWaiting = true;
+				veh.waiting++;
 				return;
 			}
-			else if ((car instanceof Bus || car instanceof Tram) && car.waiting >= 5)
+			else if ((veh instanceof Bus || veh instanceof Tram) && veh.waiting >= 5)
 			{
-				car.waiting = 0;
-				car.isWaiting = false;
-				System.out.println("dupa");
+				veh.waiting = 0;
+				veh.isWaiting = false;
 			}
-			if (car.isCurvingRight() && cell.getHowManyCellsToCrossroad() == Street[listNr].getHowManyToRight() + 1
+			if (veh.isCurvingRight() && cell.getHowManyCellsToCrossroad() == Street[listNr].getHowManyToRight() + 1
 				&& !Street[listNr + 1].cellList[cellNr + 1].isForbidden())
 			{
-				car.setSpeed(1);
-				car.setLaneNr(listNr + 1);
+				veh.setSpeed(1);
+				veh.setLaneNr(listNr + 1);
 				tmpCell = Street[listNr + 1].cellList[cellNr + 1];
 			}
-			else if (car.isCurvingLeft() && cell.getHowManyCellsToCrossroad() == Street[listNr].getHowManyToLeft() + 1
+			else if (veh.isCurvingLeft() && cell.getHowManyCellsToCrossroad() == Street[listNr].getHowManyToLeft() + 1
 				&& !Street[listNr - 1].cellList[cellNr + 1].isForbidden())
 			{
-				car.setSpeed(1);
-				car.setLaneNr(listNr - 1);
+				veh.setSpeed(1);
+				veh.setLaneNr(listNr - 1);
 				tmpCell = Street[listNr - 1].cellList[cellNr + 1];
 			}
 			else
@@ -100,73 +98,73 @@ public class Movement
 		}
 		if (tmpCell.isOccupied())
 		{
-			car.setSpeed(0);
+			veh.setSpeed(0);
 		}
 		else
 		{
-			car.setTmpCell(tmpCell);
+			veh.setTmpCell(tmpCell);
 		}
 	}
 	
-	public static boolean changeStreet(Vehicle car, int howManyCellsToCrossroad)
+	public static boolean changeStreet(Vehicle veh, int howManyCellsToCrossroad)
 	{
 		
-		Lane[] street = car.getStreet();
-		if (car.isMovingForward()) 
+		Lane[] street = veh.getStreet();
+		if (veh.isMovingForward()) 
 		{
-			try{car.setStreet(street[0].forward);}catch (Exception e) {System.out.println("-f-1");}
-			if (car.getStreet()[0].speedLimit == -1)
+			try{veh.setStreet(street[0].forward);}catch (Exception e) {System.out.println("-f-1");}
+			if (veh.getStreet()[0].speedLimit == -1)
 			{
 				return false;
 			}
-			try{car.setLaneNr(getNextLaneNr(car));}catch (Exception e) {System.out.println("-f-2");}
-			try{car.setTmpCell(car.getStreet()[car.getLaneNr()].cellList[car.getCurrentSpeed() - howManyCellsToCrossroad]);}catch (Exception e) {System.out.println("-f-3");}
+			try{veh.setLaneNr(getNextLaneNr(veh));}catch (Exception e) {System.out.println("-f-2");}
+			try{veh.setTmpCell(veh.getStreet()[veh.getLaneNr()].cellList[veh.getCurrentSpeed() - howManyCellsToCrossroad]);}catch (Exception e) {System.out.println("-f-3");}
 		}
-		else if (car.isCurvingRight())
+		else if (veh.isCurvingRight())
 		{
-			try{car.setStreet(street[0].right);}catch (Exception e) {System.out.println("---1");}
-			if (car.getStreet()[0].speedLimit == -1)
+			try{veh.setStreet(street[0].right);}catch (Exception e) {System.out.println("---1");}
+			if (veh.getStreet()[0].speedLimit == -1)
 			{
 				return false;
 			}
-			try{car.setLaneNr(0);}catch (Exception e) {System.out.println("-----2");}
-			try{car.setTmpCell(car.getStreet()[car.getLaneNr()].cellList[2]);}catch (Exception e) {System.out.println("-----3");}
+			try{veh.setLaneNr(0);}catch (Exception e) {System.out.println("-----2");}
+			try{veh.setTmpCell(veh.getStreet()[veh.getLaneNr()].cellList[2]);}catch (Exception e) {System.out.println("-----3");}
 		}
 		else
 		{
-			try{car.setStreet(street[0].left);}catch (Exception e) {System.out.println("---1");}
-			if (car.getStreet()[0].speedLimit == -1)
+			try{veh.setStreet(street[0].left);}catch (Exception e) {System.out.println("---1");}
+			if (veh.getStreet()[0].speedLimit == -1)
 			{
 				return false;
 			}
-			try{car.setLaneNr(0);}catch (Exception e) {System.out.println("-----2");}
-			try{car.setTmpCell(car.getStreet()[car.getLaneNr()].cellList[1]);}catch (Exception e) {System.out.println("-----3");}
+			try{veh.setLaneNr(0);}catch (Exception e) {System.out.println("-----2");}
+			try{veh.setTmpCell(veh.getStreet()[veh.getLaneNr()].cellList[1]);}catch (Exception e) {System.out.println("-----3");}
 		}
 		
-		if (car instanceof Car)
+		if (veh instanceof Car)
 		{
 			try
 			{
-				myGraph.calcWeightedShortestPath((Car)car);
+				myGraph.calcWeightedShortestPath((Car)veh);
 			}
 			catch (IndexOutOfBoundsException e)
 			{
 				return false;
 			}
 		}
-		if (car instanceof Tram)
+		if (veh instanceof PublicTransport)
 		{
-			((Tram) car).changeDirection();
+			((PublicTransport) veh).changeDirection();
 		}
 
 		return true;
 	}
 	
-	public static int getNextLaneNr(Vehicle car)
-	{ System.out.println(car.getLaneNr() + car.getStreet().length);
-		if (car.getLaneNr() <= car.getStreet().length)
+	public static int getNextLaneNr(Vehicle veh)
+	{ 
+		if (veh.getLaneNr() <= veh.getStreet().length)
 		{
-			return car.getLaneNr();
+			return veh.getLaneNr();
 		}
 		else
 		{
@@ -174,10 +172,10 @@ public class Movement
 		}
 	}
 	
-	public static void moveToNextCell(Vehicle car)
+	public static void moveToNextCell(Vehicle veh)
 	{
-		car.getCurrentCell().setOccupied(false);
-		car.setCurrentCell(car.getNextCell());
-		car.getCurrentCell().setOccupied(true);
+		veh.getCurrentCell().setOccupied(false);
+		veh.setCurrentCell(veh.getNextCell());
+		veh.getCurrentCell().setOccupied(true);
 	}
 }

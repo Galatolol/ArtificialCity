@@ -36,21 +36,17 @@ public class ContentPanel extends JPanel implements ActionListener {
 		myGraph = new Graph();
 	    myGraph.init();
 		
-	    Lane[][] streetTab = Util.createStreets(myGraph);
-	    Lane[] street1 = streetTab[0];
-	    Lane[] street2 = streetTab[1];
-	    Lane[] street3 = streetTab[2];
-	    Lane[] street4 = streetTab[3];
+	    Util.createStreets(myGraph);
 	    
-	    Person driver1 = new Person(50, null, null, myGraph.vertices.get(97), myGraph.vertices.get(81), myGraph.vertices.get(90), null, null, null, null, null, true);
+	    Person driver1 = new Person(50, null, null, myGraph.vertices.get(81), myGraph.vertices.get(80), myGraph.vertices.get(90), null, null, null, null, null, true);
 	    	    
 		Vehicle auto2 = new Car(driver1);
+		myGraph.calcWeightedShortestPath((Car)auto2);
 		auto2.setStreet(Util.getOuterStreet(97, 81)[0].forward);
 		auto2.setLaneNr(0);
 		auto2.setCurrentCell(auto2.getStreet()[0].cellList[0]);
 		auto2.setSpeed(1);
-		vehicleList.add(auto2);
-		myGraph.calcWeightedShortestPath((Car)auto2);
+		//vehicleList.add(auto2);
 		
 		Vehicle tram1 = Generator.generateTram(8, 1);
 		Vehicle tram2 = Generator.generateTram(8, 2);

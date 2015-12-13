@@ -103,7 +103,8 @@ public class Graph {
 			return "left";
 		}
 		else {
-			System.out.println("Problem z polaczeniem ulic.    Edge: " + lane.toString() + "     Vertex: " + vertex.toString());
+			System.out.println("Problem z polaczeniem ulic. Początek krawędzi: " + lane.begin.toString() + 
+					" Koniec: " + lane.end + " Następny wierzchołek: " + vertex);
 			return "";
 		}
 	}
@@ -124,18 +125,12 @@ public class Graph {
         System.out.println(end);
         
         DijkstraShortestPath<V,E> alg = new DijkstraShortestPath<V, E>(graph, wtTransformer);
-        System.out.println("dfdf_3");
         List<E> path = alg.getPath(current, end);
-        System.out.println("dfdf_4 "+path.size());
         V nextVertex = path.get(0).getEnd();
-        System.out.println("dfdf");
         Lane lane = getEdge(prev, current).street[c.getLaneNr()];
-        System.out.println("dfdf_2");
 
-        System.out.println(lane.begin.toString() + lane.end + nextVertex);
         String direction = getDirection(lane, nextVertex);
-        System.out.println("Kierunkeeeeeeeeee");
-        System.out.println("Kierunke: " + direction + nextVertex);
+        System.out.println("Dijikstra – kierunek: " + direction + nextVertex);
         
         switch (direction) {
 	        case "forward": c.moveForward();

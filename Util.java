@@ -122,7 +122,7 @@ public class Util
 		{
 			return true;
 		}
-		else if (lane.begin.toString().equals("53") && lane.end.toString().equals("40") && cellNr == 35)
+		else if (lane.begin.toString().equals("53") && lane.end.toString().equals("40") && cellNr == 65)
 		{
 			return true;
 		}
@@ -132,7 +132,7 @@ public class Util
 	
 	//-------------------------------------------------------
 	
-	public static Lane[][] createStreets(Graph myGraph)
+	public static void createStreets(Graph myGraph)
 	{
 	    E edge = myGraph.getEdge(16, 13);
 	    
@@ -1598,7 +1598,7 @@ public class Util
 			street19_18[i].right = street18_42;
 			
 			street4_14[i].forward = street14_15;
-			//street4_14[i].right = street14_3;
+			street4_14[i].right = street14_3;
 			
 			street14_15[i].forward = street15_17;
 			street14_15[i].left = street15_16;
@@ -1670,6 +1670,7 @@ public class Util
 	    street12_32[0].forward = street32_40;
 	    
 	    street32_40[0].forward = street40_53;
+	    street32_40[0].left = street40_38;
 	    
 	    street32_30[0].forward = street30_29;
 	    street32_30[0].right = street30_31;
@@ -1886,10 +1887,6 @@ public class Util
 	    street27_2[0].forward = streetToNowhere;
 	    street27_2[0].right = streetToNowhere;
 	    street27_2[0].left = streetToNowhere;
-
-	    
-		Lane[][] laneTab = {street13_5, street16_13, street52_60, street81_80};
-		return laneTab;
 	}
 	
 	public static Lane[] getPubTranStreet(int v1, int v2)
