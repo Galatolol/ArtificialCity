@@ -40,54 +40,25 @@ public class ContentPanel extends JPanel implements ActionListener {
 	    Lane[] street1 = streetTab[0];
 	    Lane[] street2 = streetTab[1];
 	    Lane[] street3 = streetTab[2];
+	    Lane[] street4 = streetTab[3];
 	    
-	    Person driver1 = new Person(50, null, null, myGraph.vertices.get(11), myGraph.vertices.get(13), null, null, null, null, null, true);
-	    driver1.setPrevVertex(myGraph.vertices.get(16));
-	    
+	    Person driver1 = new Person(50, null, null, myGraph.vertices.get(97), myGraph.vertices.get(81), myGraph.vertices.get(47), null, null, null, null, null, true);
+	    	    
 		Vehicle auto2 = new Car(driver1);
-		auto2.setStreet(street2);
+		auto2.setStreet(Util.getOuterStreet(97, 81)[0].forward);
 		auto2.setLaneNr(0);
 		auto2.setCurrentCell(auto2.getStreet()[0].cellList[0]);
 		auto2.setSpeed(1);
-		//auto2.curveLeft();
 		vehicleList.add(auto2);
 		myGraph.calcWeightedShortestPath((Car)auto2);
 		
-		Vehicle auto3 = new Car(null);
-		auto3.setStreet(street1);
-		auto3.setLaneNr(0);
-		auto3.setCurrentCell(street1[0].cellList[0]);
-		auto3.setSpeed(1);
-		auto3.moveForward();
-		//vehicleList.add(auto3);
+		Vehicle tram1 = Generator.generateTram(8, 1);
+		Vehicle tram2 = Generator.generateTram(8, 2);
 		
-		Vehicle bus1 = new Bus();
-		bus1.setStreet(street1);
-		bus1.setLaneNr(2);
-		bus1.setCurrentCell(street1[2].cellList[0]);
-		bus1.setSpeed(1);
-		bus1.moveForward();
-		//vehicleList.add(bus1);
-		
-		String[] linia8_1 = {"forward", "forward", "forward", "forward", "forward", "forward", "forward", "right", "nowhere"};
-		String[] linia8_2 = {"left", "forward", "forward", "forward", "forward", "forward", "forward", "forward", "nowhere"};	
-		
-		String[] linia4_1 = {"forward", "forward", "forward", "forward", "forward", "forward", "forward", "right", "forward", "forward", "nowhere"};
-		String[] linia4_2 = {"forward", "forward", "right", "forward", "forward", "forward", "forward", "forward", "forward", "forward", "nowhere"};
-		
-		String[] linia18 = {"forward", "forward", "forward", "forward", "nowhere"};
-		
-		Vehicle tram1 = new Tram(1, linia18, linia18);
-		tram1.setStreet(street3);
-		tram1.setLaneNr(0);
-		tram1.setCurrentCell(street3[0].cellList[0]);
-		tram1.setSpeed(1);
-		((Tram)tram1).changeDirection();
-		//vehicleList.add(tram1);
+		vehicleList.add(tram1);
+		vehicleList.add(tram2);
 	
 		tm.start();
-		System.out.println(bus1 instanceof Bus);
-		//System.out.println(Util.getDirection(street[0], myGraph.vertices.get(12)));
 	}
 
 	protected void paintComponent(Graphics g) {

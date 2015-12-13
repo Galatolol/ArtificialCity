@@ -92,6 +92,22 @@ public class Graph {
 		
 	}
 	
+	public static String getDirection(Lane lane, V vertex) {
+		if (lane.forward != null && lane.forward[0].end == vertex) {
+			return "forward";
+		}
+		else if (lane.right != null && lane.right[0].end == vertex) {
+			return "right";
+		}
+		else if (lane.left != null && lane.left[0].end == vertex) {
+			return "left";
+		}
+		else {
+			System.out.println("Problem z polaczeniem ulic.    Edge: " + lane.toString() + "     Vertex: " + vertex.toString());
+			return "";
+		}
+	}
+	
 	public static void calcWeightedShortestPath(Car c) {
         Transformer<E, Integer> wtTransformer = new Transformer<E,Integer>() {
             public Integer transform(E edge) {
@@ -110,14 +126,14 @@ public class Graph {
         DijkstraShortestPath<V,E> alg = new DijkstraShortestPath<V, E>(graph, wtTransformer);
         System.out.println("dfdf_3");
         List<E> path = alg.getPath(current, end);
-        System.out.println("dfdf_4");
+        System.out.println("dfdf_4 "+path.size());
         V nextVertex = path.get(0).getEnd();
         System.out.println("dfdf");
         Lane lane = getEdge(prev, current).street[c.getLaneNr()];
         System.out.println("dfdf_2");
 
         System.out.println(lane.begin.toString() + lane.end + nextVertex);
-        String direction = Util.getDirection(lane, nextVertex);
+        String direction = getDirection(lane, nextVertex);
         System.out.println("Kierunkeeeeeeeeee");
         System.out.println("Kierunke: " + direction + nextVertex);
         

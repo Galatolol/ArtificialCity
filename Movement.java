@@ -145,7 +145,14 @@ public class Movement
 		
 		if (car instanceof Car)
 		{
-			myGraph.calcWeightedShortestPath((Car)car);
+			try
+			{
+				myGraph.calcWeightedShortestPath((Car)car);
+			}
+			catch (IndexOutOfBoundsException e)
+			{
+				return false;
+			}
 		}
 		if (car instanceof Tram)
 		{

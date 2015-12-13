@@ -290,4 +290,48 @@ public class Generator
 		}
 		return false;
 	}
+	
+	public static Tram generateTram(int nr, int directionn)
+	{
+		String[] linia8_1 = {"forward", "forward", "forward", "forward", "forward", "forward", "forward", "right", "C"};
+		String[] linia8_2 = {"left", "forward", "forward", "forward", "forward", "forward", "forward", "forward", "A"};	
+		
+		String[] linia4_1 = {"forward", "forward", "forward", "forward", "forward", "forward", "forward", "right", "forward", "forward", "B"};
+		String[] linia4_2 = {"forward", "forward", "right", "forward", "forward", "forward", "forward", "forward", "forward", "forward", "A"};
+		
+		String[] linia18_1 = {"forward", "forward", "forward", "forward", "B"};
+		String[] linia18_2 = {"forward", "forward", "forward", "forward", "C"};
+		
+		Tram tram;
+		Lane[] street = null;
+		
+		if (nr == 8)
+		{
+			tram = new Tram(directionn, linia8_1, linia8_2);
+			if (directionn == 1)
+			{
+				street = Util.getPubTranStreet(3, 14);
+			}
+			else
+			{
+				street = Util.getPubTranStreet(56, 55);
+			}
+		}
+		else if (nr == 18)
+		{
+			tram = new Tram(directionn, linia18_1, linia18_2);
+		}
+		else
+		{
+			tram = new Tram(directionn, linia4_1, linia4_2);
+		}
+		
+		tram.setStreet(street);
+		tram.setLaneNr(0);
+		tram.setCurrentCell(street[0].cellList[0]);
+		tram.setSpeed(1);
+		((Tram)tram).changeDirection();
+		
+		return tram;
+	}
 }
