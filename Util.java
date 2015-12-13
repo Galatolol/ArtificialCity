@@ -1149,7 +1149,7 @@ public class Util
 		//-------------------------------------------
 		
 	    edge = myGraph.getEdge(3, 85);
-	    edge.street[0].speedLimit = 2;
+	    edge.street[0].speedLimit = -1;
 		Lane[] street3_85 = new Lane[1];
 		street3_85[0] = edge.street[0];
 		outerStreetsList.add(street3_85);
@@ -1157,7 +1157,7 @@ public class Util
 		//-------------------------------------------
 		
 	    edge = myGraph.getEdge(85, 3);
-	    edge.street[0].speedLimit = 2;
+	    edge.street[0].speedLimit = -1;
 		Lane[] street85_3 = new Lane[1];
 		street85_3[0] = edge.street[0];
 		outerStreetsList.add(street85_3);
@@ -1165,7 +1165,7 @@ public class Util
 		//-------------------------------------------
 		
 	    edge = myGraph.getEdge(97, 81);
-	    edge.street[0].speedLimit = 2;
+	    edge.street[0].speedLimit = -1;
 		Lane[] street97_81 = new Lane[1];
 		street97_81[0] = edge.street[0];
 		outerStreetsList.add(street97_81);
@@ -1180,7 +1180,7 @@ public class Util
 		//-------------------------------------------
 		
 	    edge = myGraph.getEdge(56, 93);
-	    edge.street[0].speedLimit = 2;
+	    edge.street[0].speedLimit = -1;
 		Lane[] street56_93 = new Lane[1];
 		street56_93[0] = edge.street[0];
 		outerStreetsList.add(street56_93);
@@ -1188,7 +1188,7 @@ public class Util
 		//-------------------------------------------
 		
 	    edge = myGraph.getEdge(93, 56);
-	    edge.street[0].speedLimit = 2;
+	    edge.street[0].speedLimit = -1;
 		Lane[] street93_56 = new Lane[1];
 		street93_56[0] = edge.street[0];
 		outerStreetsList.add(street93_56);
@@ -1273,7 +1273,7 @@ public class Util
 		//-------------------------------------------
 		
 	    edge = myGraph.getEdge(47, 90);
-	    edge.street[0].speedLimit = 2;
+	    edge.street[0].speedLimit = -1;
 		Lane[] street47_90 = new Lane[1];
 		street47_90[0] = edge.street[0];
 		outerStreetsList.add(street47_90);
