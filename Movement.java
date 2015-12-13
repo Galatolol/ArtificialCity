@@ -115,7 +115,12 @@ public class Movement
 				return false;
 			}
 			try{veh.setStreet(street[0].forward);}catch (Exception e) {System.out.println("-f-1");}
-			try{veh.setLaneNr(getNextLaneNr(veh));}catch (Exception e) {System.out.println("-f-2");} 
+			int laneNr = getNextLaneNr(veh);
+			if (veh instanceof Bus)
+			{
+				laneNr = street[0].forward.length - 1;
+			}
+			try{veh.setLaneNr(laneNr);}catch (Exception e) {System.out.println("-f-2");} 
 			try{veh.setTmpCell(veh.getStreet()[veh.getLaneNr()].cellList[veh.getCurrentSpeed() - howManyCellsToCrossroad]);}catch (Exception e) {System.out.println("-f-3");}
 		}
 		else if (veh.isCurvingRight())
@@ -125,7 +130,12 @@ public class Movement
 				return false;
 			}
 			try{veh.setStreet(street[0].right);}catch (Exception e) {System.out.println("---1");}
-			try{veh.setLaneNr(0);}catch (Exception e) {System.out.println("-----2");}
+			int laneNr = 0;
+			if (veh instanceof Bus)
+			{
+				laneNr = street[0].right.length - 1;
+			}
+			try{veh.setLaneNr(laneNr);}catch (Exception e) {System.out.println("-----2");}
 			try{veh.setTmpCell(veh.getStreet()[veh.getLaneNr()].cellList[2]);}catch (Exception e) {System.out.println("-----3");}
 		}
 		else
