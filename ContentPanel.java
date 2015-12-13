@@ -48,11 +48,32 @@ public class ContentPanel extends JPanel implements ActionListener {
 		auto2.setSpeed(1);
 		//vehicleList.add(auto2);
 		
-		Vehicle tram1 = Generator.generateTram(8, 1);
-		Vehicle tram2 = Generator.generateTram(8, 2);
+		Vehicle tram1 = Generator.generatePubTran(8, 1); //numer linii, kierunek jazdy
+		Vehicle tram2 = Generator.generatePubTran(8, 2);
+		Vehicle tram3 = Generator.generatePubTran(4, 1);
+		Vehicle tram4 = Generator.generatePubTran(4, 2);
+		Vehicle tram5 = Generator.generatePubTran(18, 1);
+		Vehicle tram6 = Generator.generatePubTran(18, 2);
 		
-		vehicleList.add(tram1);
-		vehicleList.add(tram2);
+		Vehicle bus1 = Generator.generatePubTran(159, 1);
+		Vehicle bus2 = Generator.generatePubTran(159, 2);
+		Vehicle bus3 = Generator.generatePubTran(173, 1);
+		Vehicle bus4 = Generator.generatePubTran(173, 2);
+		Vehicle bus5 = Generator.generatePubTran(179, 1);
+		Vehicle bus6 = Generator.generatePubTran(179, 2);
+		
+		//vehicleList.add(tram1);
+		//vehicleList.add(tram2);
+		//vehicleList.add(tram3);
+		//vehicleList.add(tram4);
+		//vehicleList.add(tram5);
+		//vehicleList.add(tram6);
+		vehicleList.add(bus1);
+		vehicleList.add(bus2);
+		vehicleList.add(bus3);
+		vehicleList.add(bus4);
+		vehicleList.add(bus5);
+		vehicleList.add(bus6);
 	
 		tm.start();
 	}

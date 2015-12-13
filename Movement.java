@@ -40,7 +40,6 @@ public class Movement
 					{
 						vehicleList1.add(veh);
 						iter.remove();
-						continue;
 					}
 					break;
 				}
@@ -108,36 +107,40 @@ public class Movement
 	
 	public static boolean changeStreet(Vehicle veh, int howManyCellsToCrossroad)
 	{
-		
 		Lane[] street = veh.getStreet();
 		if (veh.isMovingForward()) 
 		{
-			try{veh.setStreet(street[0].forward);}catch (Exception e) {System.out.println("-f-1");}
-			if (veh.getStreet()[0].speedLimit == -1)
+			if (veh.getStreet()[0].forward[0].speedLimit == -1)
 			{
 				return false;
 			}
-			try{veh.setLaneNr(getNextLaneNr(veh));}catch (Exception e) {System.out.println("-f-2");}
+			try{veh.setStreet(street[0].forward);}catch (Exception e) {System.out.println("-f-1");}
+			try{veh.setLaneNr(getNextLaneNr(veh));}catch (Exception e) {System.out.println("-f-2");} 
 			try{veh.setTmpCell(veh.getStreet()[veh.getLaneNr()].cellList[veh.getCurrentSpeed() - howManyCellsToCrossroad]);}catch (Exception e) {System.out.println("-f-3");}
 		}
 		else if (veh.isCurvingRight())
 		{
-			try{veh.setStreet(street[0].right);}catch (Exception e) {System.out.println("---1");}
-			if (veh.getStreet()[0].speedLimit == -1)
+			if (veh.getStreet()[0].right[0].speedLimit == -1)
 			{
 				return false;
 			}
+			try{veh.setStreet(street[0].right);}catch (Exception e) {System.out.println("---1");}
 			try{veh.setLaneNr(0);}catch (Exception e) {System.out.println("-----2");}
 			try{veh.setTmpCell(veh.getStreet()[veh.getLaneNr()].cellList[2]);}catch (Exception e) {System.out.println("-----3");}
 		}
 		else
 		{
-			try{veh.setStreet(street[0].left);}catch (Exception e) {System.out.println("---1");}
-			if (veh.getStreet()[0].speedLimit == -1)
+			if (veh.getStreet()[0].left[0].speedLimit == -1)
 			{
 				return false;
 			}
-			try{veh.setLaneNr(0);}catch (Exception e) {System.out.println("-----2");}
+			try{veh.setStreet(street[0].left);}catch (Exception e) {System.out.println("---1");}
+			int laneNr = 0;
+			if (veh instanceof Bus)
+			{
+				laneNr = street[0].left.length - 1;
+			}
+			try{veh.setLaneNr(laneNr);}catch (Exception e) {System.out.println("-----2");}
 			try{veh.setTmpCell(veh.getStreet()[veh.getLaneNr()].cellList[1]);}catch (Exception e) {System.out.println("-----3");}
 		}
 		
@@ -162,7 +165,7 @@ public class Movement
 	
 	public static int getNextLaneNr(Vehicle veh)
 	{ 
-		if (veh.getLaneNr() <= veh.getStreet().length)
+		if (veh.getLaneNr() < veh.getStreet().length)
 		{
 			return veh.getLaneNr();
 		}

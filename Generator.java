@@ -68,7 +68,7 @@ public class Generator
 		}
 		else if (r < 4)
 		{
-			result[0] = rand.nextInt(10) + 20; //20 - 29
+			result[0] = rand.nextInt(6) + 20; //20 - 25
 			result[1] = 1;
 		}
 		else if (r < 8)
@@ -293,53 +293,63 @@ public class Generator
 		return false;
 	}
 	
-	public static Tram generateTram(int nr, int directionn)
+	public static PublicTransport generatePubTran(int nr, int destination)
 	{
-		String[] linia8_1 = {"forward", "forward", "forward", "forward", "forward", "forward", "forward", "right", "forward", "C"};
-		String[] linia8_2 = {"left", "forward", "forward", "forward", "forward", "forward", "forward", "forward", "forward", "A"};	
+		String[] linia8_1 = {"forward", "forward", "forward", "forward", "forward", "forward", "forward", "right", "forward", "C", "3", "14"};
+		String[] linia8_2 = {"left", "forward", "forward", "forward", "forward", "forward", "forward", "forward", "forward", "A", "56", "55"};	
 		
-		String[] linia4_1 = {"forward", "forward", "forward", "forward", "forward", "forward", "forward", "right", "forward", "forward", "B"};
-		String[] linia4_2 = {"forward", "forward", "right", "forward", "forward", "forward", "forward", "forward", "forward", "forward", "A"};
+		String[] linia4_1 = {"forward", "forward", "forward", "forward", "forward", "forward", "forward", "right", "forward", "forward", "B", "3", "14"};
+		String[] linia4_2 = {"forward", "forward", "right", "forward", "forward", "forward", "forward", "forward", "forward", "forward", "A", "52", "60"};
 		
-		String[] linia18_1 = {"forward", "forward", "forward", "forward", "B"};
-		String[] linia18_2 = {"forward", "forward", "forward", "forward", "C"};
+		String[] linia18_1 = {"forward", "forward", "forward", "forward", "B", "56", "55"};
+		String[] linia18_2 = {"forward", "forward", "forward", "forward", "C", "52", "60"};
 		
-		String[] linia179_1 = {"forward", "forward", "forward", "forward", "forward", "forward", "forward", "C"};
-		String[] linia179_2 = {"forward", "forward", "forward", "forward", "forward", "forward", "forward", "A"};
+		String[] linia179_1 = {"forward", "forward", "forward", "forward", "forward", "forward", "forward", "C", "4", "14"};
+		String[] linia179_2 = {"forward", "forward", "forward", "forward", "forward", "forward", "forward", "A", "81", "80"};
 		
-		String[] linia173_1 = {"forward", "forward", "forward", "forward", "forward", "forward", "forward", "C"};
-		String[] linia173_2 = {"forward", "forward", "forward", "forward", "forward", "forward", "forward", "D"};
+		String[] linia173_1 = {"forward", "right", "forward", "forward", "forward", "forward", "forward", "C", "23", "22"};
+		String[] linia173_2 = {"forward", "forward", "left",  "forward", "forward", "forward", "forward", "D", "81", "80"};
 		
-		Tram tram;
-		Lane[] street = null;
+		String[] linia159_1 = {"forward", "forward", "right", "forward", "forward", "forward", "forward", "D", "4", "14"};
+		String[] linia159_2 = {"forward", "forward", "forward", "left", "forward", "forward", "forward", "forward", "A", "23", "22"};
+		
+		PublicTransport veh = null;
 		
 		if (nr == 8)
 		{
-			tram = new Tram(directionn, linia8_1, linia8_2);
-			if (directionn == 1)
-			{
-				street = Util.getPubTranStreet(3, 14);
-			}
-			else
-			{
-				street = Util.getPubTranStreet(56, 55);
-			}
+			veh = new Tram(destination, linia8_1, linia8_2);
+
 		}
 		else if (nr == 18)
 		{
-			tram = new Tram(directionn, linia18_1, linia18_2);
+			veh = new Tram(destination, linia18_1, linia18_2);
+		}
+		else if (nr == 4)
+		{
+			veh = new Tram(destination, linia4_1, linia4_2);
+		}
+		else if (nr == 179)
+		{
+			veh = new Bus(destination, linia179_1, linia179_2);
+		}
+		else if (nr == 159)
+		{
+			veh = new Bus(destination, linia159_1, linia159_2);
+		}
+		else if (nr == 173)
+		{
+			veh = new Bus(destination, linia173_1, linia173_2);
+		}
+		
+		if (destination == 1)
+		{
+			veh.changeDestination1();
 		}
 		else
 		{
-			tram = new Tram(directionn, linia4_1, linia4_2);
+			veh.changeDestination2();
 		}
 		
-		tram.setStreet(street);
-		tram.setLaneNr(0);
-		tram.setCurrentCell(street[0].cellList[0]);
-		tram.setSpeed(1);
-		((Tram)tram).changeDirection();
-		
-		return tram;
+		return veh;
 	}
 }

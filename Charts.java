@@ -8,7 +8,7 @@ public class Charts
 		//------------wiek----------------------
 		Integer tmp;
 		String[] tab = new String[personList.size()];
-		for (int i = 0; i < personList.size(); i ++)
+		for (int i = 0; i < personList.size(); i++)
 		{
 			tmp = personList.get(i).getAge();
 			tab[i] = tmp.toString();
@@ -18,7 +18,7 @@ public class Charts
 	    chart.setVisible(true);
 	    
 	    //----------miejsceZamieszkania---------
-		for (int i = 0; i < personList.size(); i ++)
+		for (int i = 0; i < personList.size(); i++)
 		{
 			tab[i] = personList.get(i).getResidence();
 		}
@@ -27,7 +27,7 @@ public class Charts
 	    chart1.setVisible(true);
 	    
 	    //----------miejsceDocelowe---------
-		for (int i = 0; i < personList.size(); i ++)
+		for (int i = 0; i < personList.size(); i++)
 		{
 			tab[i] = personList.get(i).getDestination();
 		}
@@ -36,7 +36,7 @@ public class Charts
 	    chart2.setVisible(true);
 	    
 	    //--------godzinaWyjsciaZDomu-------------
-		for (int i = 0; i < personList.size(); i ++)
+		for (int i = 0; i < personList.size(); i++)
 		{
 			tab[i] = personList.get(i).getGoingOut();
 		}
@@ -45,7 +45,7 @@ public class Charts
 	    chart3.setVisible(true);
 	    
 	    //--------godzinaWyjsciaZPracy-------------
-		for (int i = 0; i < personList.size(); i ++)
+		for (int i = 0; i < personList.size(); i++)
 		{
 			tab[i] = personList.get(i).getGoingBack();
 		}

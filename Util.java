@@ -86,7 +86,7 @@ public class Util
 		{
 			return true;
 		}
-		else if (lane.begin.toString().equals("22") && lane.end.toString().equals("21") && cellNr == 12)
+		else if (lane.begin.toString().equals("22") && lane.end.toString().equals("21") && cellNr == 17)
 		{
 			return true;
 		}
@@ -245,6 +245,7 @@ public class Util
 		{
 			street81_80[i] = edge.street[i];
 		}
+		pubTranStreetsList.add(street81_80);
 		
 	    //----------------------
 		
@@ -314,6 +315,18 @@ public class Util
  
 		Lane[] street13_12 = new Lane[1];
 		street13_12[0] = edge.street[0];
+		
+		//-------------------
+		
+	    edge = myGraph.getEdge(17, 18);
+	    
+	    for (int i = 0; i < 1; i++)
+	    {
+	    	edge.street[i].speedLimit = 3;
+	    }
+ 
+		Lane[] street17_18 = new Lane[1];
+		street17_18[0] = edge.street[0];
 		
 		//---------------------
 	   
@@ -459,7 +472,136 @@ public class Util
 		Lane[] street9_8 = new Lane[1];
 		street9_8[0] = edge.street[0];
 		
+		//-----------------------------------------
+		   
+	    edge = myGraph.getEdge(86, 4);
+	    
+	    for (int i = 0; i < 1; i++)
+	    {
+	    	edge.street[i].speedLimit = -1;
+	    }
+ 
+		Lane[] street86_4 = new Lane[1];
+		street86_4[0] = edge.street[0];
+		outerStreetsList.add(street86_4);
 		
+		//-----------------------------------------
+		   
+	    edge = myGraph.getEdge(5, 87);
+	    
+	    for (int i = 0; i < 1; i++)
+	    {
+	    	edge.street[i].speedLimit = -1;
+	    }
+ 
+		Lane[] street5_87 = new Lane[1];
+		street5_87[0] = edge.street[0];
+		outerStreetsList.add(street5_87);
+		
+		//-----------------------------------------
+		   
+	    edge = myGraph.getEdge(89, 46);
+	    
+	    for (int i = 0; i < 1; i++)
+	    {
+	    	edge.street[i].speedLimit = -1;
+	    }
+ 
+		Lane[] street89_46 = new Lane[1];
+		street89_46[0] = edge.street[0];
+		outerStreetsList.add(street89_46);
+		
+		//-----------------------------------------
+		   
+	    edge = myGraph.getEdge(88, 6);
+	    
+	    for (int i = 0; i < 1; i++)
+	    {
+	    	edge.street[i].speedLimit = -1;
+	    }
+ 
+		Lane[] street88_6 = new Lane[1];
+		street88_6[0] = edge.street[0];
+		outerStreetsList.add(street88_6);
+		
+		//-----------------------------------------
+		   
+	    edge = myGraph.getEdge(49, 91);
+	    
+	    for (int i = 0; i < 1; i++)
+	    {
+	    	edge.street[i].speedLimit = -1;
+	    }
+ 
+		Lane[] street49_91 = new Lane[1];
+		street49_91[0] = edge.street[0];
+		outerStreetsList.add(street49_91);
+		
+		//-----------------------------------------
+		   
+	    edge = myGraph.getEdge(91, 49);
+	    
+	    for (int i = 0; i < 1; i++)
+	    {
+	    	edge.street[i].speedLimit = -1;
+	    }
+ 
+		Lane[] street91_49 = new Lane[1];
+		street91_49[0] = edge.street[0];
+		outerStreetsList.add(street91_49);
+		
+		//-----------------------------------------
+		   
+	    edge = myGraph.getEdge(52, 92);
+	    
+	    for (int i = 0; i < 1; i++)
+	    {
+	    	edge.street[i].speedLimit = -1;
+	    }
+ 
+		Lane[] street52_92 = new Lane[1];
+		street52_92[0] = edge.street[0];
+		outerStreetsList.add(street52_92);
+		
+		//-----------------------------------------
+		   
+	    edge = myGraph.getEdge(92, 52);
+	    
+	    for (int i = 0; i < 1; i++)
+	    {
+	    	edge.street[i].speedLimit = -1;
+	    }
+ 
+		Lane[] street92_52 = new Lane[1];
+		street92_52[0] = edge.street[0];
+		outerStreetsList.add(street92_52);
+		
+		//-----------------------------------------
+		   
+	    edge = myGraph.getEdge(101, 23);
+	    
+	    for (int i = 0; i < 1; i++)
+	    {
+	    	edge.street[i].speedLimit = -1;
+	    }
+ 
+		Lane[] street101_23 = new Lane[1];
+		street101_23[0] = edge.street[0];
+		outerStreetsList.add(street101_23);
+		
+		//-----------------------------------------
+		   
+	    edge = myGraph.getEdge(23, 101);
+	    
+	    for (int i = 0; i < 1; i++)
+	    {
+	    	edge.street[i].speedLimit = -1;
+	    }
+ 
+		Lane[] street23_101 = new Lane[1];
+		street23_101[0] = edge.street[0];
+		outerStreetsList.add(street23_101);
+
 		//-----------------------------------------
 		   
 	    edge = myGraph.getEdge(8, 7);
@@ -793,6 +935,7 @@ public class Util
 		{
 			street4_14[i] = edge.street[i];
 		}
+		pubTranStreetsList.add(street4_14);
 		
 		//----------------------------------------
 		
@@ -1164,6 +1307,14 @@ public class Util
 		
 		//-------------------------------------------
 		
+	    edge = myGraph.getEdge(82, 98);
+	    edge.street[0].speedLimit = -1;
+		Lane[] street82_98 = new Lane[1];
+		street82_98[0] = edge.street[0];
+		outerStreetsList.add(street82_98);
+		
+		//-------------------------------------------
+		
 	    edge = myGraph.getEdge(97, 81);
 	    edge.street[0].speedLimit = -1;
 		Lane[] street97_81 = new Lane[1];
@@ -1406,6 +1557,7 @@ public class Util
 		}
 		Lane[] street52_60 = new Lane[1];
 		street52_60[0] = edge.street[0];
+		pubTranStreetsList.add(street52_60);
 		
 		//-------------------------------------------
 		
@@ -1563,6 +1715,7 @@ public class Util
 		{
 			street23_22[i] = edge.street[i];
 		}
+		pubTranStreetsList.add(street23_22);
 		
 		//-------------------------------------------
 		
@@ -1620,7 +1773,8 @@ public class Util
 		    street20_76[i].right = street76_77;			
 		    
 		    street76_79[i].forward = street79_82;
-			
+		    
+		    street79_82[i].forward = street82_98;
 		}
 		
 		street15_16[0].forward = street16_13;
@@ -1645,6 +1799,8 @@ public class Util
 		
 		street35_33[0].forward = street33_32;
 		street35_33[0].right = street33_34;
+		
+		street19_17[0].forward = street17_21;
 
 		street6_8[0].forward = street8_39;
 		street6_8[0].left = street8_7;
@@ -1722,6 +1878,8 @@ public class Util
 	    street21_22[0].forward = street22_23;
 	    street21_22[0].right = street22_26;
 	    
+	    street22_23[0].forward = street23_101;
+	    
 	    street75_76[0].forward = street76_77;
 	    street75_76[0].left = street76_79;
 	    
@@ -1784,6 +1942,8 @@ public class Util
 	    street39_44[0].left = street44_45;
 	    street39_44[0].forward = street44_51;
 	    
+	    street21_20[0].forward = street20_76;
+	    
 	    street44_45[0].forward = street45_47;
 	    street44_45[0].right = street45_48;
 	    
@@ -1805,12 +1965,12 @@ public class Util
 	    street48_45[0].right = street45_47;
 	    street48_45[0].left = street45_44;
 	    
-	    //street48_49[0].forward = koniec
+	    street48_49[0].forward = street49_91;
 	    
 	    street44_51[0].right = street51_54;
 	    street44_51[0].left = street51_52;
 	    
-	    //street51_52[0].forward = koniec
+	    street51_52[0].forward = street52_92;
 	    
 	    street51_54[0].right = street54_53;
 	    
@@ -1847,7 +2007,7 @@ public class Util
 	    
 	    street58_60[0].forward = street60_52;
 	    
-	    //street60_52[0].forward = koniec
+	    street60_52[0].forward = street52_92;
 	    
 	    street52_60[0].forward = street60_58;
 	    
@@ -1864,6 +2024,21 @@ public class Util
 	    		
 	    street93_56[0].forward = street56_55;
 	    
+	    street92_52[0].forward = street52_60;
+	    
+	    street89_46[0].forward = street46_45;
+	    
+	    street91_49[0].forward = street49_48;
+	    
+	    street101_23[0].forward = street23_22;
+	    
+	    street86_4[0].forward = street4_14;
+	    
+	    street21_17[0].forward = street17_18;
+	    
+	    street17_18[0].forward = street18_42;
+	    street17_18[0].left = street18_28;
+	    
 	    for (int i = 0; i < 2; i++)
 	    {
 	    	street23_22[i].forward = street22_21;
@@ -1874,8 +2049,6 @@ public class Util
 		    street3_14[i].forward = street14_13;
 		    street3_14[i].right = street14_15;
 	    }
-	    
-	    //streetToNowhere
 	    
 	    for (int i = 0; i < 3; i++)
 	    {
