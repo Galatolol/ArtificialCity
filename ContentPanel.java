@@ -40,7 +40,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 	    Util.createStreets(myGraph);
 		
 		ArrayList<Person> personList = new ArrayList<Person>();
-		Generator.generate(5, personList);
+		Generator.generate(2, personList);
 		
 		for (Person person : personList)
 		{
@@ -50,6 +50,12 @@ public class ContentPanel extends JPanel implements ActionListener {
 			}
 		}
 		
+		//addPublicTransport();
+		tm.start();
+	}
+	
+	protected void addPublicTransport()
+	{
 		Vehicle tram1 = Generator.generatePubTran(8, 1); //numer linii, kierunek jazdy
 		Vehicle tram2 = Generator.generatePubTran(8, 2);
 		Vehicle tram3 = Generator.generatePubTran(4, 1);
@@ -76,8 +82,6 @@ public class ContentPanel extends JPanel implements ActionListener {
 		vehicleList.add(bus4);
 		vehicleList.add(bus5);
 		vehicleList.add(bus6);
-	
-		tm.start();
 	}
 
 	protected void paintComponent(Graphics g) {

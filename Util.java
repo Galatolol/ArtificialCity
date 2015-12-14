@@ -1930,7 +1930,6 @@ public class Util
 	    street42_18[0].forward = street18_17;
 	    
 	    street18_17[0].forward = street17_21;
-	    street18_17[0].left = street17_20;
 	    
 	    street18_42[0].forward = street42_73;
 	    
