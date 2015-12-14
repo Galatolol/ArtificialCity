@@ -50,6 +50,12 @@ public class ContentPanel extends JPanel implements ActionListener {
 			}
 		}
 		
+		Person person1 = new Person(50, "", "", "", "", "", "", "", true);
+		person1.setAllVertices(myGraph.vertices.get(97), myGraph.vertices.get(81), myGraph.vertices.get(101));
+		vehicleList.add(Generator.generateCar(person1));
+		
+		
+		
 		//addPublicTransport();
 		tm.start();
 	}
