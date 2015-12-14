@@ -6,6 +6,7 @@ public class E {
 	private V end;
 	private int length;
 	private int speedLimit;
+	private int weight;
 	private int cellListsNum;
 	public Lane[] street;
 	private int cellsNum;
@@ -16,6 +17,7 @@ public class E {
 	E (V _begin, V _end, int _length, int _speedLimit, int _cellListsNum, boolean _oneWay) {
 		this.begin = _begin;
 		this.end = _end;
+		this.weight = _length;
 		this.length = (int) Math.sqrt((end.getX()-begin.getX()) * (end.getX()-begin.getX()) +
 				            (end.getY()-begin.getY()) * (end.getY()-begin.getY()));
 		
@@ -92,6 +94,10 @@ public class E {
 	
 	public int getLength() {
 		return this.length;
+	}
+	
+	public int getWeight() {
+		return this.weight;
 	}
 	
 	public String toString() {
