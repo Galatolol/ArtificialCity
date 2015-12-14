@@ -518,7 +518,7 @@ public class Generator
 		Vehicle car = new Car(driver);
 		int prevVertex = Integer.parseInt(driver.getPrevVertex().toString());
 		int currentVertex = Integer.parseInt(driver.getCurrentVertex().toString());
-		car.setStreet(Util.getOuterStreet(prevVertex, currentVertex)[0].forward);
+		car.setStreet(Util.getOuterStreet(prevVertex, currentVertex));
 		car.setLaneNr(0);
 		car.setCurrentCell(car.getStreet()[0].cellList[0]);
 		car.setSpeed(1);

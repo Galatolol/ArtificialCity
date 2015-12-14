@@ -46,17 +46,12 @@ public class ContentPanel extends JPanel implements ActionListener {
 		{
 			if (person.getIsDriving())
 			{
-				vehicleList.add(Generator.generateCar(person));
+				//vehicleList.add(Generator.generateCar(person));
 			}
 		}
-		
-		Person person1 = new Person(50, "", "", "", "", "", "", "", true);
-		person1.setAllVertices(myGraph.vertices.get(97), myGraph.vertices.get(81), myGraph.vertices.get(101));
-		vehicleList.add(Generator.generateCar(person1));
-		
-		
-		
-		//addPublicTransport();
+
+		addCars();
+		addPublicTransport();
 		tm.start();
 	}
 	
@@ -88,6 +83,64 @@ public class ContentPanel extends JPanel implements ActionListener {
 		vehicleList.add(bus4);
 		vehicleList.add(bus5);
 		vehicleList.add(bus6);
+	}
+	
+	protected void addCars()
+	{
+		
+		Person person1 = new Person(50, "", "", "", "", "", "", "", true);
+		person1.setAllVertices(myGraph.vertices.get(81), myGraph.vertices.get(80), myGraph.vertices.get(101));
+		vehicleList.add(Generator.generateCar(person1));
+		
+		Person person2 = new Person(50, "", "", "", "", "", "", "", true);
+		person2.setAllVertices(myGraph.vertices.get(78), myGraph.vertices.get(79), myGraph.vertices.get(87));
+		vehicleList.add(Generator.generateCar(person2));
+		
+		Person person3 = new Person(50, "", "", "", "", "", "", "", true);
+		person3.setAllVertices(myGraph.vertices.get(81), myGraph.vertices.get(80), myGraph.vertices.get(90));
+		vehicleList.add(Generator.generateCar(person3));
+		
+		Person person4 = new Person(50, "", "", "", "", "", "", "", true);
+		person4.setAllVertices(myGraph.vertices.get(24), myGraph.vertices.get(25), myGraph.vertices.get(84));
+		vehicleList.add(Generator.generateCar(person4));
+		
+		Person person5 = new Person(50, "", "", "", "", "", "", "", true);
+		person5.setAllVertices(myGraph.vertices.get(4), myGraph.vertices.get(14), myGraph.vertices.get(98));
+		vehicleList.add(Generator.generateCar(person5));
+		
+		Person person6 = new Person(50, "", "", "", "", "", "", "", true);
+		person6.setAllVertices(myGraph.vertices.get(23), myGraph.vertices.get(22), myGraph.vertices.get(91));
+		vehicleList.add(Generator.generateCar(person6));
+		
+		Person person7 = new Person(50, "", "", "", "", "", "", "", true);
+		person7.setAllVertices(myGraph.vertices.get(52), myGraph.vertices.get(51), myGraph.vertices.get(96));
+		vehicleList.add(Generator.generateCar(person7));
+		
+		Person person8 = new Person(50, "", "", "", "", "", "", "", true);
+		person8.setAllVertices(myGraph.vertices.get(67), myGraph.vertices.get(66), myGraph.vertices.get(94));
+		vehicleList.add(Generator.generateCar(person8));
+		
+		Person person9 = new Person(50, "", "", "", "", "", "", "", true);
+		person9.setAllVertices(myGraph.vertices.get(6), myGraph.vertices.get(8), myGraph.vertices.get(90));
+		vehicleList.add(Generator.generateCar(person9));
+		
+		Person person10 = new Person(50, "", "", "", "", "", "", "", true);
+		person10.setAllVertices(myGraph.vertices.get(81), myGraph.vertices.get(80), myGraph.vertices.get(87));
+		Vehicle car = Generator.generateCar(person10);
+		car.setLaneNr(1);
+		vehicleList.add(car);
+		
+		Person person11 = new Person(50, "", "", "", "", "", "", "", true);
+		person11.setAllVertices(myGraph.vertices.get(46), myGraph.vertices.get(45), myGraph.vertices.get(85));
+		vehicleList.add(Generator.generateCar(person11));
+		
+		Person person12 = new Person(50, "", "", "", "", "", "", "", true);
+		person12.setAllVertices(myGraph.vertices.get(46), myGraph.vertices.get(45), myGraph.vertices.get(101));
+		vehicleList.add(Generator.generateCar(person12));
+		
+		Person person13 = new Person(50, "", "", "", "", "", "", "", true);
+		//person13.setAllVertices(myGraph.vertices.get(4), myGraph.vertices.get(14), myGraph.vertices.get(86));
+		//vehicleList.add(Generator.generateCar(person13));
 	}
 
 	protected void paintComponent(Graphics g) {

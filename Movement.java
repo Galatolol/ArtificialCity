@@ -119,9 +119,8 @@ public class Movement
 		Lane[] street = veh.getStreet();
 		if (veh.isMovingForward()) 
 		{
-			System.out.println("changeStreet() vert. begin: " + veh.getStreet()[0].begin + " vert. next begin " + veh.getStreet()[0].forward[0].begin);
 			if (veh.getStreet()[0].forward[0].getSpeedLimit() == -1)
-			{System.out.println("ddd___ddd");
+			{
 				return false;
 			}
 			try{veh.setStreet(street[0].forward);}catch (Exception e) {System.out.println("-f-1");}
