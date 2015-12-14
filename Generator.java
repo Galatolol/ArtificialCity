@@ -3,6 +3,7 @@ import java.util.Random;
 
 public class Generator 
 {
+	private static Graph myGraph;
 	private static Random rand = new Random();
 	
 	public static void generate(int n, List<Person> list)
@@ -46,14 +47,174 @@ public class Generator
 			}
 			driving = generateDriving(age, residence);
 			
-			V prevVertex = null;
-			V currentVertex = null;
-			V destinationVertex = null;
+			Person person = new Person(age, residence, destination, from, goingOut, goingBack, firstName, lastName, driving);
+			if (person.getIsDriving())
+			{
+				generateVertices(person);
+			}
+			list.add(person);
 			
-			Person p = new Person(age, residence, destination, prevVertex, currentVertex, destinationVertex, from, goingOut, goingBack, firstName, lastName, driving);
-			list.add(p);
+			
 		}
-
+	}
+	
+	private static void generateVertices(Person person)
+	{
+		int r, prev, curr, dest;
+		dest = 0;
+		if (person.getResidence().equals("A"))
+		{
+			r = rand.nextInt(4);
+			if (r == 0)
+			{
+				prev = 83;
+				curr = 1;
+				dest = 84;
+			}
+			else if (r == 1)
+			{
+				prev = 85;
+				curr = 3;
+			}
+			else if (r == 2)
+			{
+				prev = 86;
+				curr = 4;
+			}
+			else
+			{
+				prev = 88;
+				curr = 6;
+			}
+		}
+		if (person.getResidence().equals("B"))
+		{
+			r = rand.nextInt(2);
+			if (r == 0)
+			{
+				prev = 89;
+				curr = 6;
+			}
+			else
+			{
+				prev = 91;
+				curr = 49;
+			}
+		}
+		if (person.getResidence().equals("C"))
+		{
+			r = rand.nextInt(3);
+			if (r == 0)
+			{
+				prev = 95;
+				curr = 67;
+				r = rand.nextInt(2);
+				if (r == 0)
+				{
+					dest = 94;
+				}
+				else
+				{
+					dest = 96;
+				}
+			}
+			else
+			{
+				prev = 97;
+				curr = 81;
+			}
+		}
+		else
+		{
+			r = rand.nextInt(3);
+			if (r == 0)
+			{
+				prev = 99;
+				curr = 78;
+			}
+			else if (r == 1)
+			{
+				prev = 101;
+				curr = 23;
+			}
+			else
+			{
+				prev = 102;
+				curr = 24;
+				dest = 84;
+			}
+		}
+		if (dest == 0)
+		{
+			while (true)
+			{
+				if (person.getDestination().equals("A"))
+				{
+					r = rand.nextInt(3);
+					if (r == 0)
+					{
+						dest = 84;
+					}
+					else if (r == 1)
+					{
+						dest = 85;
+					}
+					else
+					{
+						dest = 87;
+					}
+				}
+				if (person.getDestination().equals("B"))
+				{
+					r = rand.nextInt(3);
+					if (r == 0)
+					{
+						dest = 90;
+					}
+					else if (r == 1)
+					{
+						dest = 91;
+					}
+					else
+					{
+						dest = 92;
+					}
+				}
+				if (person.getDestination().equals("C"))
+				{
+					r = rand.nextInt(4);
+					if (r == 0)
+					{
+						dest = 94;
+					}
+					else if (r == 1)
+					{
+						dest = 96;
+					}
+					else //2x wieksza szansa
+					{
+						dest = 98;
+					}
+				}
+				else
+				{
+					r = rand.nextInt(2);
+					if (r == 0)
+					{
+						dest = 100;
+					}
+					else
+					{
+						dest = 101;
+					}
+				}
+				if (dest != prev && dest != curr)
+				{
+					break;
+				}
+			}
+		}
+		person.setAllVertices(myGraph.vertices.get(prev), myGraph.vertices.get(curr), myGraph.vertices.get(dest));
 	}
 	
 	private static int[] generateAgeAndProfession()
@@ -116,8 +277,8 @@ public class Generator
 			int r = rand.nextInt(6);
 			switch(r)
 			{
-				case 0:
-					return "AGH";
+				case 0: 
+					return "S";	
 				case 1:
 					return "A";
 				case 2:
@@ -126,8 +287,8 @@ public class Generator
 					return "C";
 				case 4:
 					return "D";
-				case 5: 
-					return "S";	
+				//case 6:
+					//return "AGH";
 			}
 		}
 		return generateResidence();
@@ -349,7 +510,19 @@ public class Generator
 		{
 			veh.changeDestination2();
 		}
-		
 		return veh;
+	}
+	
+	public static Vehicle generateCar(Person driver)
+	{
+		Vehicle car = new Car(driver);
+		int prevVertex = Integer.parseInt(driver.getPrevVertex().toString());
+		int currentVertex = Integer.parseInt(driver.getCurrentVertex().toString());
+		car.setStreet(Util.getOuterStreet(prevVertex, currentVertex)[0].forward);
+		car.setLaneNr(0);
+		car.setCurrentCell(car.getStreet()[0].cellList[0]);
+		car.setSpeed(1);
+		myGraph.calcWeightedShortestPath((Car)car);
+		return car;
 	}
 }

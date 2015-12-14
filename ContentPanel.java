@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -37,16 +38,17 @@ public class ContentPanel extends JPanel implements ActionListener {
 	    myGraph.init();
 		
 	    Util.createStreets(myGraph);
-	    
-	    Person driver1 = new Person(50, null, null, myGraph.vertices.get(81), myGraph.vertices.get(80), myGraph.vertices.get(90), null, null, null, null, null, true);
-	    	    
-		Vehicle auto2 = new Car(driver1);
-		myGraph.calcWeightedShortestPath((Car)auto2);
-		auto2.setStreet(Util.getOuterStreet(97, 81)[0].forward);
-		auto2.setLaneNr(0);
-		auto2.setCurrentCell(auto2.getStreet()[0].cellList[0]);
-		auto2.setSpeed(1);
-		//vehicleList.add(auto2);
+		
+		ArrayList<Person> personList = new ArrayList<Person>();
+		Generator.generate(5, personList);
+		
+		for (Person person : personList)
+		{
+			if (person.getIsDriving())
+			{
+				vehicleList.add(Generator.generateCar(person));
+			}
+		}
 		
 		Vehicle tram1 = Generator.generatePubTran(8, 1); //numer linii, kierunek jazdy
 		Vehicle tram2 = Generator.generatePubTran(8, 2);

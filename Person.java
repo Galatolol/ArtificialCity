@@ -17,21 +17,25 @@ public class Person
 	
 	public boolean driving;
 	
-	Person(int _age, String _residence, String _destination, V _prevVertex, V _currentVertex, V _destinationVertex, String _from, String _goingOut, String _goingBack, 
+	Person(int _age, String _residence, String _destination, String _from, String _goingOut, String _goingBack, 
 			String _firstName, String _lastName, boolean _driving)
 	{
 		age = _age;
 		residence = _residence;
 		destination = _destination;
-		prevVertex = _prevVertex;
-		currentVertex = _currentVertex;
-		destinationVertex = _destinationVertex;
 		from = _from;
 		goingOut = _goingOut;
 		goingBack = _goingBack;
 		firstName = _firstName;
 		lastName = _lastName;
 		driving = _driving;
+	}
+	
+	public void setAllVertices(V _prevVertex, V _currentVertex, V _destinationVertex)
+	{
+		this.setPrevVertex(_prevVertex);
+		this.setCurrentVertex(_currentVertex);
+		this.setDestinationVertex(_destinationVertex);
 	}
 	
 	//------------------------------------
@@ -50,15 +54,7 @@ public class Person
 	public V getCurrentVertex() { return currentVertex; }
 	public V getPrevVertex() { return prevVertex; }
 	
-	public void setCurrentVertex(V v) {
-		this.currentVertex = v;
-	}
-	
-	public void setPrevVertex(V v) {
-		this.prevVertex = v;
-	}
-	
-	public void setDestinationVertex(V v) {
-		this.destinationVertex = v;
-	}
+	public void setCurrentVertex(V v) { this.currentVertex = v; }
+	public void setPrevVertex(V v) { this.prevVertex = v; }
+	public void setDestinationVertex(V v) { this.destinationVertex = v; }
 }

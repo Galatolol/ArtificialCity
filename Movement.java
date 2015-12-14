@@ -118,7 +118,8 @@ public class Movement
 	{
 		Lane[] street = veh.getStreet();
 		if (veh.isMovingForward()) 
-		{System.out.println("ddd--  " + veh.getStreet()[0].forward[0].begin + veh.getStreet()[0].forward[0].getSpeedLimit() + " " + veh.getStreet()[0].begin);
+		{
+			System.out.println("changeStreet() vert. begin: " + veh.getStreet()[0].begin + " vert. next begin " + veh.getStreet()[0].forward[0].begin);
 			if (veh.getStreet()[0].forward[0].getSpeedLimit() == -1)
 			{System.out.println("ddd___ddd");
 				return false;

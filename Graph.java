@@ -36,7 +36,6 @@ public class Graph {
 			this.getVertices("res/vertices.txt");
 			this.getEdges("res/edges.txt");
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -47,7 +46,6 @@ public class Graph {
 			this.getVertices("res/vertices.txt");
 			this.getEdges("res/edges.txt");
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		//this.createGraph();	
@@ -142,6 +140,8 @@ public class Graph {
 	        case "right": c.curveRight();
 	    	break;
         }
+        
+        //if
         
         c.driver.setPrevVertex(current);
         c.driver.setCurrentVertex(nextVertex);
