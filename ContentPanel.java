@@ -46,7 +46,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 		auto2.setLaneNr(0);
 		auto2.setCurrentCell(auto2.getStreet()[0].cellList[0]);
 		auto2.setSpeed(1);
-		vehicleList.add(auto2);
+		//vehicleList.add(auto2);
 		
 		Vehicle tram1 = Generator.generatePubTran(8, 1); //numer linii, kierunek jazdy
 		Vehicle tram2 = Generator.generatePubTran(8, 2);

@@ -310,7 +310,7 @@ public class Generator
 		String[] linia173_1 = {"forward", "right", "forward", "forward", "forward", "forward", "forward", "C", "23", "22"};
 		String[] linia173_2 = {"forward", "forward", "left",  "forward", "forward", "forward", "forward", "D", "81", "80"};
 		
-		String[] linia159_1 = {"forward", "forward", "right", "forward", "forward", "forward", "forward", "D", "4", "14"};
+		String[] linia159_1 = {"forward", "forward", "right", "forward", "forward", "forward", "forward", "forward", "D", "4", "14"};
 		String[] linia159_2 = {"forward", "forward", "forward", "left", "forward", "forward", "forward", "forward", "A", "23", "22"};
 		
 		PublicTransport veh = null;

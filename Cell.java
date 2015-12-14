@@ -17,7 +17,8 @@ public class Cell {
 		forbidden = false;
 	}
 	
-	public void setOccupied(boolean _occupied){
+	public void setOccupied(boolean _occupied)
+	{
 		occupied = _occupied;
 	}
 	

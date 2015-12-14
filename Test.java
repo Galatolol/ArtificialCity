@@ -30,7 +30,7 @@ public class Test
 		String str = car.getStreet()[0].toString();
 		System.out.println("Pas: " + listNr + "  komorka: " + cellNr + "  predkosc: " + speed
 				+ "  ile do konca: " + howMany + "  ile do prawa: " + howManyToRight + 
-				"  ile do lewa: " + howManyToLeft + "  id drogi: " + str.substring(13, 22));
+				"  ile do lewa: " + howManyToLeft);
 	}
 	
 }

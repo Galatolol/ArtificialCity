@@ -4,7 +4,7 @@ public class Lane {
 	public int howManyToLeft; //ile pasow do lewa
 	public int howManyToRight;
 	public int length;
-	public int speedLimit;
+	private int speedLimit;
 	public Lane[] left;
 	public Lane[] right;
 	public Lane[] forward;
@@ -74,6 +74,8 @@ public class Lane {
 		return output;
 	}
 	
+	public void setSpeedLimit(int _speedLimit) { speedLimit = _speedLimit; }
+	public int getSpeedLimit() { return speedLimit; }
 	public int getHowManyToRight() { return howManyToRight; }
 	public int getHowManyToLeft() { return howManyToLeft; }
 

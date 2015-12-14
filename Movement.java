@@ -15,12 +15,13 @@ public class Movement
 		Iterator<Vehicle> iter = vehicleList.iterator();
 		while (iter.hasNext())
 		{
+			boolean vehRemoved = false;
 			Vehicle veh = iter.next();
 			Cell cell = veh.getCurrentCell();
 			Lane[] Street = veh.getStreet();
 			int listNr = veh.getLaneNr();
 			int cellNr = cell.getNr();
-			if (veh.getCurrentSpeed() < veh.getStreet()[0].speedLimit)
+			if (veh.getCurrentSpeed() < veh.getStreet()[0].getSpeedLimit())
 			{
 				veh.modifySpeed(1);
 			}
@@ -38,8 +39,11 @@ public class Movement
 				{
 					if (!changeStreet(veh, cell.getHowManyCellsToCrossroad()))
 					{
+						veh.getCurrentCell().setOccupied(false);
+						veh.getNextCell().setOccupied(false);
 						vehicleList1.add(veh);
 						iter.remove();
+						vehRemoved = true;
 					}
 					break;
 				}
@@ -47,6 +51,11 @@ public class Movement
 				{
 					determineNextCell(veh, cell, Street, listNr, cellNr);
 				}
+			}
+			if (vehRemoved)
+			{
+				vehRemoved = false;
+				continue;
 			}
 			veh.setNextCell(veh.getTmpCell());
 			veh.getNextCell().setOccupied(true);
@@ -93,7 +102,7 @@ public class Movement
 		}
 		catch(Exception e)
 		{
-			System.out.println("wyjatek");
+			System.out.println("Movement.determineNextCell(): wyjatek");
 		}
 		if (tmpCell.isOccupied())
 		{
@@ -109,9 +118,9 @@ public class Movement
 	{
 		Lane[] street = veh.getStreet();
 		if (veh.isMovingForward()) 
-		{
-			if (veh.getStreet()[0].forward[0].speedLimit == -1)
-			{
+		{System.out.println("ddd--  " + veh.getStreet()[0].forward[0].begin + veh.getStreet()[0].forward[0].getSpeedLimit() + " " + veh.getStreet()[0].begin);
+			if (veh.getStreet()[0].forward[0].getSpeedLimit() == -1)
+			{System.out.println("ddd___ddd");
 				return false;
 			}
 			try{veh.setStreet(street[0].forward);}catch (Exception e) {System.out.println("-f-1");}
@@ -125,7 +134,7 @@ public class Movement
 		}
 		else if (veh.isCurvingRight())
 		{
-			if (veh.getStreet()[0].right[0].speedLimit == -1)
+			if (veh.getStreet()[0].right[0].getSpeedLimit() == -1)
 			{
 				return false;
 			}
@@ -140,7 +149,7 @@ public class Movement
 		}
 		else
 		{
-			if (veh.getStreet()[0].left[0].speedLimit == -1)
+			if (veh.getStreet()[0].left[0].getSpeedLimit() == -1)
 			{
 				return false;
 			}
