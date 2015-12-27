@@ -62,52 +62,53 @@ public class Generator
 	{
 		int r, prev, curr, dest;
 		dest = 0;
+		
 		if (person.getResidence().equals("A"))
 		{
 			r = rand.nextInt(4);
 			if (r == 0)
 			{
-				prev = 83;
-				curr = 1;
+				prev = 1;
+				curr = 25;
 				dest = 84;
 			}
 			else if (r == 1)
 			{
-				prev = 85;
-				curr = 3;
+				prev = 3;
+				curr = 14;
 			}
 			else if (r == 2)
 			{
-				prev = 86;
-				curr = 4;
+				prev = 4;
+				curr = 14;
 			}
 			else
 			{
-				prev = 88;
-				curr = 6;
+				prev = 6;
+				curr = 8;
 			}
 		}
-		if (person.getResidence().equals("B"))
+		else if (person.getResidence().equals("B"))
 		{
 			r = rand.nextInt(2);
 			if (r == 0)
 			{
-				prev = 89;
-				curr = 6;
+				prev = 49;
+				curr = 48;
 			}
 			else
 			{
-				prev = 91;
-				curr = 49;
+				prev = 46;
+				curr = 45;
 			}
 		}
-		if (person.getResidence().equals("C"))
+		else if (person.getResidence().equals("C"))
 		{
 			r = rand.nextInt(3);
 			if (r == 0)
 			{
-				prev = 95;
-				curr = 67;
+				prev = 67;
+				curr = 66;
 				r = rand.nextInt(2);
 				if (r == 0)
 				{
@@ -120,8 +121,8 @@ public class Generator
 			}
 			else
 			{
-				prev = 97;
-				curr = 81;
+				prev = 81;
+				curr = 80;
 			}
 		}
 		else
@@ -129,18 +130,18 @@ public class Generator
 			r = rand.nextInt(3);
 			if (r == 0)
 			{
-				prev = 99;
-				curr = 78;
+				prev = 78;
+				curr = 79;
 			}
 			else if (r == 1)
 			{
-				prev = 101;
-				curr = 23;
+				prev = 23;
+				curr = 22;
 			}
 			else
 			{
-				prev = 102;
-				curr = 24;
+				prev = 24;
+				curr = 25;
 				dest = 84;
 			}
 		}
@@ -164,7 +165,7 @@ public class Generator
 						dest = 87;
 					}
 				}
-				if (person.getDestination().equals("B"))
+				else if (person.getDestination().equals("B"))
 				{
 					r = rand.nextInt(3);
 					if (r == 0)
@@ -180,7 +181,7 @@ public class Generator
 						dest = 92;
 					}
 				}
-				if (person.getDestination().equals("C"))
+				else if (person.getDestination().equals("C"))
 				{
 					r = rand.nextInt(4);
 					if (r == 0)
@@ -518,7 +519,7 @@ public class Generator
 		Vehicle car = new Car(driver);
 		int prevVertex = Integer.parseInt(driver.getPrevVertex().toString());
 		int currentVertex = Integer.parseInt(driver.getCurrentVertex().toString());
-		car.setStreet(Util.getOuterStreet(prevVertex, currentVertex));
+		car.setStreet(Util.getStreet(prevVertex, currentVertex));
 		car.setLaneNr(0);
 		car.setCurrentCell(car.getStreet()[0].cellList[0]);
 		car.setSpeed(1);

@@ -107,44 +107,40 @@ public class Graph {
 		}
 	}
 	
-	public static void calcWeightedShortestPath(Car c) {
+	public static void calcWeightedShortestPath(Car car) {
         Transformer<E, Integer> wtTransformer = new Transformer<E,Integer>() {
             public Integer transform(E edge) {
                 return edge.getLength() + edge.getWeight();
             }
         };
         
-        V prev = c.driver.getPrevVertex();
-        V current = c.driver.getCurrentVertex();
-        V end = c.driver.getDestinationVertex();
-        
-        System.out.println(prev);
-        System.out.println(current);
-        System.out.println(end);
+        V prev = car.driver.getPrevVertex();
+        V current = car.driver.getCurrentVertex();
+        V end = car.driver.getDestinationVertex();
         
         DijkstraShortestPath<V,E> alg = new DijkstraShortestPath<V, E>(graph, wtTransformer);
         List<E> path = alg.getPath(current, end);
         V nextVertex = path.get(0).getEnd();
-        Lane lane = getEdge(prev, current).street[c.getLaneNr()];
+        Lane lane = getEdge(prev, current).street[car.getLaneNr()];
 
-        String direction = getDirection(lane, nextVertex);
-        System.out.println("Dijikstra – kierunek: " + direction + nextVertex);
+        String direction = getDirection(car.getStreet()[0], nextVertex);
+        System.out.println("Dijikstra – kierunek: " + direction + " " + nextVertex);
         
         switch (direction) {
-	        case "forward": c.moveForward();
+	        case "forward": car.moveForward();
 	        break;
 	        
-	        case "left": c.curveLeft();
+	        case "left": car.curveLeft();
 	    	break;
 	        
-	        case "right": c.curveRight();
+	        case "right": car.curveRight();
 	    	break;
         }
         
         //if
         
-        c.driver.setPrevVertex(current);
-        c.driver.setCurrentVertex(nextVertex);
+       // c.driver.setPrevVertex(current);
+       // c.driver.setCurrentVertex(nextVertex);
     }
 	
 	private void getVertices(String path) throws FileNotFoundException {

@@ -32,7 +32,7 @@ public class PublicTransport extends Vehicle
 	
 	public void changeDestination3(int v1, int v2)
 	{
-		this.setStreet(Util.getPubTranStreet(v1, v2));
+		this.setStreet(Util.getStreet(v1, v2));
 		this.setLaneNr(0);
 		if (this instanceof Bus)
 		{

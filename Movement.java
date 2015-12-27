@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Random;
 
 public class Movement 
@@ -9,10 +10,14 @@ public class Movement
 	private static Random rand = new Random();
 	private static Cell tmpCell;
 	private static List<Vehicle> vehicleList1 = new ArrayList<Vehicle>();
+	private static long timer, timer1, timerr;
+	private static boolean signaling1;
 	
 	public static void move(List<Vehicle> vehicleList)
 	{
-		Iterator<Vehicle> iter = vehicleList.iterator();
+		ListIterator<Vehicle> iter = vehicleList.listIterator();
+		timer = System.currentTimeMillis();
+		setSignaling(false);
 		while (iter.hasNext())
 		{
 			boolean vehRemoved = false;
@@ -25,7 +30,7 @@ public class Movement
 			{
 				veh.modifySpeed(1);
 			}
-			if (rand.nextInt(3) == 0)
+			if (rand.nextInt(3) == 0 && veh.getCurrentSpeed() > 1)
 			{
 				veh.modifySpeed(-1);
 			}
@@ -59,11 +64,28 @@ public class Movement
 			}
 			veh.setNextCell(veh.getTmpCell());
 			veh.getNextCell().setOccupied(true);
+			timer1 = System.currentTimeMillis();
+			System.out.println(timerr);
+			if (timerr >= 10 && signaling1 == false)
+			{
+				timerr = 0;
+				signaling1 = true;
+				setSignaling(signaling1);
+				System.out.println("wlaczam");
+			}
+			else if (timerr >= 30 && signaling1 == true)
+			{
+				timerr = 0;
+				signaling1 = false;
+				setSignaling(signaling1);
+				System.out.println("wyłączam");
+			}
 		}
 		for (Vehicle vehicle : vehicleList)
 		{
 			moveToNextCell(vehicle);
 		}
+		timerr++;
 	}
 	
 	public static void determineNextCell(Vehicle veh, Cell cell, Lane[] Street, int listNr, int cellNr)
@@ -167,6 +189,9 @@ public class Movement
 		{
 			try
 			{
+				((Car) veh).driver.setPrevVertex(veh.getStreet()[0].begin);
+				((Car) veh).driver.setCurrentVertex(veh.getStreet()[0].end);
+				System.out.print("");
 				myGraph.calcWeightedShortestPath((Car)veh);
 			}
 			catch (IndexOutOfBoundsException e)
@@ -191,6 +216,32 @@ public class Movement
 		else
 		{
 			return 0;
+		}
+	}
+	
+	public static void setSignaling(boolean signaling)
+	{
+		Lane[] street = Util.getStreet(20, 76);
+		Lane[] street1 = Util.getStreet(81, 80);
+		Lane[] street2 = Util.getStreet(78, 79);
+
+		int length = street[0].cellList.length;
+		for (int i = 0; i < street.length; i++)
+		{
+			street[i].cellList[length - 1].setOccupied(signaling);
+			street[i].cellList[length - 2].setOccupied(signaling);
+		}
+		length = street1[0].cellList.length;
+		for (int i = 0; i < street1.length; i++)
+		{
+			street1[i].cellList[length - 1].setOccupied(signaling);
+			street1[i].cellList[length - 2].setOccupied(signaling);
+		}
+		length = street2[0].cellList.length;
+		for (int i = 0; i < street2.length; i++)
+		{
+			street2[i].cellList[length - 1].setOccupied(!signaling);
+			//street2[i].cellList[length - 2].setOccupied(!signaling);
 		}
 	}
 	
