@@ -156,7 +156,8 @@ public class PedestriansGraph {
 	        					Integer.parseInt(v[2]), 
 	        					Integer.parseInt(v[3]),
 	        					Integer.parseInt(v[4]),
-	        					Boolean.parseBoolean(v[5])),
+	        					Boolean.parseBoolean(v[5]),
+	        					1),
 	        					vertices.get(Integer.parseInt(v[0])), 
 	        					vertices.get(Integer.parseInt(v[1])), 
 	        					EdgeType.UNDIRECTED);
