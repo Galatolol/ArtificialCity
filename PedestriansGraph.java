@@ -24,17 +24,16 @@ import edu.uci.ics.jung.visualization.BasicVisualizationServer;
 import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 import edu.uci.ics.jung.visualization.renderers.Renderer.VertexLabel.Position;
 
-public class Graph {
+public class PedestriansGraph {
 	public static SparseMultigraph<V, E> graph;
 	public static LinkedList<V> vertices = new LinkedList<V>();
-	
-	
-	public Graph() {
+		
+	public PedestriansGraph() {
 		graph = new SparseMultigraph<V, E>();
 		
 		try {
-			this.getVertices("res/vertices.txt");
-			this.getEdges("res/edges.txt");
+			this.getVertices("res/pedestriansVertices.txt");
+			this.getEdges("res/pedestriansEdges.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -43,12 +42,11 @@ public class Graph {
 		graph = new SparseMultigraph<V, E>();
 		
 		try {
-			this.getVertices("res/vertices.txt");
-			this.getEdges("res/edges.txt");
+			this.getVertices("res/pedestriansVertices.txt");
+			this.getEdges("res/pedestriansEdges.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		}
-		//this.createGraph();	
+		}	
 	}
 	
 	public static String getDirection(Lane lane, V vertex) {
@@ -158,17 +156,18 @@ public class Graph {
 	        					Integer.parseInt(v[2]), 
 	        					Integer.parseInt(v[3]),
 	        					Integer.parseInt(v[4]),
-	        					Boolean.parseBoolean(v[5])),
+	        					Boolean.parseBoolean(v[5]),
+	        					1),
 	        					vertices.get(Integer.parseInt(v[0])), 
 	        					vertices.get(Integer.parseInt(v[1])), 
-	        					EdgeType.DIRECTED);
+	        					EdgeType.UNDIRECTED);
 		}
 	    in.close();
 	}
 
 	public void paintVertices(Graphics g) {
 		for(V v : vertices) {
-	    	g.setColor(Color.RED);
+	    	g.setColor(Color.BLUE);
 	    	ContentPanel.drawCircle(v.getX(), v.getY(), 20, g);
 			
 	    	g.setColor(Color.BLACK);
@@ -193,7 +192,7 @@ public class Graph {
 	
 	public void paintEdges(Graphics g) {
 		for(E e : graph.getEdges()) {
-	    	g.setColor(Color.green);
+	    	g.setColor(Color.blue);
 	    	//g.drawLine(e.getBeginX(), e.getBeginY(), e.getEndX(), e.getEndY());
 	    	
 	    	for(int i = 0; i < e.street.length; i++) {

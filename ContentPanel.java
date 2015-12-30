@@ -21,6 +21,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 	private Timer tm = new Timer(100, this);
 	static int counter = 0;
 	private Graph myGraph;
+	private PedestriansGraph pGraph; 
 	private List<Vehicle> vehicleList = new ArrayList<Vehicle>();
 	public static List<Vehicle> vehicleList1 = new ArrayList<Vehicle>(); //------------
 
@@ -37,6 +38,8 @@ public class ContentPanel extends JPanel implements ActionListener {
 		
 		myGraph = new Graph();
 	    myGraph.init();
+	    pGraph = new PedestriansGraph();
+	    pGraph.init();
 		
 	    Util.createStreets(myGraph);
 		
@@ -180,6 +183,9 @@ public class ContentPanel extends JPanel implements ActionListener {
 	    
 	    myGraph.paintEdges(g);
 	    myGraph.paintVertices(g);
+	    pGraph.paintEdges(g);
+	    pGraph.paintVertices(g);
+	    
 	    
 	    for(Vehicle v : vehicleList) {
 	    	v.paintVehicle(g, v.getColor());
