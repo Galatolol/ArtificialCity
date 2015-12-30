@@ -112,9 +112,12 @@ public class ContentPanel extends JPanel implements ActionListener {
 	protected Vehicle dupa()
 	{
 		Person person5 = new Person(50, "", "", "", "", "", "", "", true);
-		person5.setAllVertices(myGraph.vertices.get(4), myGraph.vertices.get(14), myGraph.vertices.get(98));
-		return Generator.generateCar(person5);
+		person5.setAllVertices(myGraph.vertices.get(20), myGraph.vertices.get(76), myGraph.vertices.get(98));
+		Vehicle car = Generator.generateCar(person5);
+		car.setLaneNr(1);
+		return car;
 	}
+	
 	
 	protected void addCars()
 	{

@@ -10,14 +10,13 @@ public class Movement
 	private static Random rand = new Random();
 	private static Cell tmpCell;
 	private static List<Vehicle> vehicleList1 = new ArrayList<Vehicle>();
-	private static long timer, timer1, timerr;
+	private static long timerr;
 	private static boolean signaling1;
 	
 	public static void move(List<Vehicle> vehicleList)
 	{
+		timerr++;
 		ListIterator<Vehicle> iter = vehicleList.listIterator();
-		timer = System.currentTimeMillis();
-		setSignaling(false);
 		while (iter.hasNext())
 		{
 			boolean vehRemoved = false;
@@ -64,7 +63,6 @@ public class Movement
 			}
 			veh.setNextCell(veh.getTmpCell());
 			veh.getNextCell().setOccupied(true);
-			timer1 = System.currentTimeMillis();
 			System.out.println(timerr);
 			if (timerr >= 10 && signaling1 == false)
 			{
@@ -73,7 +71,7 @@ public class Movement
 				setSignaling(signaling1);
 				System.out.println("wlaczam");
 			}
-			else if (timerr >= 30 && signaling1 == true)
+			else if (timerr >= 10 && signaling1 == true)
 			{
 				timerr = 0;
 				signaling1 = false;
@@ -85,7 +83,6 @@ public class Movement
 		{
 			moveToNextCell(vehicle);
 		}
-		timerr++;
 	}
 	
 	public static void determineNextCell(Vehicle veh, Cell cell, Lane[] Street, int listNr, int cellNr)
