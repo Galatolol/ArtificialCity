@@ -97,11 +97,6 @@ public class Graph {
 	        case "right": car.curveRight();
 	    	break;
         }
-        
-        //if
-        
-       // c.driver.setPrevVertex(current);
-       // c.driver.setCurrentVertex(nextVertex);
     }
 	
 	private void getVertices(String path) throws FileNotFoundException {

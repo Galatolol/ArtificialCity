@@ -79,9 +79,9 @@ public class Movement
 				System.out.println("wyłączam");
 			}
 		}
-		for (Vehicle vehicle : vehicleList)
+		for (Vehicle veh : vehicleList)
 		{
-			moveToNextCell(vehicle);
+			moveToNextCell(veh);
 		}
 	}
 	

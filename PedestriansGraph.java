@@ -66,40 +66,35 @@ public class PedestriansGraph {
 		}
 	}
 	
-	public static void calcWeightedShortestPath(Car car) {
+	public static void calcWeightedShortestPath(Pedestrian ped) {
         Transformer<E, Integer> wtTransformer = new Transformer<E,Integer>() {
             public Integer transform(E edge) {
                 return edge.getLength() + edge.getWeight();
             }
         };
         
-        V prev = car.driver.getPrevVertex();
-        V current = car.driver.getCurrentVertex();
-        V end = car.driver.getDestinationVertex();
+        V prev = ped.controller.getPrevVertex();
+        V current = ped.controller.getCurrentVertex();
+        V end = ped.controller.getDestinationVertex();
         
         DijkstraShortestPath<V,E> alg = new DijkstraShortestPath<V, E>(graph, wtTransformer);
         List<E> path = alg.getPath(current, end);
         V nextVertex = path.get(0).getEnd();
-        Lane lane = getEdge(prev, current).street[car.getLaneNr()];
+       // Lane lane = getEdge(prev, current).street[ped.getLaneNr()];
 
-        String direction = getDirection(car.getStreet()[0], nextVertex);
+        String direction = getDirection(ped.getStreet()[0], nextVertex);
         System.out.println("Dijikstra – kierunek: " + direction + " " + nextVertex);
         
         switch (direction) {
-	        case "forward": car.moveForward();
+	        case "forward": ped.moveForward();
 	        break;
 	        
-	        case "left": car.curveLeft();
+	        case "left": ped.curveLeft();
 	    	break;
 	        
-	        case "right": car.curveRight();
+	        case "right": ped.curveRight();
 	    	break;
         }
-        
-        //if
-        
-       // c.driver.setPrevVertex(current);
-       // c.driver.setCurrentVertex(nextVertex);
     }
 	
 	private void getVertices(String path) throws FileNotFoundException {

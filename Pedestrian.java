@@ -1,21 +1,22 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
-public abstract class Vehicle 
+public class Pedestrian
 {
 	protected boolean curvingRight;
 	protected boolean curvingLeft;
 	protected boolean movingForward;
-	protected int currentSpeed;
-	protected int maxSpeed;
+	public Person controller;
 	protected Lane[] street; 
-	protected int laneNr;
 	protected Cell currentCell;
 	protected Cell nextCell;
 	protected Cell tmpCell;
 	protected String color;
-	public int waiting;
-	public boolean isWaiting;
+	
+	public Pedestrian(Person _controller)
+	{
+		controller = _controller;
+	}
 	
 	public void curveRight()
 	{
@@ -38,32 +39,9 @@ public abstract class Vehicle
 		movingForward = true;
 	}
 	
-	public void setSpeed(int speed)
-	{
-		currentSpeed = speed;
-		if (speed > maxSpeed)
-		{
-			currentSpeed = maxSpeed;
-		}
-		else if (speed < 0)
-		{
-			currentSpeed = 0;
-		}
-	}
-	
-	public void modifySpeed(int speed)
-	{
-		setSpeed(currentSpeed + speed);
-	}
-	
 	public void setStreet(Lane[] _street)
 	{
 		street = _street;
-	}
-	
-	public void setLaneNr(int _nr)
-	{
-		laneNr = _nr;
 	}
 	
 	public void setCurrentCell(Cell _cell)
@@ -81,12 +59,10 @@ public abstract class Vehicle
 		tmpCell = _cell;
 	}
 	
-	public int getCurrentSpeed() { return currentSpeed; }
 	public boolean isCurvingRight() { return curvingRight; }
 	public boolean isCurvingLeft() { return curvingLeft; }
 	public boolean isMovingForward() { return movingForward; }
 	public Lane[] getStreet() { return street; }
-	public int getLaneNr() { return laneNr; }
 	public Cell getCurrentCell() { return currentCell; }
 	public Cell getNextCell() { return nextCell; }
 	public Cell getTmpCell() { return tmpCell; }
@@ -94,20 +70,7 @@ public abstract class Vehicle
 	
 	public void paint(Graphics g, String color)
 	{	
-		Color col = null;
-		if (color.equals("red"))
-		{
-			col = Color.RED;
-		}
-		else if (color.equals("cyan"))
-		{
-			col = Color.CYAN;
-		}
-		else if (color.equals("blue"))
-		{
-			col = Color.BLUE;
-		}
-		g.setColor(col);
+		g.setColor(Color.ORANGE);
 		g.fillOval(this.getCurrentCell().getX()-5, 
 				   this.getCurrentCell().getY()-5, 
 				   10, 10);

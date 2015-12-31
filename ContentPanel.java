@@ -23,6 +23,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 	private Graph myGraph;
 	private PedestriansGraph pGraph; 
 	private List<Vehicle> vehicleList = new ArrayList<Vehicle>();
+	private List<Pedestrian> pList = new ArrayList<Pedestrian>();
 	public static List<Vehicle> vehicleList1 = new ArrayList<Vehicle>(); //------------
 
 	ContentPanel() {
@@ -58,6 +59,14 @@ public class ContentPanel extends JPanel implements ActionListener {
 			}
 		}
 		
+		Person person50 = new Person(50, "", "", "", "", "", "", "", true);
+		person50.setAllVertices(myGraph.vertices.get(6), myGraph.vertices.get(7), myGraph.vertices.get(10));
+		Pedestrian ped = new Pedestrian(person50);
+		ped.setStreet(Util.createPedestriansStreets(pGraph));
+		ped.setCurrentCell(ped.getStreet()[0].cellList[0]);
+		ped.moveForward();
+		pList.add(ped);
+
 		//addCars();
 		//addPublicTransport();
 		
@@ -186,16 +195,18 @@ public class ContentPanel extends JPanel implements ActionListener {
 	    pGraph.paintEdges(g);
 	    pGraph.paintVertices(g);
 	    
-	    
 	    for(Vehicle v : vehicleList) {
-	    	v.paintVehicle(g, v.getColor());
-	    }			
+	    	v.paint(g, v.getColor());
+	    }		
+	    for(Pedestrian p : pList) {
+	    	p.paint(g, p.getColor());
+	    }	
 	}
 	
 	public void actionPerformed(ActionEvent e) {		
 		Test.displayInfoAboutCar(vehicleList.get(0));
-		//Test.displayInfoAboutCar(vehicleList.get(1));
 		Movement.move(vehicleList);	
+		PedestriansMovement.move(pList);
 		counter++;
 		repaint();
 	}

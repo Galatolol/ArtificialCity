@@ -5,6 +5,7 @@ import java.util.LinkedList;
 
 public class Util {
 	private static ArrayList<Lane[]> streetList = new ArrayList<Lane[]>();
+	private static ArrayList<Lane[]> pedestriansStreetList = new ArrayList<Lane[]>();
 
 	public static String getHour(String time) {
 		String[] parts = time.split(":");
@@ -102,6 +103,34 @@ public class Util {
 			return true;
 		}
 		return false;
+	}
+	
+	//--------------------------------------------------------
+	
+	public static Lane[] createPedestriansStreets(PedestriansGraph pGraph)
+	{
+		E edge = pGraph.getEdge(6, 7);  System.out.println("dupa1");
+		Lane[] street6_7 = new Lane[1]; System.out.println("dupa2");
+		street6_7[0] = edge.street[0]; System.out.println("dupa3");
+		pedestriansStreetList.add(street6_7); System.out.println("dupa4");
+
+		// -------------------------------------------
+
+		edge = pGraph.getEdge(7, 10);
+		Lane[] street7_10 = new Lane[1];
+		street7_10[0] = edge.street[0];
+		pedestriansStreetList.add(street7_10);
+		
+		
+		
+		
+		
+		
+		
+		//-----------------------------------------
+		
+		street6_7[0].forward = street7_10;
+		return street6_7;
 	}
 
 	// -------------------------------------------------------
