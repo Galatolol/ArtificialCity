@@ -112,6 +112,7 @@ public class Util {
 		E edge = pGraph.getEdge(6, 7);  System.out.println("dupa1");
 		Lane[] street6_7 = new Lane[1]; System.out.println("dupa2");
 		street6_7[0] = edge.street[0]; System.out.println("dupa3");
+		
 		pedestriansStreetList.add(street6_7); System.out.println("dupa4");
 
 		// -------------------------------------------

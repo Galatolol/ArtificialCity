@@ -83,7 +83,7 @@ public class PedestriansGraph {
        // Lane lane = getEdge(prev, current).street[ped.getLaneNr()];
 
         String direction = getDirection(ped.getStreet()[0], nextVertex);
-        System.out.println("Dijikstra – kierunek: " + direction + " " + nextVertex);
+        System.out.println("Dijikstra  pieszy – kierunek: " + direction + " " + nextVertex);
         
         switch (direction) {
 	        case "forward": ped.moveForward();
@@ -114,15 +114,10 @@ public class PedestriansGraph {
 	}
 	
 	public E getEdge(int v1nr, int v2nr)
-	{
-		Collection<E> edges = this.graph.getOutEdges(Graph.vertices.get(v1nr));
-	    LinkedList<E> le = new LinkedList<E>(edges);
-	    for(int i = 0; i < le.size(); i++) {
-	    	if(this.graph.isDest(Graph.vertices.get(v2nr), le.get(i))) {
-	    		return le.get(i);
-	    	}
-	    }
-	    return null;
+	{	
+
+	    return this.graph.findEdge(PedestriansGraph.vertices.get(v1nr), 
+		           (PedestriansGraph.vertices.get(v2nr)));
 	}
 	
 	public static E getEdge(V v1, V v2)
