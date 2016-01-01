@@ -11,6 +11,8 @@ public class Lane {
 	public V begin;
 	public V end;
 	
+	public boolean clDir; // zwrot listy komórek na potrzeby ruchu pieszych, gdzie krawedzie są dwukierunkowe
+	
 	public Lane(int n, V _begin, V _end, int laneNr, int _howManyToRight, int _howManyToLeft) {
 		cellList = new Cell[n];
 		length = n;
@@ -22,6 +24,20 @@ public class Lane {
 		speedLimit = 3;
 		begin = _begin;
 		end = _end;
+	}
+	
+	public Lane(Lane l)
+	{
+		cellList = new Cell[l.cellList.length];
+		int n = l.cellList.length;
+		howManyToRight = l.howManyToRight;
+		howManyToLeft = l.howManyToLeft;
+		for (int i = 0; i < n; i++) {
+			cellList[i] = createCell(i, n, l.begin, l.end, 0, n - i);
+		}
+		speedLimit = 3;
+		begin = l.begin;
+		end = l.end;
 	}
 	
 	private Cell createCell(int i, int n, V begin, V end, int laneNr, int howManyCellsToCrossroad) {

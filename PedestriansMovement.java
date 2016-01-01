@@ -7,12 +7,11 @@ public class PedestriansMovement
 {
 	private static PedestriansGraph pedestriansGraph;
 	private static Cell tmpCell;
-	private static List<Pedestrian> pedestriansList = new ArrayList<Pedestrian>();
-	private static List<Pedestrian> pedestriansList1 = new ArrayList<Pedestrian>();
+	private static List<Pedestrian> pList1 = new ArrayList<Pedestrian>();
 	
-	public static void move(List<Pedestrian> pedicleList)
+	public static void move(List<Pedestrian> pList)
 	{
-		ListIterator<Pedestrian> iter = pedestriansList.listIterator();
+		ListIterator<Pedestrian> iter = pList.listIterator();
 		while (iter.hasNext())
 		{
 			boolean pedRemoved = false;
@@ -24,15 +23,17 @@ public class PedestriansMovement
 			
 			cell = ped.getTmpCell();
 			cellNr = cell.getNr();
-			if (cellNr >= Street[0].length - 1)
+			
+			System.out.println("ddd " + Street[0].clDir + " " + cellNr);
+			if ((Street[0].clDir && cellNr >= Street[0].cellList.length - 1) || (!Street[0].clDir && cellNr <= 0))
 			{
 				if (!changeStreet(ped, cell.getHowManyCellsToCrossroad()))
 				{
-					pedestriansList1.add(ped);
+					pList1.add(ped);
 					iter.remove();
 					pedRemoved = true;
 				}
-				break;
+				continue;
 			}
 			else
 			{
@@ -46,17 +47,24 @@ public class PedestriansMovement
 			}
 			ped.setNextCell(ped.getTmpCell());
 		}
-		for (Pedestrian ped : pedestriansList)
+		for (Pedestrian ped : pList)
 		{
 			moveToNextCell(ped);
 		}
 	}
 	
-	public static void determineNextCell(Pedestrian ped, Cell cell, Lane[] Street, int cellNr)
+	public static void determineNextCell(Pedestrian ped, Cell cell, Lane[] street, int cellNr)
 	{
 		try
 		{
-			tmpCell = Street[0].cellList[cellNr + 1];
+			if (street[0].clDir)
+			{
+				tmpCell = street[0].cellList[cellNr + 1];
+			}
+			else
+			{
+				tmpCell = street[0].cellList[cellNr - 1];
+			}
 			ped.setTmpCell(tmpCell);
 		}
 		catch(Exception e)
@@ -67,6 +75,7 @@ public class PedestriansMovement
 	
 	public static boolean changeStreet(Pedestrian ped, int howManyCellsToCrossroad)
 	{
+		System.out.println("Ped.changeStreet()");
 		Lane[] street = ped.getStreet();
 		if (ped.isMovingForward()) 
 		{
@@ -75,7 +84,6 @@ public class PedestriansMovement
 				return false;
 			}
 			try{ped.setStreet(street[0].forward);}catch (Exception e) {System.out.println("-f-1");}
-			try{ped.setTmpCell(ped.getStreet()[0].cellList[0]);}catch (Exception e) {System.out.println("-f-3");}
 		}
 		else if (ped.isCurvingRight())
 		{
@@ -84,7 +92,6 @@ public class PedestriansMovement
 				return false;
 			}
 			try{ped.setStreet(street[0].right);}catch (Exception e) {System.out.println("---1");}
-			try{ped.setTmpCell(ped.getStreet()[0].cellList[0]);}catch (Exception e) {System.out.println("-----3");}
 		}
 		else
 		{
@@ -93,7 +100,16 @@ public class PedestriansMovement
 				return false;
 			}
 			try{ped.setStreet(street[0].left);}catch (Exception e) {System.out.println("---1");}
-			try{ped.setTmpCell(ped.getStreet()[0].cellList[0]);}catch (Exception e) {System.out.println("-----3");}
+		}
+		
+		if (ped.getStreet()[0].clDir)
+		{
+			ped.setNextCell(ped.getStreet()[0].cellList[0]);
+		}
+		else
+		{
+			ped.setNextCell(ped.getStreet()[0].cellList[ped.getStreet()[0].cellList.length - 1]);
+			System.out.println("ped" + ped.getTmpCell().getNr());
 		}
 		
 		try
@@ -112,8 +128,6 @@ public class PedestriansMovement
 	
 	public static void moveToNextCell(Pedestrian ped)
 	{
-		ped.getCurrentCell().setOccupied(false);
 		ped.setCurrentCell(ped.getNextCell());
-		ped.getCurrentCell().setOccupied(true);
 	}
 }

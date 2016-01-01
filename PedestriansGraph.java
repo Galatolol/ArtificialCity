@@ -160,7 +160,7 @@ public class PedestriansGraph {
 	    	g.setColor(Color.BLUE);
 	    	ContentPanel.drawCircle(v.getX(), v.getY(), 20, g);
 			
-	    	g.setColor(Color.BLACK);
+	    	g.setColor(Color.WHITE);
 			g.drawChars(v.toString().toCharArray(), 0,
 						v.toString().length(), 
 						v.getX()-6, 

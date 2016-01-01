@@ -109,29 +109,509 @@ public class Util {
 	
 	public static Lane[] createPedestriansStreets(PedestriansGraph pGraph)
 	{
-		E edge = pGraph.getEdge(6, 7);  System.out.println("dupa1");
-		Lane[] street6_7 = new Lane[1]; System.out.println("dupa2");
-		street6_7[0] = edge.street[0]; System.out.println("dupa3");
+		E edge = pGraph.getEdge(6, 7);  
+		Lane[] street6_7 = new Lane[1]; 
+		street6_7[0] = edge.street[0];
+		street6_7[0].clDir = false;
+		pedestriansStreetList.add(street6_7); 
 		
-		pedestriansStreetList.add(street6_7); System.out.println("dupa4");
+		Lane[] street7_6 = new Lane[1]; 
+		Lane l = new Lane(edge.street[0]);
+		street7_6[0] = l;
+		street7_6[0].clDir = true;
+		pedestriansStreetList.add(street6_7); 
 
 		// -------------------------------------------
 
 		edge = pGraph.getEdge(7, 10);
 		Lane[] street7_10 = new Lane[1];
 		street7_10[0] = edge.street[0];
+		street7_10[0].clDir = true;
 		pedestriansStreetList.add(street7_10);
 		
+		edge = pGraph.getEdge(10, 7);  
+		Lane[] street10_7 = new Lane[1]; 
+		l = new Lane(edge.street[0]);
+		street10_7[0] = l;
+		street10_7[0].clDir = false;
+		pedestriansStreetList.add(street10_7); 
+		
+		// -------------------------------------------
+
+		edge = pGraph.getEdge(7, 8);
+		Lane[] street7_8 = new Lane[1];
+		street7_8[0] = edge.street[0];
+		street7_8[0].clDir = true;
+		pedestriansStreetList.add(street7_8);
+		
+		edge = pGraph.getEdge(8, 7);  
+		Lane[] street8_7 = new Lane[1]; 
+		l = new Lane(edge.street[0]);
+		street8_7[0] = l;
+		street8_7[0].clDir = false;
+		pedestriansStreetList.add(street8_7); 
+		
+		// -------------------------------------------
+
+		edge = pGraph.getEdge(7, 2);
+		Lane[] street7_2 = new Lane[1];
+		street7_2[0] = edge.street[0];
+		pedestriansStreetList.add(street7_2);
+		
+		edge = pGraph.getEdge(2, 7);  
+		Lane[] street2_7 = new Lane[1]; 
+		l = new Lane(edge.street[0]);
+		street2_7[0] = l;
+		street2_7[0].clDir = true;
+		pedestriansStreetList.add(street2_7); 
+		
+		// -------------------------------------------
+
+		edge = pGraph.getEdge(10, 11);
+		Lane[] street10_11 = new Lane[1];
+		street10_11[0] = edge.street[0];
+		street10_11[0].clDir = true;
+		pedestriansStreetList.add(street10_11);
+		
+		edge = pGraph.getEdge(11, 10);  
+		Lane[] street11_10 = new Lane[1]; 
+		l = new Lane(edge.street[0]);
+		street11_10[0] = l;
+		street11_10[0].clDir = false;
+		pedestriansStreetList.add(street11_10); 
+		
+		// -------------------------------------------
+
+		edge = pGraph.getEdge(10, 8);
+		Lane[] street10_8 = new Lane[1];
+		street10_8[0] = edge.street[0];
+		pedestriansStreetList.add(street10_8);
+		
+		edge = pGraph.getEdge(8, 10);  
+		Lane[] street8_10 = new Lane[1]; 
+		l = new Lane(edge.street[0]);
+		street8_10[0] = l;
+		street8_10[0].clDir = true;
+		pedestriansStreetList.add(street8_10); 
+		
+		// -------------------------------------------
+
+		edge = pGraph.getEdge(10, 13);
+		Lane[] street10_13 = new Lane[1];
+		street10_13[0] = edge.street[0];
+		pedestriansStreetList.add(street10_13);
+		
+		edge = pGraph.getEdge(13, 10);  
+		Lane[] street13_10 = new Lane[1]; 
+		l = new Lane(edge.street[0]);
+		street13_10[0] = l;
+		street13_10[0].clDir = true;
+		pedestriansStreetList.add(street13_10); 
+		
+		// -------------------------------------------
+
+		edge = pGraph.getEdge(8, 9);
+		Lane[] street8_9 = new Lane[1];
+		street8_9[0] = edge.street[0];
+		street8_9[0].clDir = true;
+		pedestriansStreetList.add(street8_9);
+		
+		edge = pGraph.getEdge(9, 8);  
+		Lane[] street9_8 = new Lane[1]; 
+		l = new Lane(edge.street[0]);
+		street9_8[0] = l;
+		street9_8[0].clDir = false;
+		pedestriansStreetList.add(street9_8); 
+		
+		// -------------------------------------------
+
+		edge = pGraph.getEdge(6, 5);
+		Lane[] street6_5 = new Lane[1];
+		street6_5[0] = edge.street[0];
+		street6_5[0].clDir = true;
+		pedestriansStreetList.add(street6_5);
+		
+		Lane[] street5_6 = new Lane[1]; 
+		l = new Lane(edge.street[0]);
+		street5_6[0] = l;
+		street5_6[0].clDir = false;
+		pedestriansStreetList.add(street5_6); 
+		
+		// -------------------------------------------
+
+		edge = pGraph.getEdge(14, 6);
+		Lane[] street14_6 = new Lane[1];
+		street14_6[0] = edge.street[0];
+		pedestriansStreetList.add(street14_6);
+		
+		edge = pGraph.getEdge(6, 14);  
+		Lane[] street6_14 = new Lane[1]; 
+		l = new Lane(edge.street[0]);
+		street6_14[0] = l;
+		street6_14[0].clDir = true;
+		pedestriansStreetList.add(street6_14); 
+		
+		// -------------------------------------------
+
+		edge = pGraph.getEdge(8, 1);
+		Lane[] street8_1 = new Lane[1];
+		street8_1[0] = edge.street[0];
+		pedestriansStreetList.add(street8_1);
+		
+		edge = pGraph.getEdge(1, 8);  
+		Lane[] street1_8 = new Lane[1]; 
+		l = new Lane(edge.street[0]);
+		street1_8[0] = l;
+		street1_8[0].clDir = true;
+		pedestriansStreetList.add(street1_8); 
+		
+		// -------------------------------------------
+
+		edge = pGraph.getEdge(5, 41);
+		Lane[] street5_41 = new Lane[1];
+		street5_41[0] = edge.street[0];
+		street5_41[0].clDir = false;
+		pedestriansStreetList.add(street5_41);
+		 
+		Lane[] street41_5 = new Lane[1]; 
+		l = new Lane(edge.street[0]);
+		street41_5[0] = l;
+		street41_5[0].clDir = true;
+		pedestriansStreetList.add(street41_5); 
+		
+		// -------------------------------------------
+
+		edge = pGraph.getEdge(41, 48);
+		Lane[] street41_48 = new Lane[1];
+		street41_48[0] = edge.street[0];
+		street41_48[0].clDir = false;
+		pedestriansStreetList.add(street41_48);
+		 
+		Lane[] street48_41 = new Lane[1]; 
+		l = new Lane(edge.street[0]);
+		street48_41[0] = l;
+		street48_41[0].clDir = true;
+		pedestriansStreetList.add(street48_41); 
+		
+		// -------------------------------------------
+
+		edge = pGraph.getEdge(41, 4);
+		Lane[] street41_4 = new Lane[1];
+		street41_4[0] = edge.street[0];
+		street41_4[0].clDir = false;
+		pedestriansStreetList.add(street41_4);
+		 
+		Lane[] street4_41 = new Lane[1]; 
+		l = new Lane(edge.street[0]);
+		street4_41[0] = l;
+		street4_41[0].clDir = true;
+		pedestriansStreetList.add(street4_41); 
+		
+		// -------------------------------------------
+
+		edge = pGraph.getEdge(4, 42);
+		Lane[] street4_42 = new Lane[1];
+		street4_42[0] = edge.street[0];
+		street4_42[0].clDir = false;
+		pedestriansStreetList.add(street4_42);
+		 
+		Lane[] street42_4 = new Lane[1]; 
+		l = new Lane(edge.street[0]);
+		street42_4[0] = l;
+		street42_4[0].clDir = true;
+		pedestriansStreetList.add(street42_4); 
+		
+		//------------------------------------------------
+		
+		edge = pGraph.getEdge(42, 3);
+		Lane[] street42_3 = new Lane[1];
+		street42_3[0] = edge.street[0];
+		street42_3[0].clDir = false;
+		pedestriansStreetList.add(street42_3);
+		 
+		Lane[] street3_42 = new Lane[1]; 
+		l = new Lane(edge.street[0]);
+		street3_42[0] = l;
+		street3_42[0].clDir = true;
+		pedestriansStreetList.add(street3_42); 
+		
+		//------------------------------------------------
+		
+		edge = pGraph.getEdge(3, 2);
+		Lane[] street3_2 = new Lane[1];
+		street3_2[0] = edge.street[0];
+		street3_2[0].clDir = false;
+		pedestriansStreetList.add(street3_2);
+		 
+		Lane[] street2_3 = new Lane[1]; 
+		l = new Lane(edge.street[0]);
+		street2_3[0] = l;
+		street2_3[0].clDir = true;
+		pedestriansStreetList.add(street2_3); 
+		
+		//------------------------------------------------
+		
+		edge = pGraph.getEdge(42, 43);
+		Lane[] street42_43 = new Lane[1];
+		street42_43[0] = edge.street[0];
+		street42_43[0].clDir = false;
+		pedestriansStreetList.add(street42_43);
+		 
+		Lane[] street43_42 = new Lane[1]; 
+		l = new Lane(edge.street[0]);
+		street43_42[0] = l;
+		street43_42[0].clDir = true;
+		pedestriansStreetList.add(street43_42); 
+		
+		//------------------------------------------------
+		
+		edge = pGraph.getEdge(4, 44);
+		Lane[] street4_44 = new Lane[1];
+		street4_44[0] = edge.street[0];
+		street4_44[0].clDir = false;
+		pedestriansStreetList.add(street4_44);
+		 
+		Lane[] street44_4 = new Lane[1]; 
+		l = new Lane(edge.street[0]);
+		street44_4[0] = l;
+		street44_4[0].clDir = true;
+		pedestriansStreetList.add(street44_4); 
+		
+		//------------------------------------------------
+		
+		edge = pGraph.getEdge(4, 2);
+		Lane[] street4_2 = new Lane[1];
+		street4_2[0] = edge.street[0];
+		street4_2[0].clDir = false;
+		pedestriansStreetList.add(street4_2);
+		 
+		Lane[] street2_4 = new Lane[1]; 
+		l = new Lane(edge.street[0]);
+		street2_4[0] = l;
+		street2_4[0].clDir = true;
+		pedestriansStreetList.add(street2_4); 
+		
+		//------------------------------------------------
+		
+		edge = pGraph.getEdge(2, 1);
+		Lane[] street2_1 = new Lane[1];
+		street2_1[0] = edge.street[0];
+		street2_1[0].clDir = false;
+		pedestriansStreetList.add(street2_1);
+		 
+		Lane[] street1_2 = new Lane[1]; 
+		l = new Lane(edge.street[0]);
+		street1_2[0] = l;
+		street1_2[0].clDir = true;
+		pedestriansStreetList.add(street1_2); 
+		
+		//------------------------------------------------
+		
+		edge = pGraph.getEdge(11, 12);
+		Lane[] street11_12 = new Lane[1];
+		street11_12[0] = edge.street[0];
+		street11_12[0].clDir = true;
+		pedestriansStreetList.add(street11_12);
+		 
+		Lane[] street12_11 = new Lane[1]; 
+		l = new Lane(edge.street[0]);
+		street12_11[0] = l;
+		street12_11[0].clDir = false;
+		pedestriansStreetList.add(street12_11); 
+		
+		//------------------------------------------------
+		
+		edge = pGraph.getEdge(13, 15);
+		Lane[] street13_15 = new Lane[1];
+		street13_15[0] = edge.street[0];
+		street13_15[0].clDir = false;
+		pedestriansStreetList.add(street13_15);
+		 
+		Lane[] street15_13 = new Lane[1]; 
+		l = new Lane(edge.street[0]);
+		street15_13[0] = l;
+		street15_13[0].clDir = true;
+		pedestriansStreetList.add(street15_13); 
+		
+		//------------------------------------------------
+		
+		edge = pGraph.getEdge(13, 14);
+		Lane[] street13_14 = new Lane[1];
+		street13_14[0] = edge.street[0];
+		street13_14[0].clDir = false;
+		pedestriansStreetList.add(street13_14);
+		 
+		Lane[] street14_13 = new Lane[1]; 
+		l = new Lane(edge.street[0]);
+		street14_13[0] = l;
+		street14_13[0].clDir = true;
+		pedestriansStreetList.add(street14_13); 
+		
+		//------------------------------------------------
+		
+		edge = pGraph.getEdge(12, 18);
+		Lane[] street12_18 = new Lane[1];
+		street12_18[0] = edge.street[0];
+		street12_18[0].clDir = false;
+		pedestriansStreetList.add(street12_18);
+		 
+		Lane[] street18_12 = new Lane[1]; 
+		l = new Lane(edge.street[0]);
+		street18_12[0] = l;
+		street18_12[0].clDir = true;
+		pedestriansStreetList.add(street18_12); 
+		
+		//------------------------------------------------
+		
+		edge = pGraph.getEdge(12, 13);
+		Lane[] street12_13 = new Lane[1];
+		street12_13[0] = edge.street[0];
+		street12_13[0].clDir = false;
+		pedestriansStreetList.add(street12_13);
+		 
+		Lane[] street13_12 = new Lane[1]; 
+		l = new Lane(edge.street[0]);
+		street13_12[0] = l;
+		street13_12[0].clDir = true;
+		pedestriansStreetList.add(street13_12); 
+		
+		//------------------------------------------------
+		
+		edge = pGraph.getEdge(14, 15);
+		Lane[] street14_15 = new Lane[1];
+		street14_15[0] = edge.street[0];
+		street14_15[0].clDir = false;
+		pedestriansStreetList.add(street14_15);
+		 
+		Lane[] street15_14 = new Lane[1]; 
+		l = new Lane(edge.street[0]);
+		street15_14[0] = l;
+		street15_14[0].clDir = true;
+		pedestriansStreetList.add(street15_14); 
 		
 		
 		
 		
-		
+		Lane[] streetToNowhere = new Lane[1]; 
+		l = new Lane(edge.street[0]);
+		streetToNowhere[0] = l;
+		streetToNowhere[0].setSpeedLimit(-1);
 		
 		//-----------------------------------------
 		
-		street6_7[0].forward = street7_10;
-		return street6_7;
+		street6_7[0].forward = street7_8;
+		street6_7[0].right = street7_2;
+		street6_7[0].left = street7_10;
+		street7_6[0].forward = street6_5;
+		street7_6[0].left = street6_14;
+		
+		street7_10[0].forward = street10_11;
+		street7_10[0].right = street10_8;
+		street7_10[0].left = street10_13;
+		street10_7[0].forward = street7_2;
+		street10_7[0].right = street7_6;
+		street10_7[0].left = street7_8;
+		
+		street7_8[0].forward = street8_9;
+		street7_8[0].right = street8_1;
+		street7_8[0].left = street8_10;
+	    street8_7[0].forward = street7_6;
+	    street8_7[0].left = street7_2;
+		
+		street8_9[0].forward = streetToNowhere;
+		street9_8[0].forward = street8_7;
+		street9_8[0].right = street8_10;
+	    street9_8[0].left = street8_1;
+	    
+	    street7_6[0].forward = street6_5;
+	    street7_6[0].right = street6_14;
+	    street6_7[0].forward = street7_8;
+	    street6_7[0].right = street7_2;
+	    street6_7[0].left = street7_10;
+	    
+	    street6_5[0].forward = street5_41;
+	    street5_6[0].forward = street6_7;
+	    street5_6[0].left = street6_14;
+	    
+	    street5_41[0].forward = street41_4;
+	    street5_41[0].right = street41_48;
+	    street41_5[0].forward = street5_6;
+	    
+	    street41_4[0].forward = street4_42;
+	    street41_4[0].right = street4_44;
+	    street41_4[0].left = street4_2;
+	    street4_41[0].forward = street41_5;
+	    street4_41[0].left = street41_48;
+	    
+	    street4_42[0].forward = street42_3;
+	    street42_4[0].left = street4_44;
+	    street42_4[0].right = street4_2;
+	    street42_4[0].forward = street4_41;
+	    
+	    street42_3[0].forward = street3_2;
+	    street3_42[0].forward = street42_4;
+	    street3_42[0].left = street42_43;
+	    
+	    street3_2[0].forward = street2_7;
+	    street2_3[0].forward = street3_42;
+	    
+	    street2_7[0].forward = street7_10;
+	    street2_7[0].right = street7_8;
+	    street2_7[0].left = street7_6;
+	    street7_2[0].forward = street2_3;
+	    street7_2[0].right = street2_4;
+	    street7_2[0].left = street2_1;
+	    
+	    street2_1[0].forward = street1_8;
+	    street1_2[0].forward = street2_4;
+	    street1_2[0].left = street2_3;
+	    street1_2[0].right = street2_7;
+	    
+	    street1_8[0].forward = street8_10;
+	    street1_8[0].right = street8_9;
+	    street1_8[0].left = street8_7;
+	    street8_1[0].forward = street1_2;
+	    
+	    street8_10[0].forward = street10_13;
+	    street8_10[0].right = street10_11;
+	    street8_10[0].left = street10_7;
+	    street10_8[0].forward = street8_1;
+	    street10_8[0].right = street8_7;
+	    street10_8[0].left = street8_9;
+	    
+	    street10_13[0].forward = street13_15;
+	    street10_13[0].right = street13_12;
+	    street10_13[0].left = street13_14;
+	    street13_10[0].forward = street10_8;
+	    street13_10[0].right = street10_7;
+	    street13_10[0].left = street10_11;
+	    
+	    street10_11[0].forward = street11_12;
+	    street11_10[0].forward = street10_7;
+	    street11_10[0].right = street10_13;
+	    street11_10[0].left = street10_8;
+	    
+	    street11_12[0].forward = street12_18;
+	    street11_12[0].left = street12_13;
+	    street12_11[0].forward = street11_10;
+	    
+	    street6_14[0].forward = street14_13;
+	    street6_14[0].left = street14_15;
+	    street14_6[0].forward = street6_5;
+	    street14_6[0].left = street6_7;
+	    
+	    street14_13[0].forward = street13_12;
+	    street14_13[0].right = street13_10;
+	    street14_13[0].left = street13_15;
+	    street13_14[0].forward = street14_6;
+	    street13_14[0].right = street14_15;
+	    
+	    
+	    
+	    
+	    
+		
+		return street9_8;
 	}
 
 	// -------------------------------------------------------

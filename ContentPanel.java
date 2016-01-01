@@ -18,13 +18,13 @@ import javax.swing.Timer;
 public class ContentPanel extends JPanel implements ActionListener {
 	
 	private Image bgImage = null;
-	private Timer tm = new Timer(100, this);
+	private Timer tm = new Timer(30, this);
 	static int counter = 0;
 	private Graph myGraph;
 	private PedestriansGraph pGraph; 
 	private List<Vehicle> vehicleList = new ArrayList<Vehicle>();
 	private List<Pedestrian> pList = new ArrayList<Pedestrian>();
-	public static List<Vehicle> vehicleList1 = new ArrayList<Vehicle>(); //------------
+	public static List<Vehicle> vehicleList1 = new ArrayList<Vehicle>();
 
 	ContentPanel() {
 		//setLayout(new BorderLayout());
@@ -51,10 +51,10 @@ public class ContentPanel extends JPanel implements ActionListener {
 		{
 			if (person.getIsDriving())
 			{
-				vehicleList.add(Generator.generateCar(person));
+				//vehicleList.add(Generator.generateCar(person));
 				for (int i = 0; i < 20; i++)
 				{
-					vehicleList.add(dupa());
+					//vehicleList.add(dupa());
 				}
 			}
 		}
@@ -63,8 +63,8 @@ public class ContentPanel extends JPanel implements ActionListener {
 		person50.setAllVertices(myGraph.vertices.get(6), myGraph.vertices.get(7), myGraph.vertices.get(10));
 		Pedestrian ped = new Pedestrian(person50);
 		ped.setStreet(Util.createPedestriansStreets(pGraph));
-		ped.setCurrentCell(ped.getStreet()[0].cellList[0]);
-		ped.moveForward();
+		ped.setCurrentCell(ped.getStreet()[0].cellList[ped.getStreet()[0].cellList.length-1]);
+		ped.curveLeft();
 		pList.add(ped);
 
 		//addCars();
@@ -85,8 +85,6 @@ public class ContentPanel extends JPanel implements ActionListener {
 		Person person28 = new Person(50, "", "", "", "", "", "", "", true);
 		person2.setAllVertices(myGraph.vertices.get(78), myGraph.vertices.get(79), myGraph.vertices.get(87));
 		vehicleList.add(Generator.generateCar(person2));
-		
-
 		
 		tm.start();
 	}
@@ -204,7 +202,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {		
-		Test.displayInfoAboutCar(vehicleList.get(0));
+		//Test.displayInfoAboutCar(vehicleList.get(0));
 		Movement.move(vehicleList);	
 		PedestriansMovement.move(pList);
 		counter++;
