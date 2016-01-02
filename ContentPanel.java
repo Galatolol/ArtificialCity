@@ -18,7 +18,7 @@ import javax.swing.Timer;
 public class ContentPanel extends JPanel implements ActionListener {
 	
 	private Image bgImage = null;
-	private Timer tm = new Timer(30, this);
+	public Timer tm = new Timer(30, this);
 	static int counter = 0;
 	private Graph myGraph;
 	private PedestriansGraph pGraph; 
@@ -60,7 +60,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 		}
 		
 		Person person50 = new Person(50, "", "", "", "", "", "", "", true);
-		person50.setAllVertices(myGraph.vertices.get(51), myGraph.vertices.get(47), myGraph.vertices.get(3));
+		person50.setAllVertices(pGraph.vertices.get(51), pGraph.vertices.get(47), pGraph.vertices.get(3));
 		Pedestrian ped = new Pedestrian(person50);
 		ped.setStreet(Util.createPedestriansStreets(pGraph));
 		
@@ -213,6 +213,9 @@ public class ContentPanel extends JPanel implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {		
 		//Test.displayInfoAboutCar(vehicleList.get(0));
+		double timerVal = Double.valueOf(Frame.timerValue.getText());
+		Frame.timerValue.setText(String.valueOf(timerVal + ((1000-tm.getDelay())/100)) );
+		
 		Movement.move(vehicleList);	
 		PedestriansMovement.move(pList);
 		counter++;
