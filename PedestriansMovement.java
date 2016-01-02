@@ -5,7 +5,7 @@ import java.util.ListIterator;
 
 public class PedestriansMovement 
 {
-	private static PedestriansGraph pedestriansGraph;
+	private static PedestriansGraph pGraph;
 	private static Cell tmpCell;
 	private static List<Pedestrian> pList1 = new ArrayList<Pedestrian>();
 	
@@ -117,7 +117,7 @@ public class PedestriansMovement
 			ped.controller.setPrevVertex(ped.getStreet()[0].begin);
 			ped.controller.setCurrentVertex(ped.getStreet()[0].end);
 			System.out.print("");
-			//pedestriansGraph.calcWeightedShortestPath(ped);
+			pGraph.calcWeightedShortestPath(ped);
 		}
 		catch (IndexOutOfBoundsException e)
 		{
