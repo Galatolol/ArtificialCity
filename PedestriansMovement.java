@@ -24,7 +24,6 @@ public class PedestriansMovement
 			cell = ped.getTmpCell();
 			cellNr = cell.getNr();
 			
-			System.out.println("ddd " + Street[0].clDir + " " + cellNr);
 			if ((Street[0].clDir && cellNr >= Street[0].cellList.length - 1) || (!Street[0].clDir && cellNr <= 0))
 			{
 				if (!changeStreet(ped, cell.getHowManyCellsToCrossroad()))

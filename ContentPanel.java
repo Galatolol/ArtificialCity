@@ -25,6 +25,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 	private List<Vehicle> vehicleList = new ArrayList<Vehicle>();
 	private List<Pedestrian> pList = new ArrayList<Pedestrian>();
 	public static List<Vehicle> vehicleList1 = new ArrayList<Vehicle>();
+	public static double timerVal;
 
 	ContentPanel() {
 		//setLayout(new BorderLayout());
@@ -96,7 +97,9 @@ public class ContentPanel extends JPanel implements ActionListener {
 		person2.setAllVertices(myGraph.vertices.get(78), myGraph.vertices.get(79), myGraph.vertices.get(87));
 		vehicleList.add(Generator.generateCar(person2));
 		
+
 		tm.start();
+		new Signaling(this).run();
 	}
 	
 	protected void addPublicTransport()
@@ -127,17 +130,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 		vehicleList.add(bus4);
 		vehicleList.add(bus5);
 		vehicleList.add(bus6);
-	}
-	
-	protected Vehicle dupa()
-	{
-		Person person5 = new Person(50, "", "", "", "", "", "", "", true);
-		person5.setAllVertices(myGraph.vertices.get(20), myGraph.vertices.get(76), myGraph.vertices.get(98));
-		Vehicle car = Generator.generateCar(person5);
-		car.setLaneNr(1);
-		return car;
-	}
-	
+	}	
 	
 	protected void addCars()
 	{
@@ -213,7 +206,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {		
 		//Test.displayInfoAboutCar(vehicleList.get(0));
-		double timerVal = Double.valueOf(Frame.timerValue.getText());
+		timerVal = Double.valueOf(Frame.timerValue.getText());
 		Frame.timerValue.setText(String.valueOf(timerVal + ((1000-tm.getDelay())/100)) );
 		
 		Movement.move(vehicleList);	

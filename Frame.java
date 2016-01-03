@@ -31,6 +31,7 @@ public class Frame {
 	ContentPanel contentPanel ;
 	JScrollPane scrollpane;
 	public static JLabel timerValue;
+	private boolean stopped;
 
 	/**
 	 * Launch the application.
@@ -114,11 +115,16 @@ public class Frame {
 		buttonsPanel.add(slowerBtn);
 		buttonsPanel.add(Box.createRigidArea(new Dimension(15,15)));
 		
-		JButton stopBtn = new JButton("Stop");
+		JButton stopBtn = new JButton("\u25B6||");
 		stopBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				contentPanel.tm.stop();;
-				
+				if (stopped) {
+					contentPanel.tm.restart();
+				}
+				else {
+					contentPanel.tm.stop();
+				}
+				stopped = !stopped;
 			}
 		});
 		stopBtn.setPreferredSize(new Dimension(90, 30));
@@ -127,8 +133,7 @@ public class Frame {
 		JButton restartBtn = new JButton("Restart");
 		restartBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				contentPanel.tm.restart();
-				
+				contentPanel.tm.restart();			
 			}
 		});
 		restartBtn.setPreferredSize(new Dimension(90, 30));
