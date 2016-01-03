@@ -199,13 +199,14 @@ public class Util {
 		edge = pGraph.getEdge(10, 13);
 		Lane[] street10_13 = new Lane[1];
 		street10_13[0] = edge.street[0];
+		street10_13[0].clDir = true;
 		pedestriansStreetList.add(street10_13);
 		
 		edge = pGraph.getEdge(13, 10);  
 		Lane[] street13_10 = new Lane[1]; 
 		l = new Lane(edge.street[0]);
 		street13_10[0] = l;
-		street13_10[0].clDir = true;
+		street13_10[0].clDir = false;
 		pedestriansStreetList.add(street13_10); 
 		
 		// -------------------------------------------
@@ -1009,6 +1010,12 @@ public class Util {
 	    street47_51[0].left = street51_52;
 	    street51_47[0].forward = street47_48;
 	    street51_47[0].right = street47_46;
+	    
+	    street13_12[0].forward = street12_18;
+	    street13_12[0].right = street12_11;
+	    street12_13[0].forward = street13_14;
+	    street12_13[0].right = street13_15;
+	    street12_13[0].left = street13_10;
 		
 		return street51_47;
 	}

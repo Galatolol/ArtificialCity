@@ -60,7 +60,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 		}
 		
 		Person person50 = new Person(50, "", "", "", "", "", "", "", true);
-		person50.setAllVertices(pGraph.vertices.get(51), pGraph.vertices.get(47), pGraph.vertices.get(3));
+		person50.setAllVertices(pGraph.vertices.get(51), pGraph.vertices.get(47), pGraph.vertices.get(38));
 		Pedestrian ped = new Pedestrian(person50);
 		ped.setStreet(Util.createPedestriansStreets(pGraph));
 		
