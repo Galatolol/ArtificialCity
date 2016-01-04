@@ -82,8 +82,13 @@ public class PedestriansGraph {
         
         DijkstraShortestPath<V,E> alg = new DijkstraShortestPath<V, E>(graph, wtTransformer);
         List<E> path = alg.getPath(current, end);
+        V nextVertex;
         
-        V nextVertex = path.get(0).getEnd();
+        if(current == path.get(0).getBegin())
+        	nextVertex = path.get(0).getEnd();
+        else 
+        	nextVertex = path.get(0).getBegin();
+        
         
         System.out.println();
         System.out.println("Con.prev: " + ped.controller.getPrevVertex());
