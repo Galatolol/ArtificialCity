@@ -10,7 +10,6 @@ public class Lane {
 	public Lane[] forward;
 	public V begin;
 	public V end;
-	
 	public boolean clDir; // zwrot listy komórek na potrzeby ruchu pieszych, gdzie krawedzie są dwukierunkowe
 	
 	public Lane(int n, V _begin, V _end, int laneNr, int _howManyToRight, int _howManyToLeft) {
@@ -94,5 +93,27 @@ public class Lane {
 	public int getSpeedLimit() { return speedLimit; }
 	public int getHowManyToRight() { return howManyToRight; }
 	public int getHowManyToLeft() { return howManyToLeft; }
+	public V getBegin()
+	{
+		if (clDir)
+		{
+			return begin;
+		}
+		else
+		{
+			return end;
+		}
+	}
+	public V getEnd()
+	{
+		if (clDir)
+		{
+			return end;
+		}
+		else
+		{
+			return begin;
+		}
+	}
 
 }

@@ -113,8 +113,8 @@ public class PedestriansMovement
 		
 		try
 		{
-			ped.controller.setPrevVertex(ped.getStreet()[0].begin);
-			ped.controller.setCurrentVertex(ped.getStreet()[0].end);
+			ped.controller.setPrevVertex(ped.getStreet()[0].getBegin());
+			ped.controller.setCurrentVertex(ped.getStreet()[0].getEnd());
 			System.out.print("");
 			pGraph.calcWeightedShortestPath(ped);
 		}

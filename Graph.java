@@ -85,7 +85,6 @@ public class Graph {
         Lane lane = getEdge(prev, current).street[car.getLaneNr()];
 
         String direction = getDirection(car.getStreet()[0], nextVertex);
-        System.out.println("Dijikstra – kierunek: " + direction + " " + nextVertex);
         
         switch (direction) {
 	        case "forward": car.moveForward();

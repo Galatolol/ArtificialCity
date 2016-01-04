@@ -60,25 +60,14 @@ public class ContentPanel extends JPanel implements ActionListener {
 			}
 		}
 		
-		Person person50 = new Person(50, "", "", "", "", "", "", "", true);
-		person50.setAllVertices(pGraph.vertices.get(51), pGraph.vertices.get(47), pGraph.vertices.get(38));
-		Pedestrian ped = new Pedestrian(person50);
-		ped.setStreet(Util.createPedestriansStreets(pGraph));
+		Util.createPedestriansStreets(pGraph);
 		
-		int d;
-		if (ped.getStreet()[0].clDir)
-		{
-			d = 0;
-		}
-		else
-		{
-			d = ped.getStreet()[0].cellList.length - 1;
-		}
-		ped.setCurrentCell(ped.getStreet()[0].cellList[d]);
-		pGraph.calcWeightedShortestPath(ped);
+		Person person50 = new Person(50, "", "", "", "", "", "", "", true);
+		person50.setAllVertices(pGraph.vertices.get(23), pGraph.vertices.get(54), pGraph.vertices.get(21));
+		Pedestrian ped = Generator.generatePed(person50);
 		pList.add(ped);
 
-		//addCars();
+		addCars();
 		//addPublicTransport();
 		
 		Person person2 = new Person(50, "", "", "", "", "", "", "", true);
@@ -99,7 +88,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 		
 
 		tm.start();
-		new Signaling(this).run();
+		//new Signaling(this).run();
 	}
 	
 	protected void addPublicTransport()

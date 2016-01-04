@@ -526,4 +526,25 @@ public class Generator
 		myGraph.calcWeightedShortestPath((Car)car);
 		return car;
 	}
+	
+	public static Pedestrian generatePed(Person controller)
+	{
+		Pedestrian ped = new Pedestrian(controller);
+		int prevVertex = Integer.parseInt(controller.getPrevVertex().toString());
+		int currentVertex = Integer.parseInt(controller.getCurrentVertex().toString());
+		ped.setStreet(Util.getPedStreet(prevVertex, currentVertex));
+		int d;
+		if (ped.getStreet()[0].clDir)
+		{
+			d = 0;
+		}
+		else
+		{
+			d = ped.getStreet()[0].cellList.length - 1;
+		}
+		ped.setCurrentCell(ped.getStreet()[0].cellList[d]);
+		PedestriansGraph.calcWeightedShortestPath(ped);
+		return ped;
+	}
 }
+

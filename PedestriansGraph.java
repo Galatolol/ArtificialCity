@@ -50,18 +50,18 @@ public class PedestriansGraph {
 	}
 	
 	public static String getDirection(Lane lane, V vertex) {
-		if (lane.forward != null && lane.forward[0].end == vertex) {
+		if (lane.forward != null && lane.forward[0].getEnd() == vertex) {
 			return "forward";
 		}
-		else if (lane.right != null && lane.right[0].end == vertex) {
+		else if (lane.right != null && lane.right[0].getEnd() == vertex) {
 			return "right";
 		}
-		else if (lane.left != null && lane.left[0].end == vertex) {
+		else if (lane.left != null && lane.left[0].getEnd() == vertex) {
 			return "left";
 		}
 		else {
-			System.out.println("Problem z polaczeniem ulic. Początek krawędzi: " + lane.begin.toString() + 
-					" Koniec: " + lane.end + " Następny wierzchołek: " + vertex);
+			System.out.println("Problem z polaczeniem ulic. Początek krawędzi: " + lane.getBegin() + 
+					" Koniec: " + lane.getEnd() + " Następny wierzchołek: " + vertex);
 			return "";
 		}
 	}
@@ -73,14 +73,26 @@ public class PedestriansGraph {
             }
         };
         
+
+        
+        
         V prev = ped.controller.getPrevVertex();
         V current = ped.controller.getCurrentVertex();
         V end = ped.controller.getDestinationVertex();
         
         DijkstraShortestPath<V,E> alg = new DijkstraShortestPath<V, E>(graph, wtTransformer);
         List<E> path = alg.getPath(current, end);
+        
         V nextVertex = path.get(0).getEnd();
-       // Lane lane = getEdge(prev, current).street[ped.getLaneNr()];
+        
+        System.out.println();
+        System.out.println("Con.prev: " + ped.controller.getPrevVertex());
+        System.out.println("Con.curr: " + ped.controller.getCurrentVertex());
+        System.out.println("Con.dest: " + ped.controller.getDestinationVertex());
+        System.out.println("Street beg: " + ped.getStreet()[0].getBegin());
+        System.out.println("Street end: " + ped.getStreet()[0].getEnd());
+        System.out.println("Next: " + nextVertex);
+        System.out.println();
 
         String direction = getDirection(ped.getStreet()[0], nextVertex);
         System.out.println("Dijikstra  pieszy – kierunek: " + direction + " " + nextVertex);
