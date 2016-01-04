@@ -63,7 +63,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 		Util.createPedestriansStreets(pGraph);
 		
 		Person person50 = new Person(50, "", "", "", "", "", "", "", true);
-		person50.setAllVertices(pGraph.vertices.get(23), pGraph.vertices.get(54), pGraph.vertices.get(21));
+		person50.setAllVertices(pGraph.vertices.get(48), pGraph.vertices.get(47), pGraph.vertices.get(21));
 		Pedestrian ped = Generator.generatePed(person50);
 		pList.add(ped);
 

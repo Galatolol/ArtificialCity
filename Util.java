@@ -973,13 +973,13 @@ public class Util {
 	  	edge = pGraph.getEdge(54, 23);
 		Lane[] street23_54 = new Lane[1];
 		street23_54[0] = edge.street[0];
-		street23_54[0].clDir = true;
+		street23_54[0].clDir = false;
 		pedestriansStreetList.add(street23_54);
 		 
 		Lane[] street54_23 = new Lane[1]; 
 		l = new Lane(edge.street[0]);
 		street54_23[0] = l;
-		street54_23[0].clDir = false;
+		street54_23[0].clDir = true;
 		pedestriansStreetList.add(street54_23); 
 		
 		//------------------------------------------------
@@ -1015,13 +1015,13 @@ public class Util {
 	  	edge = pGraph.getEdge(37, 36);
 		Lane[] street37_36 = new Lane[1];
 		street37_36[0] = edge.street[0];
-		street37_36[0].clDir = true;
+		street37_36[0].clDir = false;
 		pedestriansStreetList.add(street37_36);
 		 
 		Lane[] street36_37 = new Lane[1]; 
 		l = new Lane(edge.street[0]);
 		street36_37[0] = l;
-		street36_37[0].clDir = false;
+		street36_37[0].clDir = true;
 		pedestriansStreetList.add(street36_37);  
 		
 		//------------------------------------------------
@@ -1029,13 +1029,13 @@ public class Util {
 	  	edge = pGraph.getEdge(36, 35);
 		Lane[] street36_35 = new Lane[1];
 		street36_35[0] = edge.street[0];
-		street36_35[0].clDir = true;
+		street36_35[0].clDir = false;
 		pedestriansStreetList.add(street36_35);
 		 
 		Lane[] street35_36 = new Lane[1]; 
 		l = new Lane(edge.street[0]);
 		street35_36[0] = l;
-		street35_36[0].clDir = false;
+		street35_36[0].clDir = true;
 		pedestriansStreetList.add(street35_36); 
 		
 		//------------------------------------------------
@@ -1043,13 +1043,13 @@ public class Util {
 	  	edge = pGraph.getEdge(36, 28);
 		Lane[] street36_28 = new Lane[1];
 		street36_28[0] = edge.street[0];
-		street36_28[0].clDir = true;
+		street36_28[0].clDir = false;
 		pedestriansStreetList.add(street36_28);
 		 
 		Lane[] street28_36 = new Lane[1]; 
 		l = new Lane(edge.street[0]);
 		street28_36[0] = l;
-		street28_36[0].clDir = false;
+		street28_36[0].clDir = true;
 		pedestriansStreetList.add(street28_36);  
 		
 		//------------------------------------------------
@@ -1085,13 +1085,13 @@ public class Util {
 	  	edge = pGraph.getEdge(28, 59);
 		Lane[] street28_59 = new Lane[1];
 		street28_59[0] = edge.street[0];
-		street28_59[0].clDir = true;
+		street28_59[0].clDir = false;
 		pedestriansStreetList.add(street28_59);
 		 
 		Lane[] street59_28 = new Lane[1]; 
 		l = new Lane(edge.street[0]);
 		street59_28[0] = l;
-		street59_28[0].clDir = false;
+		street59_28[0].clDir = true;
 		pedestriansStreetList.add(street59_28); 
 		
 		//------------------------------------------------
@@ -1169,13 +1169,13 @@ public class Util {
 	  	edge = pGraph.getEdge(30, 33);
 		Lane[] street30_33 = new Lane[1];
 		street30_33[0] = edge.street[0];
-		street30_33[0].clDir = true;
+		street30_33[0].clDir = false;
 		pedestriansStreetList.add(street30_33);
 		 
 		Lane[] street33_30 = new Lane[1]; 
 		l = new Lane(edge.street[0]);
 		street33_30[0] = l;
-		street33_30[0].clDir = false;
+		street33_30[0].clDir = true;
 		pedestriansStreetList.add(street33_30); 
 		
 		//------------------------------------------------
