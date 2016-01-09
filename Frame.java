@@ -88,7 +88,7 @@ public class Frame {
 		Component rigidArea = Box.createRigidArea(new Dimension(15, 15));
 		buttonsPanel.add(rigidArea);
 		
-		JLabel lblNewLabel = new JLabel("Simulation speed");
+		JLabel lblNewLabel = new JLabel("Time");
 		buttonsPanel.add(lblNewLabel);
 		
 		JButton fasterBtn = new JButton("Faster");

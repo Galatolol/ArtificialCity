@@ -15,19 +15,23 @@ import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import cern.colt.Arrays;
+
 public class ContentPanel extends JPanel implements ActionListener {
 	
 	private Image bgImage = null;
-	public Timer tm = new Timer(30, this);
+	public Timer tm = new Timer(500, this);
 	static int counter = 0;
 	private Graph myGraph;
 	private PedestriansGraph pGraph; 
 	private List<Vehicle> vehicleList = new ArrayList<Vehicle>();
 	private List<Pedestrian> pList = new ArrayList<Pedestrian>();
 	public static List<Vehicle> vehicleList1 = new ArrayList<Vehicle>();
-	public static double timerVal;
+	public static double timerValue;
+	public static String[] stopArray;
 
 	ContentPanel() {
+		stopArray = new String[62];
 		//setLayout(new BorderLayout());
 		MediaTracker mt = new MediaTracker(this);
 		bgImage = Toolkit.getDefaultToolkit().getImage("res/map.jpg");
@@ -46,31 +50,42 @@ public class ContentPanel extends JPanel implements ActionListener {
 	    Util.createStreets(myGraph);
 		
 		ArrayList<Person> personList = new ArrayList<Person>();
-		Generator.generate(1, personList);
+		Generator.generate(100, personList);
+		Util.createPedestriansStreets(pGraph);
 		
 		for (Person person : personList)
 		{
 			if (person.getIsDriving())
 			{
-				//vehicleList.add(Generator.generateCar(person));
-				for (int i = 0; i < 20; i++)
-				{
-					//vehicleList.add(dupa());
-				}
+				vehicleList.add(Generator.generateCar(person));
+			}
+			else
+			{
+				pList.add(Generator.generatePed(person));
 			}
 		}
 		
-		Util.createPedestriansStreets(pGraph);
-		
 		Person person50 = new Person(50, "", "", "", "", "", "", "", true);
-		person50.setAllVertices(pGraph.vertices.get(48), pGraph.vertices.get(47), pGraph.vertices.get(21));
-		Pedestrian ped = Generator.generatePed(person50);
+		person50.setAllVertices(pGraph.vertices.get(31), pGraph.vertices.get(30), pGraph.vertices.get(25));
+		Pedestrian ped = new Pedestrian(person50);
+		ped.setStreet(Util.getPedStreet(31,  30));
+        int d;
+		if (ped.getStreet()[0].clDir)
+		{
+			d = 0;
+		}
+		else
+		{
+			d = ped.getStreet()[0].cellList.length - 1;
+		}
+		ped.setCurrentCell(ped.getStreet()[0].cellList[d]);
+		pGraph.calcWeightedShortestPath(ped);
 		pList.add(ped);
-
-		addCars();
-		//addPublicTransport();
 		
-		Person person2 = new Person(50, "", "", "", "", "", "", "", true);
+		//addCars();
+		addPublicTransport();
+		
+		/*Person person2 = new Person(50, "", "", "", "", "", "", "", true);
 		person2.setAllVertices(myGraph.vertices.get(78), myGraph.vertices.get(79), myGraph.vertices.get(87));
 		vehicleList.add(Generator.generateCar(person2));
 		Person person25 = new Person(50, "", "", "", "", "", "", "", true);
@@ -84,7 +99,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 		vehicleList.add(Generator.generateCar(person2));
 		Person person28 = new Person(50, "", "", "", "", "", "", "", true);
 		person2.setAllVertices(myGraph.vertices.get(78), myGraph.vertices.get(79), myGraph.vertices.get(87));
-		vehicleList.add(Generator.generateCar(person2));
+		vehicleList.add(Generator.generateCar(person2)); */
 		
 
 		tm.start();
@@ -160,11 +175,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 		person9.setAllVertices(myGraph.vertices.get(6), myGraph.vertices.get(8), myGraph.vertices.get(90));
 		vehicleList.add(Generator.generateCar(person9));
 		
-		Person person10 = new Person(50, "", "", "", "", "", "", "", true);
-		person10.setAllVertices(myGraph.vertices.get(81), myGraph.vertices.get(80), myGraph.vertices.get(87));
-		Vehicle car = Generator.generateCar(person10);
-		car.setLaneNr(1);
-		vehicleList.add(car);
+
 		
 		Person person11 = new Person(50, "", "", "", "", "", "", "", true);
 		person11.setAllVertices(myGraph.vertices.get(46), myGraph.vertices.get(45), myGraph.vertices.get(85));
@@ -195,11 +206,32 @@ public class ContentPanel extends JPanel implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {		
 		//Test.displayInfoAboutCar(vehicleList.get(0));
-		timerVal = Double.valueOf(Frame.timerValue.getText());
-		Frame.timerValue.setText(String.valueOf(timerVal + ((1000-tm.getDelay())/100)) );
+		//timerValue = Double.valueOf(Frame.timerValue.getText());
+		timerValue = timerValue + ((1000-tm.getDelay())/100);
+		Frame.timerValue.setText(Util.convertTimerValueToTime(timerValue));
 		
 		Movement.move(vehicleList);	
 		PedestriansMovement.move(pList);
+		for (int i = 0; i < stopArray.length; i++)
+		{
+			stopArray[i] = "";
+		}
+		if (vehicleList.size() == 0)
+		{
+			Person person10 = new Person(50, "", "", "", "", "", "", "", true);
+			person10.setAllVertices(myGraph.vertices.get(81), myGraph.vertices.get(80), myGraph.vertices.get(87));
+			Vehicle car = Generator.generateCar(person10);
+			car.setLaneNr(1);
+			vehicleList.add(car);
+		}
+		if (pList.size() == 0)
+		{
+			Person person11 = new Person(50, "", "", "", "", "", "", "", true);
+			person11.setAllVertices(myGraph.vertices.get(55), myGraph.vertices.get(56), myGraph.vertices.get(3));
+			Pedestrian ped = Generator.generatePed(person11);
+			pList.add(ped);
+		}
+		//System.out.println(Util.convertTimerValueToTime(timerValue));
 		counter++;
 		repaint();
 	}

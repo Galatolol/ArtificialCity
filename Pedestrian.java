@@ -12,6 +12,7 @@ public class Pedestrian
 	protected Cell nextCell;
 	protected Cell tmpCell;
 	protected String color;
+	public boolean isWaiting;
 	
 	public Pedestrian(Person _controller)
 	{

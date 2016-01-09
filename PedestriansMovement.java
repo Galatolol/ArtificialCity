@@ -16,6 +16,15 @@ public class PedestriansMovement
 		{
 			boolean pedRemoved = false;
 			Pedestrian ped = iter.next();
+			if (ped.isWaiting)
+			{
+				if (ped.isWaiting && ped.getStreet() != null && ContentPanel.stopArray[ped.getStreet()[0].begin.id].equals(ped.controller.getDestination()))
+				{
+					iter.remove();
+					pedRemoved = true;
+				}
+				continue;
+			}
 			Cell cell = ped.getCurrentCell();
 			Lane[] Street = ped.getStreet();
 			int cellNr = cell.getNr();
@@ -28,7 +37,6 @@ public class PedestriansMovement
 			{
 				if (!changeStreet(ped, cell.getHowManyCellsToCrossroad()))
 				{
-					pList1.add(ped);
 					iter.remove();
 					pedRemoved = true;
 				}
@@ -74,7 +82,6 @@ public class PedestriansMovement
 	
 	public static boolean changeStreet(Pedestrian ped, int howManyCellsToCrossroad)
 	{
-		System.out.println("Ped.changeStreet()");
 		Lane[] street = ped.getStreet();
 		if (ped.isMovingForward()) 
 		{
@@ -86,19 +93,16 @@ public class PedestriansMovement
 		}
 		else if (ped.isCurvingRight())
 		{
-			if (ped.getStreet()[0].right[0].getSpeedLimit() == -1)
-			{
-				return false;
-			}
 			try{ped.setStreet(street[0].right);}catch (Exception e) {System.out.println("---1");}
 		}
 		else
 		{
-			if (ped.getStreet()[0].left[0].getSpeedLimit() == -1)
-			{
-				return false;
-			}
 			try{ped.setStreet(street[0].left);}catch (Exception e) {System.out.println("---1");}
+		}
+		
+		if (ped.getStreet() == null)
+		{
+			return false;
 		}
 		
 		if (ped.getStreet()[0].clDir)
@@ -108,19 +112,21 @@ public class PedestriansMovement
 		else
 		{
 			ped.setNextCell(ped.getStreet()[0].cellList[ped.getStreet()[0].cellList.length - 1]);
-			System.out.println("ped" + ped.getTmpCell().getNr());
 		}
 		
 		try
 		{
 			ped.controller.setPrevVertex(ped.getStreet()[0].getBegin());
 			ped.controller.setCurrentVertex(ped.getStreet()[0].getEnd());
-			System.out.print("");
 			pGraph.calcWeightedShortestPath(ped);
 		}
 		catch (IndexOutOfBoundsException e)
 		{
 			return false;
+		}
+		if (Util.isStop(ped.getStreet()[0].getBegin(), ped.controller.getDestination()))
+		{
+			ped.isWaiting = true;
 		}
 		return true;
 	}

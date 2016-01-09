@@ -12,7 +12,7 @@ class Signaling extends Thread
 	{
 		while(true)
 		{
-			if (cp.timerVal % 50 == 0)
+			if (cp.timerValue % 50 == 0)
 			{
 				if (on)
 				{
@@ -23,8 +23,16 @@ class Signaling extends Thread
 					System.out.println("wlaczam");
 				}
 				on = !on;
+		        synchronized(cp) 
+		        {
+			        try {
+						wait();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+			    }
 			}
-			
 		}
 	}
 }

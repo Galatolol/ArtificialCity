@@ -22,7 +22,7 @@ public class Movement
 			Lane[] Street = veh.getStreet();
 			int listNr = veh.getLaneNr();
 			int cellNr = cell.getNr();
-			if (veh.getCurrentSpeed() < veh.getStreet()[0].getSpeedLimit())
+			if (veh.getStreet() != null && veh.getCurrentSpeed() < veh.getStreet()[0].getSpeedLimit())
 			{
 				veh.modifySpeed(1);
 			}
@@ -50,7 +50,14 @@ public class Movement
 				}
 				else
 				{
-					determineNextCell(veh, cell, Street, listNr, cellNr);
+					if(veh.isWaiting && veh.waiting < 10)
+					{
+						veh.waiting++;
+					}
+					else
+					{
+						determineNextCell(veh, cell, Street, listNr, cellNr);
+					}
 				}
 			}
 			if (vehRemoved)
@@ -71,16 +78,17 @@ public class Movement
 	{
 		try
 		{
-			if (((veh instanceof Bus && Util.isBusStop(Street[0], cellNr)) || (veh instanceof Tram && Util.isTramStop(Street[0], cellNr))) && veh.waiting < 5)
+			if (((veh instanceof Bus && Util.isBusStop(Street[0], cellNr, (PublicTransport) veh)) || (veh instanceof Tram && Util.isTramStop(Street[0], cellNr, (PublicTransport) veh))) && veh.waiting < 5)
 			{
 				veh.isWaiting = true;
-				veh.waiting++;
-				return;
+				veh.setSpeed(0);
+				tmpCell = Street[listNr].cellList[cellNr];
 			}
-			else if ((veh instanceof Bus || veh instanceof Tram) && veh.waiting >= 5)
+			else if ((veh instanceof Bus || veh instanceof Tram) && veh.waiting >= 10)
 			{
 				veh.waiting = 0;
 				veh.isWaiting = false;
+				veh.setSpeed(1);
 			}
 			if (veh.isCurvingRight() && cell.getHowManyCellsToCrossroad() == Street[listNr].getHowManyToRight() + 1
 				&& !Street[listNr + 1].cellList[cellNr + 1].isForbidden())
@@ -120,7 +128,7 @@ public class Movement
 		Lane[] street = veh.getStreet();
 		if (veh.isMovingForward()) 
 		{
-			if (veh.getStreet()[0].forward[0].getSpeedLimit() == -1)
+			if (veh.getStreet()[0].forward != null && veh.getStreet()[0].forward[0].getSpeedLimit() == -1)
 			{
 				return false;
 			}
@@ -135,7 +143,7 @@ public class Movement
 		}
 		else if (veh.isCurvingRight())
 		{
-			if (veh.getStreet()[0].right[0].getSpeedLimit() == -1)
+			if (veh.getStreet()[0].right != null && veh.getStreet()[0].right[0].getSpeedLimit() == -1)
 			{
 				return false;
 			}
@@ -150,7 +158,7 @@ public class Movement
 		}
 		else
 		{
-			if (veh.getStreet()[0].left[0].getSpeedLimit() == -1)
+			if (veh.getStreet()[0].left != null && veh.getStreet()[0].left[0].getSpeedLimit() == -1)
 			{
 				return false;
 			}

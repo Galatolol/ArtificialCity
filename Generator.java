@@ -4,6 +4,7 @@ import java.util.Random;
 public class Generator 
 {
 	private static Graph myGraph;
+	private static PedestriansGraph pGraph;
 	private static Random rand = new Random();
 	
 	public static void generate(int n, List<Person> list)
@@ -529,21 +530,98 @@ public class Generator
 	
 	public static Pedestrian generatePed(Person controller)
 	{
+		int[] a = {3, 43, 61};
+		int[] b = {21, 22, 29, 26};
+		int[] c = {24, 37, 23, 60, 40};
+		int[] d = {40, 39, 38, 19, 11, 9, 1};
+		int begin, end, dest;
 		Pedestrian ped = new Pedestrian(controller);
-		int prevVertex = Integer.parseInt(controller.getPrevVertex().toString());
-		int currentVertex = Integer.parseInt(controller.getCurrentVertex().toString());
-		ped.setStreet(Util.getPedStreet(prevVertex, currentVertex));
-		int d;
-		if (ped.getStreet()[0].clDir)
+		if (controller.getResidence().equals("A"))
 		{
-			d = 0;
+			begin = a[rand.nextInt(a.length)];
+		}
+		else if (controller.getResidence().equals("B"))
+		{
+			begin = b[rand.nextInt(b.length)];
+		}
+		else if (controller.getResidence().equals("C"))
+		{
+			begin = c[rand.nextInt(c.length)];
+		}
+		else if (controller.getResidence().equals("D"))
+		{
+			begin = d[rand.nextInt(d.length)];
 		}
 		else
 		{
-			d = ped.getStreet()[0].cellList.length - 1;
+			begin = rand.nextInt(63) + 1;
 		}
-		ped.setCurrentCell(ped.getStreet()[0].cellList[d]);
-		PedestriansGraph.calcWeightedShortestPath(ped);
+		
+		while (true)
+		{
+			end = rand.nextInt(63) + 1;
+			while (begin == end)
+			{
+				end = rand.nextInt(63) + 1;
+			}
+			
+			try
+			{
+				ped.setStreet(Util.getPedStreet(begin, end));
+			}
+			catch (Exception e) {}
+			if (ped.getStreet() == null)
+			{
+				continue;
+			}
+			else
+			{
+				break;
+			}
+		}
+		
+		while(true)
+		{
+			if (controller.getDestination().equals("A"))
+			{
+				dest = a[rand.nextInt(a.length)];
+			}
+			else if (controller.getDestination().equals("B"))
+			{
+				dest = b[rand.nextInt(b.length)];
+			}
+			else if (controller.getDestination().equals("C"))
+			{
+				dest = c[rand.nextInt(c.length)];
+			}
+			else if (controller.getDestination().equals("D"))
+			{
+				dest = d[rand.nextInt(d.length)];
+			}
+			else
+			{
+				dest = rand.nextInt(63) + 1;
+			}
+			if (dest != begin && dest != end)
+			{
+				break;
+			}
+		}
+		
+		controller.setAllVertices(pGraph.vertices.get(begin), pGraph.vertices.get(end), pGraph.vertices.get(dest));
+		int dd;
+		if (ped.getStreet()[0].clDir)
+		{
+			dd = 0;
+		}
+		else
+		{
+			dd = ped.getStreet()[0].cellList.length - 1;
+		}
+		ped.setCurrentCell(ped.getStreet()[0].cellList[dd]);
+		
+		System.out.println("Przed dijikstrą (b - end - dest): " + begin + " " + end + " " + dest);
+		pGraph.calcWeightedShortestPath(ped);
 		return ped;
 	}
 }

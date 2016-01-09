@@ -59,6 +59,10 @@ public class PedestriansGraph {
 		else if (lane.left != null && lane.left[0].getEnd() == vertex) {
 			return "left";
 		}
+		else if (lane.getBegin() == vertex)
+		{
+			return "backward";
+		}
 		else {
 			System.out.println("Problem z polaczeniem ulic. Początek krawędzi: " + lane.getBegin() + 
 					" Koniec: " + lane.getEnd() + " Następny wierzchołek: " + vertex);
@@ -111,6 +115,22 @@ public class PedestriansGraph {
 	        
 	        case "right": ped.curveRight();
 	    	break;
+	    	
+	        case "backward": ped.setStreet(Util.getPedStreet(current.id, prev.id));
+	        int d;
+			if (ped.getStreet()[0].clDir)
+			{
+				d = 0;
+			}
+			else
+			{
+				d = ped.getStreet()[0].cellList.length - 1;
+			}
+			ped.setCurrentCell(ped.getStreet()[0].cellList[d]);
+			ped.moveForward();
+			ped.controller.setCurrentVertex(prev);
+			ped.controller.setPrevVertex(current);
+			break;
         }
     }
 	

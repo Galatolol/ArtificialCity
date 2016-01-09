@@ -6,6 +6,7 @@ import java.util.LinkedList;
 public class Util {
 	private static ArrayList<Lane[]> streetList = new ArrayList<Lane[]>();
 	private static ArrayList<Lane[]> pedestriansStreetList = new ArrayList<Lane[]>();
+	public static PedestriansGraph pGraph;
 
 	public static String getHour(String time) {
 		String[] parts = time.split(":");
@@ -63,15 +64,18 @@ public class Util {
 
 	// ------------------------------------------------------
 
-	public static boolean isBusStop(Lane lane, int cellNr) {
+	public static boolean isBusStop(Lane lane, int cellNr, PublicTransport veh) {
 		if (lane.begin.toString().equals("13")
 				&& lane.end.toString().equals("5") && cellNr == 6) {
+			ContentPanel.stopArray[61] = veh.getDirection();
 			return true;
 		} else if (lane.begin.toString().equals("14")
 				&& lane.end.toString().equals("15") && cellNr == 6) {
+			ContentPanel.stopArray[5] = veh.getDirection();
 			return true;
 		} else if (lane.begin.toString().equals("22")
 				&& lane.end.toString().equals("21") && cellNr == 17) {
+			ContentPanel.stopArray[39] = veh.getDirection();
 			return true;
 		}
 		return false;
@@ -79,27 +83,72 @@ public class Util {
 
 	// ------------------------------------------------------
 
-	public static boolean isTramStop(Lane lane, int cellNr) {
+	public static boolean isTramStop(Lane lane, int cellNr, PublicTransport veh) {
 		if (lane.begin.toString().equals("3")
-				&& lane.end.toString().equals("14") && cellNr == 20) {
+				&& lane.end.toString().equals("14") && cellNr == 17) {
+			ContentPanel.stopArray[4] = veh.getDirection();
 			return true;
 		} else if (lane.begin.toString().equals("12")
 				&& lane.end.toString().equals("13") && cellNr == 16) {
+			ContentPanel.stopArray[49] = veh.getDirection();
 			return true;
 		} else if (lane.begin.toString().equals("32")
-				&& lane.end.toString().equals("40") && cellNr == 15) {
+				&& lane.end.toString().equals("40") && cellNr == 14) {
+			ContentPanel.stopArray[51] = veh.getDirection();
 			return true;
 		} else if (lane.begin.toString().equals("54")
-				&& lane.end.toString().equals("55") && cellNr == 40) {
+				&& lane.end.toString().equals("55") && cellNr == 36) {
+			ContentPanel.stopArray[56] = veh.getDirection();
 			return true;
 		} else if (lane.begin.toString().equals("56")
 				&& lane.end.toString().equals("55") && cellNr == 30) {
+			ContentPanel.stopArray[54] = veh.getDirection();
 			return true;
 		} else if (lane.begin.toString().equals("58")
 				&& lane.end.toString().equals("55") && cellNr == 20) {
+			ContentPanel.stopArray[58] = veh.getDirection();
 			return true;
 		} else if (lane.begin.toString().equals("53")
-				&& lane.end.toString().equals("40") && cellNr == 65) {
+				&& lane.end.toString().equals("40") && cellNr == 50) {
+			ContentPanel.stopArray[50] = veh.getDirection();
+			return true;
+		}
+		return false;
+	}
+	
+	public static String convertTimerValueToTime(double timerValue)
+	{
+		int timVa = (int) (timerValue / 5);
+		int min = (timVa * 2) / 60;
+		int sec = (timVa * 2) % 60;
+		int hrs = min/60;
+		min = min % 60;
+		hrs = (12 + hrs) % 24;
+		
+		String hrs1 = String.format("%02d", hrs);
+		String min1 = String.format("%02d", min);
+		String sec1 = String.format("%02d", sec);
+		return hrs1 + ":" + min1 + ":" + sec1;
+	}
+	
+	//----------------------------------------------------------------
+	
+	public static boolean isStop(V vertex, String dest)
+	{
+		if (dest.equals("A") && (vertex.id == 39 || vertex.id == 61 || vertex.id == 49 || vertex.id == 58 || vertex.id == 50 || vertex.id == 54))
+		{
+			return true;
+		}
+		else if (dest.equals("B") && (vertex.id == 4 || vertex.id == 51 || vertex.id == 56 || vertex.id == 54))
+		{
+			return true;
+		}
+		else if (dest.equals("C") && (vertex.id == 4 || vertex.id == 51 || vertex.id == 56 || vertex.id == 58 || vertex.id == 5 || vertex.id == 39))
+		{
+			return true;
+		}
+		else if (dest.equals("D") && vertex.id == 5)
+		{
 			return true;
 		}
 		return false;
@@ -119,7 +168,7 @@ public class Util {
 		Lane l = new Lane(edge.street[0]);
 		street7_6[0] = l;
 		street7_6[0].clDir = true;
-		pedestriansStreetList.add(street6_7); 
+		pedestriansStreetList.add(street7_6); 
 
 		// -------------------------------------------
 
@@ -439,13 +488,13 @@ public class Util {
 		edge = pGraph.getEdge(13, 14);
 		Lane[] street13_14 = new Lane[1];
 		street13_14[0] = edge.street[0];
-		street13_14[0].clDir = false;
+		street13_14[0].clDir = true;
 		pedestriansStreetList.add(street13_14);
 		 
 		Lane[] street14_13 = new Lane[1]; 
 		l = new Lane(edge.street[0]);
 		street14_13[0] = l;
-		street14_13[0].clDir = true;
+		street14_13[0].clDir = false;
 		pedestriansStreetList.add(street14_13); 
 		
 		//------------------------------------------------
@@ -845,13 +894,13 @@ public class Util {
 		edge = pGraph.getEdge(56, 55);
 		Lane[] street56_55 = new Lane[1];
 		street56_55[0] = edge.street[0];
-		street56_55[0].clDir = true;
+		street56_55[0].clDir = false;
 		pedestriansStreetList.add(street56_55);
 		 
 		Lane[] street55_56 = new Lane[1]; 
 		l = new Lane(edge.street[0]);
 		street55_56[0] = l;
-		street55_56[0].clDir = false;
+		street55_56[0].clDir = true;
 		pedestriansStreetList.add(street55_56); 
 		
 		//------------------------------------------------
@@ -943,13 +992,13 @@ public class Util {
 	  	edge = pGraph.getEdge(55, 54);
 		Lane[] street55_54 = new Lane[1];
 		street55_54[0] = edge.street[0];
-		street55_54[0].clDir = true;
+		street55_54[0].clDir = false;
 		pedestriansStreetList.add(street55_54);
 		 
 		Lane[] street54_55 = new Lane[1]; 
 		l = new Lane(edge.street[0]);
 		street54_55[0] = l;
-		street54_55[0].clDir = false;
+		street54_55[0].clDir = true;
 		pedestriansStreetList.add(street54_55);  
 		
 		//------------------------------------------------
@@ -957,15 +1006,14 @@ public class Util {
 	  	edge = pGraph.getEdge(60, 55);
 		Lane[] street60_55 = new Lane[1];
 		street60_55[0] = edge.street[0];
-		street60_55[0].clDir = true;
+		street60_55[0].clDir = false;
 		pedestriansStreetList.add(street60_55);
 		 
 		Lane[] street55_60 = new Lane[1]; 
 		l = new Lane(edge.street[0]);
 		street55_60[0] = l;
-		street55_60[0].clDir = false;
+		street55_60[0].clDir = true;
 		pedestriansStreetList.add(street55_60);  
-		
 
 		
 		//------------------------------------------------
@@ -1099,13 +1147,13 @@ public class Util {
 	  	edge = pGraph.getEdge(35, 34);
 		Lane[] street35_34 = new Lane[1];
 		street35_34[0] = edge.street[0];
-		street35_34[0].clDir = true;
+		street35_34[0].clDir = false;
 		pedestriansStreetList.add(street35_34);
 		 
 		Lane[] street34_35 = new Lane[1]; 
 		l = new Lane(edge.street[0]);
 		street34_35[0] = l;
-		street34_35[0].clDir = false;
+		street34_35[0].clDir = true;
 		pedestriansStreetList.add(street34_35);  
 		
 		//------------------------------------------------
@@ -1155,13 +1203,13 @@ public class Util {
 	  	edge = pGraph.getEdge(30, 22);
 		Lane[] street30_22 = new Lane[1];
 		street30_22[0] = edge.street[0];
-		street30_22[0].clDir = true;
+		street30_22[0].clDir = false;
 		pedestriansStreetList.add(street30_22);
 		 
 		Lane[] street22_30 = new Lane[1]; 
 		l = new Lane(edge.street[0]);
 		street22_30[0] = l;
-		street22_30[0].clDir = false;
+		street22_30[0].clDir = true;
 		pedestriansStreetList.add(street22_30);  
 		
 		//------------------------------------------------
@@ -1239,13 +1287,13 @@ public class Util {
 	  	edge = pGraph.getEdge(27, 30);
 		Lane[] street30_27 = new Lane[1];
 		street30_27[0] = edge.street[0];
-		street30_27[0].clDir = true;
+		street30_27[0].clDir = false;
 		pedestriansStreetList.add(street30_27);
 		 
 		Lane[] street27_30 = new Lane[1]; 
 		l = new Lane(edge.street[0]);
 		street27_30[0] = l;
-		street27_30[0].clDir = false;
+		street27_30[0].clDir = true;
 		pedestriansStreetList.add(street27_30);  
 		
 		//------------------------------------------------
@@ -1267,13 +1315,13 @@ public class Util {
 	  	edge = pGraph.getEdge(25, 33);
 		Lane[] street33_25 = new Lane[1];
 		street33_25[0] = edge.street[0];
-		street33_25[0].clDir = true;
+		street33_25[0].clDir = false;
 		pedestriansStreetList.add(street33_25);
 		 
 		Lane[] street25_33 = new Lane[1]; 
 		l = new Lane(edge.street[0]);
 		street25_33[0] = l;
-		street25_33[0].clDir = false;
+		street25_33[0].clDir = true;
 		pedestriansStreetList.add(street25_33);  
 		
 		//------------------------------------------------
@@ -1281,13 +1329,13 @@ public class Util {
 	  	edge = pGraph.getEdge(26, 32);
 		Lane[] street26_32 = new Lane[1];
 		street26_32[0] = edge.street[0];
-		street26_32[0].clDir = true;
+		street26_32[0].clDir = false;
 		pedestriansStreetList.add(street26_32);
 		 
 		Lane[] street32_26 = new Lane[1]; 
 		l = new Lane(edge.street[0]);
 		street32_26[0] = l;
-		street32_26[0].clDir = false;
+		street32_26[0].clDir = true;
 		pedestriansStreetList.add(street32_26); 
 		
 		//------------------------------------------------
@@ -1309,13 +1357,13 @@ public class Util {
 	  	edge = pGraph.getEdge(31, 30);
 		Lane[] street31_30 = new Lane[1];
 		street31_30[0] = edge.street[0];
-		street31_30[0].clDir = true;
+		street31_30[0].clDir = false;
 		pedestriansStreetList.add(street31_30);
 		 
 		Lane[] street30_31 = new Lane[1]; 
 		l = new Lane(edge.street[0]);
 		street30_31[0] = l;
-		street30_31[0].clDir = false;
+		street30_31[0].clDir = true;
 		pedestriansStreetList.add(street30_31); 
 		
 		//------------------------------------------------
@@ -1607,8 +1655,7 @@ public class Util {
 	    street52_51[0].forward = street51_47;
 	    street52_51[0].left = street51_53;
 	    
-	    street57_63[0].forward = street50_52;
-	    street57_63[0].left = street50_53;
+	    street57_63[0].forward = street63_50;
 	    street63_57[0].forward = street57_58;
 	    street63_57[0].right = street57_56;
 	    
@@ -1776,6 +1823,14 @@ public class Util {
 	    street31_32[0].forward = street32_34;
 	    street31_32[0].right = street32_33;
 	    street31_32[0].left = street32_26;
+	    
+	    street2_4[0].forward = street4_44;
+	    street2_4[0].right = street4_41;
+	    street2_4[0].left = street4_42;
+	    
+	    street4_2[0].forward = street2_1;
+	    street4_2[0].right = street2_1;
+	    street4_2[0].left = street2_7;
 	}
 	
 	

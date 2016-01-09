@@ -7,6 +7,7 @@ public class Cell {
 	private boolean occupied;
 	private boolean forbidden; //gdy nie dla aut osobowych
 	private int nr;
+	public String publicTrans;
 	
 	public Cell(double _x, double _y, int _howManyCellsToCrossroad, int _nr) {
 		this.x = (int) _x;
