@@ -32,33 +32,44 @@ public class Movement
 			}
 			
 			veh.setTmpCell(cell);
-			for (int i = 0; i < veh.getCurrentSpeed(); i++)
+			try
 			{
-				cell = veh.getTmpCell();
-				cellNr = cell.getNr();
-				if (cellNr >= Street[listNr].length - 1)
+				for (int i = 0; i < veh.getCurrentSpeed(); i++)
 				{
-					if (!changeStreet(veh, cell.getHowManyCellsToCrossroad()))
+					cell = veh.getTmpCell();
+					cellNr = cell.getNr();
+					if (cellNr >= Street[listNr].length - 1)
 					{
-						veh.getCurrentCell().setOccupied(false);
-						veh.getNextCell().setOccupied(false);
-						vehicleList1.add(veh);
-						iter.remove();
-						vehRemoved = true;
-					}
-					break;
-				}
-				else
-				{
-					if(veh.isWaiting && veh.waiting < 10)
-					{
-						veh.waiting++;
+						if (!changeStreet(veh, cell.getHowManyCellsToCrossroad()))
+						{
+							veh.getCurrentCell().setOccupied(false);
+							veh.getNextCell().setOccupied(false);
+							vehicleList1.add(veh);
+							iter.remove();
+							vehRemoved = true;
+						}
+						break;
 					}
 					else
 					{
-						determineNextCell(veh, cell, Street, listNr, cellNr);
+						if(veh.isWaiting && veh.waiting < 10)
+						{
+							veh.waiting++;
+						}
+						else
+						{
+							determineNextCell(veh, cell, Street, listNr, cellNr);
+						}
 					}
 				}
+			}
+			catch (Exception e)
+			{
+				veh.getCurrentCell().setOccupied(false);
+				veh.getNextCell().setOccupied(false);
+				vehicleList1.add(veh);
+				iter.remove();
+				vehRemoved = true;
 			}
 			if (vehRemoved)
 			{

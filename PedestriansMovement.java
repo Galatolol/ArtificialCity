@@ -25,26 +25,35 @@ public class PedestriansMovement
 				}
 				continue;
 			}
-			Cell cell = ped.getCurrentCell();
-			Lane[] Street = ped.getStreet();
-			int cellNr = cell.getNr();
-			ped.setTmpCell(cell);
 			
-			cell = ped.getTmpCell();
-			cellNr = cell.getNr();
-			
-			if ((Street[0].clDir && cellNr >= Street[0].cellList.length - 1) || (!Street[0].clDir && cellNr <= 0))
+			try
 			{
-				if (!changeStreet(ped, cell.getHowManyCellsToCrossroad()))
+				Cell cell = ped.getCurrentCell();
+				Lane[] Street = ped.getStreet();
+				int cellNr = cell.getNr();
+				ped.setTmpCell(cell);
+	
+				cell = ped.getTmpCell();
+				cellNr = cell.getNr();
+				
+				if ((Street[0].clDir && cellNr >= Street[0].cellList.length - 1) || (!Street[0].clDir && cellNr <= 0))
 				{
-					iter.remove();
-					pedRemoved = true;
+					if (!changeStreet(ped, cell.getHowManyCellsToCrossroad()))
+					{
+						iter.remove();
+						pedRemoved = true;
+					}
+					continue;
 				}
-				continue;
+				else
+				{
+					determineNextCell(ped, cell, Street, cellNr);
+				}
 			}
-			else
+			catch (Exception e)
 			{
-				determineNextCell(ped, cell, Street, cellNr);
+				iter.remove();
+				pedRemoved = true;
 			}
 					
 			if (pedRemoved)
