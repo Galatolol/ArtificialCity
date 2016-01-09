@@ -82,11 +82,7 @@ public class PedestriansMovement
 				tmpCell = street[0].cellList[cellNr - 1];
 			}
 			ped.setTmpCell(tmpCell);
-		}
-		catch(Exception e)
-		{
-			System.out.println("PedestriansMovement.determineNextCell(): wyjatek");
-		}
+		} catch(Exception e) { }
 	}
 	
 	public static boolean changeStreet(Pedestrian ped, int howManyCellsToCrossroad)
@@ -98,15 +94,15 @@ public class PedestriansMovement
 			{
 				return false;
 			}
-			try{ped.setStreet(street[0].forward);}catch (Exception e) {System.out.println("-f-1");}
+			try{ped.setStreet(street[0].forward);}catch (Exception e) {}
 		}
 		else if (ped.isCurvingRight())
 		{
-			try{ped.setStreet(street[0].right);}catch (Exception e) {System.out.println("---1");}
+			try{ped.setStreet(street[0].right);}catch (Exception e) {}
 		}
 		else
 		{
-			try{ped.setStreet(street[0].left);}catch (Exception e) {System.out.println("---1");}
+			try{ped.setStreet(street[0].left);}catch (Exception e) {}
 		}
 		
 		if (ped.getStreet() == null)

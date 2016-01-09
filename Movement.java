@@ -120,10 +120,7 @@ public class Movement
 				tmpCell = Street[listNr].cellList[cellNr + 1];
 			}
 		}
-		catch(Exception e)
-		{
-			System.out.println("Movement.determineNextCell(): wyjatek");
-		}
+		catch(Exception e) { }
 		if (tmpCell.isOccupied())
 		{
 			veh.setSpeed(0);
@@ -143,14 +140,14 @@ public class Movement
 			{
 				return false;
 			}
-			try{veh.setStreet(street[0].forward);}catch (Exception e) {System.out.println("-f-1");}
+			try{veh.setStreet(street[0].forward);}catch (Exception e) { }
 			int laneNr = getNextLaneNr(veh);
 			if (veh instanceof Bus)
 			{
 				laneNr = street[0].forward.length - 1;
 			}
-			try{veh.setLaneNr(laneNr);}catch (Exception e) {System.out.println("-f-2");} 
-			try{veh.setTmpCell(veh.getStreet()[veh.getLaneNr()].cellList[veh.getCurrentSpeed() - howManyCellsToCrossroad]);}catch (Exception e) {System.out.println("-f-3");}
+			try{veh.setLaneNr(laneNr);}catch (Exception e) { } 
+			try{veh.setTmpCell(veh.getStreet()[veh.getLaneNr()].cellList[veh.getCurrentSpeed() - howManyCellsToCrossroad]);}catch (Exception e) { }
 		}
 		else if (veh.isCurvingRight())
 		{
@@ -158,14 +155,14 @@ public class Movement
 			{
 				return false;
 			}
-			try{veh.setStreet(street[0].right);}catch (Exception e) {System.out.println("---1");}
+			try{veh.setStreet(street[0].right);}catch (Exception e) { }
 			int laneNr = 0;
 			if (veh instanceof Bus)
 			{
 				laneNr = street[0].right.length - 1;
 			}
-			try{veh.setLaneNr(laneNr);}catch (Exception e) {System.out.println("-----2");}
-			try{veh.setTmpCell(veh.getStreet()[veh.getLaneNr()].cellList[2]);}catch (Exception e) {System.out.println("-----3");}
+			try{veh.setLaneNr(laneNr);}catch (Exception e) { }
+			try{veh.setTmpCell(veh.getStreet()[veh.getLaneNr()].cellList[2]);}catch (Exception e) { }
 		}
 		else
 		{
@@ -173,14 +170,14 @@ public class Movement
 			{
 				return false;
 			}
-			try{veh.setStreet(street[0].left);}catch (Exception e) {System.out.println("---1");}
+			try{veh.setStreet(street[0].left);}catch (Exception e) { }
 			int laneNr = 0;
 			if (veh instanceof Bus)
 			{
 				laneNr = street[0].left.length - 1;
 			}
-			try{veh.setLaneNr(laneNr);}catch (Exception e) {System.out.println("-----2");}
-			try{veh.setTmpCell(veh.getStreet()[veh.getLaneNr()].cellList[1]);}catch (Exception e) {System.out.println("-----3");}
+			try{veh.setLaneNr(laneNr);}catch (Exception e) { }
+			try{veh.setTmpCell(veh.getStreet()[veh.getLaneNr()].cellList[1]);}catch (Exception e) { }
 		}
 		
 		if (veh instanceof Car)
@@ -189,7 +186,6 @@ public class Movement
 			{
 				((Car) veh).driver.setPrevVertex(veh.getStreet()[0].begin);
 				((Car) veh).driver.setCurrentVertex(veh.getStreet()[0].end);
-				System.out.print("");
 				myGraph.calcWeightedShortestPath((Car)veh);
 			}
 			catch (IndexOutOfBoundsException e)

@@ -894,13 +894,13 @@ public class Util {
 		edge = pGraph.getEdge(56, 55);
 		Lane[] street56_55 = new Lane[1];
 		street56_55[0] = edge.street[0];
-		street56_55[0].clDir = false;
+		street56_55[0].clDir = true;
 		pedestriansStreetList.add(street56_55);
 		 
 		Lane[] street55_56 = new Lane[1]; 
 		l = new Lane(edge.street[0]);
 		street55_56[0] = l;
-		street55_56[0].clDir = true;
+		street55_56[0].clDir = false;
 		pedestriansStreetList.add(street55_56); 
 		
 		//------------------------------------------------
@@ -3807,8 +3807,7 @@ public class Util {
 				return street;
 			}
 		}
-		System.out.println("Util.getStreet(): no result – v1: " + v1 + " v2: "
-				+ v2);
+		//System.out.println("Util.getStreet(): no result – v1: " + v1 + " v2: " + v2);
 		return null;
 	}
 	
@@ -3824,8 +3823,7 @@ public class Util {
 				return street;
 			}
 		}
-		System.out.println("Util.getPedStreet(): no result – v1: " + v1 + " v2: "
-				+ v2);
+		//System.out.println("Util.getPedStreet(): no result – v1: " + v1 + " v2: " + v2);
 		return null;
 	}
 }

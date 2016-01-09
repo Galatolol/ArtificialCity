@@ -62,8 +62,7 @@ public class Graph {
 			return "left";
 		}
 		else {
-			System.out.println("Problem z polaczeniem ulic. Początek krawędzi: " + lane.begin.toString() + 
-					" Koniec: " + lane.end + " Następny wierzchołek: " + vertex);
+			//System.out.println("Problem z polaczeniem ulic. Początek krawędzi: " + lane.begin.toString() + " Koniec: " + lane.end + " Następny wierzchołek: " + vertex);
 			return "";
 		}
 	}

@@ -11,6 +11,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -29,10 +30,13 @@ public class ContentPanel extends JPanel implements ActionListener {
 	public static List<Vehicle> vehicleList1 = new ArrayList<Vehicle>();
 	public static double timerValue;
 	public static String[] stopArray;
+	private String timerValueStr;
+	private ArrayList<Person> personList;
+	private int min1, min2, hrs1, hrs2;
+	
 
 	ContentPanel() {
-		stopArray = new String[62];
-		//setLayout(new BorderLayout());
+		stopArray = new String[64];
 		MediaTracker mt = new MediaTracker(this);
 		bgImage = Toolkit.getDefaultToolkit().getImage("res/map.jpg");
 		mt.addImage(bgImage, 0);
@@ -48,27 +52,20 @@ public class ContentPanel extends JPanel implements ActionListener {
 	    pGraph.init();
 		
 	    Util.createStreets(myGraph);
-		
-		ArrayList<Person> personList = new ArrayList<Person>();
-		Generator.generate(100, personList);
 		Util.createPedestriansStreets(pGraph);
 		
-		for (Person person : personList)
+		ArrayList<Person> personList2 = new ArrayList<Person>();
+		ArrayList<Person> personList1 = new ArrayList<Person>();
+		Generator.generate(10000, personList2, false);
+		Generator.generate(25000, personList1, true);
+		for (Person p : personList1)
 		{
-			if (person.getIsDriving())
-			{
-				vehicleList.add(Generator.generateCar(person));
-			}
-			else
-			{
-				pList.add(Generator.generatePed(person));
-			}
+			p.driving = true;
 		}
-		
-		Person person11 = new Person(50, "", "", "", "", "", "", "", true);
-		person11.setAllVertices(myGraph.vertices.get(56), myGraph.vertices.get(55), myGraph.vertices.get(23));
-		Pedestrian ped = Generator.generatePed(person11);
-		pList.add(ped);
+		personList = new ArrayList<Person>();
+		personList.addAll(personList1);
+		personList.addAll(personList2);
+		System.out.println(personList.size());
 		
 		addPublicTransport();
 
@@ -124,17 +121,10 @@ public class ContentPanel extends JPanel implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {		
-		//Test.displayInfoAboutCar(vehicleList.get(0));
-		//timerValue = Double.valueOf(Frame.timerValue.getText());
 		timerValue = timerValue + ((1000-tm.getDelay())/100);
-		Frame.timerValue.setText(Util.convertTimerValueToTime(timerValue));
+		timerValueStr = Util.convertTimerValueToTime(timerValue);
+		Frame.timerValue.setText(timerValueStr);
 		
-		Movement.move(vehicleList);	
-		PedestriansMovement.move(pList);
-		for (int i = 0; i < stopArray.length; i++)
-		{
-			stopArray[i] = "";
-		}
 		if (vehicleList.size() == 0)
 		{
 			Person person10 = new Person(50, "", "", "", "", "", "", "", true);
@@ -150,13 +140,57 @@ public class ContentPanel extends JPanel implements ActionListener {
 			Pedestrian ped = Generator.generatePed(person11);
 			pList.add(ped);
 		}
-		//System.out.println(Util.convertTimerValueToTime(timerValue));
+		
+		if (timerValueStr.substring(6,8).equals("00"))
+		{
+			ListIterator<Person> iter = personList.listIterator();
+			while (iter.hasNext())
+			{
+				Person person = iter.next();
+				try
+				{
+					min2 = Integer.parseInt(person.getGoingOut().split(":")[1]);
+				} catch (Exception exc) { min2 = 0; }
+				try
+				{
+					hrs2 = Integer.parseInt(person.getGoingOut().split(":")[0]);
+				} catch (Exception exc) { hrs2 = 0; }
+				
+				min1 = Integer.parseInt(timerValueStr.split(":")[1]);
+				hrs1 = Integer.parseInt(timerValueStr.split(":")[0]);
+				if (hrs1 == hrs2 && min1 == min2)
+				{
+					try
+					{
+						if (person.getIsDriving())
+						{
+							vehicleList.add(Generator.generateCar(person));
+						}
+						else
+						{
+							pList.add(Generator.generatePed(person));
+						}
+					}
+					catch (Exception exc) 
+					{
+						iter.remove();
+						continue;
+					}
+				}
+			}
+		}
+		
+		Movement.move(vehicleList);	
+		PedestriansMovement.move(pList);
+		for (int i = 0; i < stopArray.length; i++)
+		{
+			stopArray[i] = "";
+		}
 		counter++;
 		repaint();
 	}
 	
 	public static void drawCircle(int x, int y, int r, Graphics g) {
-		//g.setColor(Color.RED);
 		g.fillOval(x-r/2, y-r/2, r, r);
 	}
 }

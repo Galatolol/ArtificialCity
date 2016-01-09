@@ -7,7 +7,7 @@ public class Generator
 	private static PedestriansGraph pGraph;
 	private static Random rand = new Random();
 	
-	public static void generate(int n, List<Person> list)
+	public static void generate(int n, List<Person> list, boolean willBeDriving)
 	{
 		String destination, residence, from, goingOut, goingBack, firstName, lastName;
 		boolean driving;
@@ -46,7 +46,14 @@ public class Generator
 				goingOut = "";
 				goingBack = "";
 			}
-			driving = generateDriving(age, residence);
+			if (!willBeDriving)
+			{
+				driving = generateDriving(age, residence);
+			}
+			else
+			{
+				driving = true;
+			}
 			
 			Person person = new Person(age, residence, destination, from, goingOut, goingBack, firstName, lastName, driving);
 			if (person.getIsDriving())
@@ -365,7 +372,7 @@ public class Generator
 				goingOut = Util.substractTime("10:00", rand.nextInt(59));
 			}
 			else if (r < 21)
-			{		System.out.println(Util.addTime("02:56", 400));
+			{
 					goingOut = Util.substractTime("11:00", rand.nextInt(40));
 			}
 			else
@@ -374,6 +381,10 @@ public class Generator
 				goingOut = Util.substractTime(time.toString() + ":00", rand.nextInt(59));
 			}
 		}
+		/*int hrs = Integer.parseInt(goingOut.split(":")[0]);
+		int min = Integer.parseInt(goingOut.split(":")[1]);
+		String hrs1 = String.format("%02d", hrs);
+		String min1 = String.format("%02d", min);*/
 		return goingOut;
 	}
 	
@@ -409,7 +420,12 @@ public class Generator
 		{
 			goingBack = Util.addTime(goingOut, (rand.nextInt(5) + 6) * 60);
 		}
-		return Util.addTime(goingBack, rand.nextInt(15));
+		goingBack = Util.addTime(goingBack, rand.nextInt(15));
+		/*int hrs = Integer.parseInt(goingBack.split(":")[0]);
+		int min = Integer.parseInt(goingBack.split(":")[1]);
+		String hrs1 = String.format("%02d", hrs);
+		String min1 = String.format("%02d", min);*/
+		return goingBack;
 	}
 	
 	private static String generateFirstName()
@@ -619,8 +635,6 @@ public class Generator
 			dd = ped.getStreet()[0].cellList.length - 1;
 		}
 		ped.setCurrentCell(ped.getStreet()[0].cellList[dd]);
-		
-		System.out.println("Przed dijikstrą (b - end - dest): " + begin + " " + end + " " + dest);
 		pGraph.calcWeightedShortestPath(ped);
 		return ped;
 	}

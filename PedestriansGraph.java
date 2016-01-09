@@ -64,8 +64,7 @@ public class PedestriansGraph {
 			return "backward";
 		}
 		else {
-			System.out.println("Problem z polaczeniem ulic. Początek krawędzi: " + lane.getBegin() + 
-					" Koniec: " + lane.getEnd() + " Następny wierzchołek: " + vertex);
+			//System.out.println("Problem z polaczeniem ulic. Początek krawędzi: " + lane.getBegin() + " Koniec: " + lane.getEnd() + " Następny wierzchołek: " + vertex);
 			return "";
 		}
 	}
@@ -93,7 +92,7 @@ public class PedestriansGraph {
         else 
         	nextVertex = path.get(0).getBegin();
         
-        
+        /*
         System.out.println();
         System.out.println("Con.prev: " + ped.controller.getPrevVertex());
         System.out.println("Con.curr: " + ped.controller.getCurrentVertex());
@@ -101,10 +100,9 @@ public class PedestriansGraph {
         System.out.println("Street beg: " + ped.getStreet()[0].getBegin());
         System.out.println("Street end: " + ped.getStreet()[0].getEnd());
         System.out.println("Next: " + nextVertex);
-        System.out.println();
+        System.out.println(); */
 
         String direction = getDirection(ped.getStreet()[0], nextVertex);
-        System.out.println("Dijikstra  pieszy – kierunek: " + direction + " " + nextVertex);
         
         switch (direction) {
 	        case "forward": ped.moveForward();

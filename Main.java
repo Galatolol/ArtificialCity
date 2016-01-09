@@ -15,7 +15,7 @@ public class Main
 	
 	public static void createLists()
 	{
-		Generator.generate(1000, personList);
+		Generator.generate(1000, personList, false);
 		for (int i = 0; i < personList.size(); i++)
 		{
 			if (personList.get(i).getIsDriving())
