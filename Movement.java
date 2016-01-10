@@ -9,7 +9,6 @@ public class Movement
 	private static Graph myGraph;
 	private static Random rand = new Random();
 	private static Cell tmpCell;
-	private static List<Vehicle> vehicleList1 = new ArrayList<Vehicle>();
 	
 	public static void move(List<Vehicle> vehicleList)
 	{
@@ -44,7 +43,6 @@ public class Movement
 						{
 							veh.getCurrentCell().setOccupied(false);
 							veh.getNextCell().setOccupied(false);
-							vehicleList1.add(veh);
 							iter.remove();
 							vehRemoved = true;
 						}
@@ -67,7 +65,6 @@ public class Movement
 			{
 				veh.getCurrentCell().setOccupied(false);
 				veh.getNextCell().setOccupied(false);
-				vehicleList1.add(veh);
 				iter.remove();
 				vehRemoved = true;
 			}
@@ -210,32 +207,6 @@ public class Movement
 		else
 		{
 			return 0;
-		}
-	}
-	
-	public static void setSignaling(boolean signaling)
-	{
-		Lane[] street = Util.getStreet(20, 76);
-		Lane[] street1 = Util.getStreet(81, 80);
-		Lane[] street2 = Util.getStreet(78, 79);
-
-		int length = street[0].cellList.length;
-		for (int i = 0; i < street.length; i++)
-		{
-			street[i].cellList[length - 1].setOccupied(signaling);
-			street[i].cellList[length - 2].setOccupied(signaling);
-		}
-		length = street1[0].cellList.length;
-		for (int i = 0; i < street1.length; i++)
-		{
-			street1[i].cellList[length - 1].setOccupied(signaling);
-			street1[i].cellList[length - 2].setOccupied(signaling);
-		}
-		length = street2[0].cellList.length;
-		for (int i = 0; i < street2.length; i++)
-		{
-			street2[i].cellList[length - 1].setOccupied(!signaling);
-			//street2[i].cellList[length - 2].setOccupied(!signaling);
 		}
 	}
 	

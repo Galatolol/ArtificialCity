@@ -116,6 +116,25 @@ public class Util {
 		return false;
 	}
 	
+	//-------------------------------------------------------------
+	
+	public static PublicTransport spawnPubTran(String time)
+	{
+		String[] l8_1 = {"05:12", "05:43", "12:03", "8", "1"};
+		
+		for (int i = 0; i < l8_1.length - 2; i++)
+		{
+			if (time.equals(l8_1[i]))
+			{
+				System.out.println("jest");
+				return Generator.generatePubTran(Integer.parseInt(l8_1[l8_1.length - 2]), Integer.parseInt(l8_1[l8_1.length - 1]));
+			}
+		}
+		return null;
+	}
+	
+	//--------------------------------------------------------------
+	
 	public static String convertTimerValueToTime(double timerValue)
 	{
 		int timVa = (int) (timerValue / 5);
@@ -1868,6 +1887,7 @@ public class Util {
 		for (int i = 0; i < 3; i++) {
 			street16_13[i] = edge.street[i];
 		}
+		streetList.add(street16_13);
 
 		// ----------------------
 
@@ -2003,6 +2023,7 @@ public class Util {
 		for (int i = 0; i < 3; i++) {
 			street19_18[i] = edge.street[i];
 		}
+		streetList.add(street19_18);
 
 		// -------------------
 
@@ -2626,6 +2647,7 @@ public class Util {
 		for (int i = 0; i < 3; i++) {
 			street15_17[i] = edge.street[i];
 		}
+		streetList.add(street15_17);
 
 		// ----------------------------------------
 
@@ -2754,6 +2776,7 @@ public class Util {
 		edge.street[0].setSpeedLimit(3);
 		Lane[] street21_17 = new Lane[1];
 		street21_17[0] = edge.street[0];
+		streetList.add(street21_17);
 
 		// -------------------------------------------
 
@@ -3346,6 +3369,7 @@ public class Util {
 		}
 		Lane[] street12_13 = new Lane[1];
 		street12_13[0] = edge.street[0];
+		streetList.add(street12_13);
 
 		// -------------------------------------------
 
@@ -3356,6 +3380,7 @@ public class Util {
 		}
 		Lane[] street13_14 = new Lane[1];
 		street13_14[0] = edge.street[0];
+		streetList.add(street13_14);
 
 		// ------------------------------------------------
 
@@ -3406,6 +3431,7 @@ public class Util {
 		for (int i = 0; i < 2; i++) {
 			street14_13[i] = edge.street[i];
 		}
+		streetList.add(street14_13);
 
 		// -------------------------------------------
 

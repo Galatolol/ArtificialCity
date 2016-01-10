@@ -27,11 +27,11 @@ public class ContentPanel extends JPanel implements ActionListener {
 	private PedestriansGraph pGraph; 
 	private List<Vehicle> vehicleList = new ArrayList<Vehicle>();
 	private List<Pedestrian> pList = new ArrayList<Pedestrian>();
-	public static List<Vehicle> vehicleList1 = new ArrayList<Vehicle>();
 	public static double timerValue;
 	public static String[] stopArray;
 	private String timerValueStr;
 	private ArrayList<Person> personList;
+	private ArrayList<Person> personList3 = new ArrayList<Person>();
 	private int min1, min2, hrs1, hrs2;
 	
 
@@ -57,7 +57,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 		ArrayList<Person> personList2 = new ArrayList<Person>();
 		ArrayList<Person> personList1 = new ArrayList<Person>();
 		Generator.generate(10000, personList2, false);
-		Generator.generate(25000, personList1, true);
+		Generator.generate(10000, personList1, true);
 		for (Person p : personList1)
 		{
 			p.driving = true;
@@ -65,41 +65,8 @@ public class ContentPanel extends JPanel implements ActionListener {
 		personList = new ArrayList<Person>();
 		personList.addAll(personList1);
 		personList.addAll(personList2);
-		System.out.println(personList.size());
-		
-		addPublicTransport();
 
 		tm.start();
-	}
-	
-	protected void addPublicTransport()
-	{
-		Vehicle tram1 = Generator.generatePubTran(8, 1); //numer linii, kierunek jazdy
-		Vehicle tram2 = Generator.generatePubTran(8, 2);
-		Vehicle tram3 = Generator.generatePubTran(4, 1);
-		Vehicle tram4 = Generator.generatePubTran(4, 2);
-		Vehicle tram5 = Generator.generatePubTran(18, 1);
-		Vehicle tram6 = Generator.generatePubTran(18, 2);
-		
-		Vehicle bus1 = Generator.generatePubTran(159, 1);
-		Vehicle bus2 = Generator.generatePubTran(159, 2);
-		Vehicle bus3 = Generator.generatePubTran(173, 1);
-		Vehicle bus4 = Generator.generatePubTran(173, 2);
-		Vehicle bus5 = Generator.generatePubTran(179, 1);
-		Vehicle bus6 = Generator.generatePubTran(179, 2);
-		
-		vehicleList.add(tram1);
-		vehicleList.add(tram2);
-		vehicleList.add(tram3);
-		vehicleList.add(tram4);
-		vehicleList.add(tram5);
-		vehicleList.add(tram6);
-		vehicleList.add(bus1);
-		vehicleList.add(bus2);
-		vehicleList.add(bus3);
-		vehicleList.add(bus4);
-		vehicleList.add(bus5);
-		vehicleList.add(bus6);
 	}	
 
 	protected void paintComponent(Graphics g) {
@@ -118,6 +85,16 @@ public class ContentPanel extends JPanel implements ActionListener {
 	    for(Pedestrian p : pList) {
 	    	p.paint(g, p.getColor());
 	    }	
+	}
+	
+	public void add()
+	{
+		if (personList.size() < 15000)
+		{
+			ArrayList<Person> personList2 = new ArrayList<Person>();
+			Generator.generate(1000, personList2, false);
+			personList.addAll(personList2);
+		}
 	}
 	
 	public void actionPerformed(ActionEvent e) {		
@@ -139,25 +116,46 @@ public class ContentPanel extends JPanel implements ActionListener {
 			person11.setAllVertices(myGraph.vertices.get(56), myGraph.vertices.get(55), myGraph.vertices.get(23));
 			Pedestrian ped = Generator.generatePed(person11);
 			pList.add(ped);
-		}
+		}		
 		
 		if (timerValueStr.substring(6,8).equals("00"))
 		{
+			min1 = Integer.parseInt(timerValueStr.split(":")[1]);
+			hrs1 = Integer.parseInt(timerValueStr.split(":")[0]);
+			
+			PublicTransport pubTran = Util.spawnPubTran(timerValueStr.substring(0, 5));
+			if (pubTran != null)
+			{
+				vehicleList.add(pubTran);
+			}
+			
 			ListIterator<Person> iter = personList.listIterator();
 			while (iter.hasNext())
-			{
+			{ 
 				Person person = iter.next();
 				try
 				{
-					min2 = Integer.parseInt(person.getGoingOut().split(":")[1]);
+					if (person.isGoingBack)
+					{
+						min2 = Integer.parseInt(person.getGoingBack().split(":")[1]);
+					}
+					else
+					{
+						min2 = Integer.parseInt(person.getGoingOut().split(":")[1]);
+					}
 				} catch (Exception exc) { min2 = 0; }
 				try
 				{
-					hrs2 = Integer.parseInt(person.getGoingOut().split(":")[0]);
-				} catch (Exception exc) { hrs2 = 0; }
+					if (person.isGoingBack)
+					{
+						hrs2 = Integer.parseInt(person.getGoingBack().split(":")[0]);
+					}
+					else
+					{
+						hrs2 = Integer.parseInt(person.getGoingOut().split(":")[0]);
+					}
+				} catch (Exception exc) { iter.remove(); continue; }
 				
-				min1 = Integer.parseInt(timerValueStr.split(":")[1]);
-				hrs1 = Integer.parseInt(timerValueStr.split(":")[0]);
 				if (hrs1 == hrs2 && min1 == min2)
 				{
 					try
@@ -168,11 +166,12 @@ public class ContentPanel extends JPanel implements ActionListener {
 						}
 						else
 						{
-							pList.add(Generator.generatePed(person));
+							pList.add(Generator.generatePed(person));	
 						}
+						person.isGoingBack = !person.isGoingBack;
 					}
 					catch (Exception exc) 
-					{
+					{ 
 						iter.remove();
 						continue;
 					}
@@ -186,7 +185,12 @@ public class ContentPanel extends JPanel implements ActionListener {
 		{
 			stopArray[i] = "";
 		}
+		if (timerValueStr.substring(0,  2).equals("11"))
+		{
+			add();
+		}
 		counter++;
+		Signaling.signaling();
 		repaint();
 	}
 	

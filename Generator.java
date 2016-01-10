@@ -351,11 +351,11 @@ public class Generator
 		else
 		{
 			r = rand.nextInt(23);
-			if (r < 2)
+			if (r < 1)
 			{
 				goingOut = Util.substractTime("06:00", rand.nextInt(30));
 			}
-			else if (r < 5)
+			else if (r < 3)
 			{
 				goingOut = Util.substractTime("07:00", rand.nextInt(30));
 			}
@@ -497,7 +497,6 @@ public class Generator
 		if (nr == 8)
 		{
 			veh = new Tram(destination, linia8_1, linia8_2);
-
 		}
 		else if (nr == 18)
 		{
