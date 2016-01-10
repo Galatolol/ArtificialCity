@@ -17,7 +17,7 @@ public class E {
 	E (V _begin, V _end, int _length, int _speedLimit, int _cellListsNum, boolean _oneWay) {
 		this.begin = _begin;
 		this.end = _end;
-		this.weight = _length;
+		this.weight = _cellListsNum;
 		this.length = (int) Math.sqrt((end.getX()-begin.getX()) * (end.getX()-begin.getX()) +
 				            (end.getY()-begin.getY()) * (end.getY()-begin.getY()));
 		

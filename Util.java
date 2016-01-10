@@ -2443,6 +2443,7 @@ public class Util {
 
 		Lane[] street32_40 = new Lane[1];
 		street32_40[0] = edge.street[0];
+		streetList.add(street32_40);
 
 		// -----------------------------------------
 
@@ -2520,6 +2521,7 @@ public class Util {
 
 		Lane[] street40_38 = new Lane[1];
 		street40_38[0] = edge.street[0];
+		streetList.add(street40_38);
 
 		// ----------------------------------------
 

@@ -70,7 +70,7 @@ public class Graph {
 	public static void calcWeightedShortestPath(Car car) {
         Transformer<E, Integer> wtTransformer = new Transformer<E,Integer>() {
             public Integer transform(E edge) {
-                return edge.getLength() + edge.getWeight();
+                return edge.getLength() / edge.getWeight();
             }
         };
         

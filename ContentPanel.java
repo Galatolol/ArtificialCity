@@ -56,16 +56,22 @@ public class ContentPanel extends JPanel implements ActionListener {
 		
 		ArrayList<Person> personList2 = new ArrayList<Person>();
 		ArrayList<Person> personList1 = new ArrayList<Person>();
-		Generator.generate(10000, personList2, false);
-		Generator.generate(10000, personList1, true);
+		Generator.generate(20000, personList2, false);
+		Generator.generate(30000, personList1, true);
 		for (Person p : personList1)
 		{
 			p.driving = true;
 		}
 		personList = new ArrayList<Person>();
-		personList.addAll(personList1);
-		personList.addAll(personList2);
+		//personList.addAll(personList1);
+		//personList.addAll(personList2);
 
+			Person person10 = new Person(50, "", "", "", "", "", "", "", true);
+			person10.setAllVertices(myGraph.vertices.get(32), myGraph.vertices.get(40), myGraph.vertices.get(47));
+			Vehicle car = Generator.generateCar(person10);
+			car.setLaneNr(0);
+			vehicleList.add(car);
+		
 		tm.start();
 	}	
 
@@ -179,15 +185,27 @@ public class ContentPanel extends JPanel implements ActionListener {
 			}
 		}
 		
+
+		Person person10 = new Person(50, "", "", "", "", "", "", "", true);
+		person10.setAllVertices(myGraph.vertices.get(32), myGraph.vertices.get(40), myGraph.vertices.get(47));
+		Vehicle car = Generator.generateCar(person10);
+		car.setLaneNr(0);
+		vehicleList.add(car);
+		
 		Movement.move(vehicleList);	
 		PedestriansMovement.move(pList);
 		for (int i = 0; i < stopArray.length; i++)
 		{
 			stopArray[i] = "";
 		}
-		if (timerValueStr.substring(0,  2).equals("11"))
+		if (hrs1 == 12 && min1 == 10)
 		{
-			add();
+			myGraph.graph.removeEdge(myGraph.getEdge(38, 39));
+		}
+		
+		if (timerValueStr.substring(0,  2).equals("11") ||Integer.parseInt(timerValueStr.substring(0,  2)) % 2 == 0)
+		{
+			//add();
 		}
 		counter++;
 		Signaling.signaling();
