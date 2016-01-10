@@ -3,7 +3,7 @@ class Signaling
 	private static boolean signaling1;
 	public static void signaling()
 	{
-		if ((signaling1 == false && ContentPanel.counter % 20 == 0) || (signaling1 == true && ContentPanel.counter % 10 == 0))
+		if ((signaling1 == false && ContentPanel.counter % 30 == 0) || (signaling1 == true && ContentPanel.counter % 10 == 0))
 		{
 			signaling1 = !signaling1;
 			System.out.println(signaling1);
@@ -79,14 +79,36 @@ class Signaling
 				street6[i].cellList[length - 1].setOccupied(!signaling1);
 				street6[i].cellList[length - 2].setOccupied(!signaling1);
 			}
+					
+
+			length = street7[0].cellList.length;
+			for (int i = 0; i < street7.length; i++)
+			{
+				street7[i].cellList[length - 1].setOccupied(!signaling1);
+				street7[i].cellList[length - 2].setOccupied(!signaling1);
+			}
 			
+			length = street8[0].cellList.length;
+			for (int i = 0; i < street8.length; i++)
+			{
+				street8[i].cellList[length - 1].setOccupied(!signaling1);
+				street8[i].cellList[length - 2].setOccupied(!signaling1);
+			}
 			
+			length = street9[0].cellList.length;
+			for (int i = 0; i < street9.length; i++)
+			{
+				street9[i].cellList[length - 1].setOccupied(!signaling1);
+				street9[i].cellList[length - 2].setOccupied(!signaling1);
+			}
 			length = street10[0].cellList.length;
 			for (int i = 0; i < street10.length; i++)
 			{
 				street10[i].cellList[length - 1].setOccupied(signaling1);
 				street10[i].cellList[length - 2].setOccupied(signaling1);
 			}
+			
+			
 			length = street11[0].cellList.length;
 			for (int i = 0; i < street11.length; i++)
 			{

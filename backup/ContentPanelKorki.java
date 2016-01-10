@@ -65,7 +65,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 		}
 		ArrayList<Person> personList3 = new ArrayList<Person>();
 		
-		Generator.generate(1000, personList3, true);
+		Generator.generate(5000, personList3, true);
 		for (Person p : personList3)
 		{
 			p.driving = true;
@@ -75,7 +75,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 		}
 		
 		ArrayList<Person> personList4 = new ArrayList<Person>();
-		Generator.generate(1000, personList3, true);
+		Generator.generate(5000, personList3, true);
 		for (Person p : personList3)
 		{
 			p.driving = true;
@@ -85,7 +85,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 			p.lane = true;
 		}
 		ArrayList<Person> personList5 = new ArrayList<Person>();
-		Generator.generate(1000, personList3, true);
+		Generator.generate(5000, personList3, true);
 		for (Person p : personList3)
 		{
 			p.driving = true;
@@ -95,7 +95,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 			
 		}
 		ArrayList<Person> personList6 = new ArrayList<Person>();
-		Generator.generate(1000, personList3, true);
+		Generator.generate(5000, personList3, true);
 		for (Person p : personList3)
 		{
 			p.driving = true;

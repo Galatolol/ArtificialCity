@@ -32,7 +32,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 	private String timerValueStr;
 	private ArrayList<Person> personList;
 	private ArrayList<Person> personList3 = new ArrayList<Person>();
-	private int min1, min2, hrs1, hrs2, sec1;
+	private int min1, min2, hrs1, hrs2;
 	
 
 	ContentPanel() {
@@ -56,83 +56,22 @@ public class ContentPanel extends JPanel implements ActionListener {
 		
 		ArrayList<Person> personList2 = new ArrayList<Person>();
 		ArrayList<Person> personList1 = new ArrayList<Person>();
-		
 		Generator.generate(20000, personList2, false);
 		Generator.generate(30000, personList1, true);
 		for (Person p : personList1)
 		{
 			p.driving = true;
 		}
-		ArrayList<Person> personList3 = new ArrayList<Person>();
-		
-		Generator.generate(1000, personList3, true);
-		for (Person p : personList3)
-		{
-			p.driving = true;
-			//p.setCurrentVertex(myGraph.vertices.get(4));
-			p.setAllVertices(myGraph.vertices.get(81), myGraph.vertices.get(80), myGraph.vertices.get(87));
-			//vehicleList.add(Generator.generateCar(p));			
-		}
-		
-		ArrayList<Person> personList4 = new ArrayList<Person>();
-		Generator.generate(1000, personList3, true);
-		for (Person p : personList3)
-		{
-			p.driving = true;
-			//p.setCurrentVertex(myGraph.vertices.get(4));
-			p.setAllVertices(myGraph.vertices.get(81), myGraph.vertices.get(80), myGraph.vertices.get(87));
-			//vehicleList.add(Generator.generateCar(p));
-			p.lane = true;
-		}
-		ArrayList<Person> personList5 = new ArrayList<Person>();
-		Generator.generate(1000, personList3, true);
-		for (Person p : personList3)
-		{
-			p.driving = true;
-			//p.setCurrentVertex(myGraph.vertices.get(4));
-			p.setAllVertices(myGraph.vertices.get(4), myGraph.vertices.get(14), myGraph.vertices.get(98));
-			//vehicleList.add(Generator.generateCar(p));
-			
-		}
-		ArrayList<Person> personList6 = new ArrayList<Person>();
-		Generator.generate(1000, personList3, true);
-		for (Person p : personList3)
-		{
-			p.driving = true;
-			//p.setCurrentVertex(myGraph.vertices.get(4));
-			p.setAllVertices(myGraph.vertices.get(4), myGraph.vertices.get(14), myGraph.vertices.get(98));
-			//vehicleList.add(Generator.generateCar(p));
-			p.lane =  true;
-		}
 		personList = new ArrayList<Person>();
-		personList.addAll(personList1);
-		personList.addAll(personList2);
-		personList.addAll(personList3);
-		personList.addAll(personList4);
-		personList.addAll(personList5);
-		personList.addAll(personList6);
-
-			/*Person person11 = new Person(50, "", "C", "", "", "", "", "", true);
-			person11.setAllVertices(myGraph.vertices.get(42), myGraph.vertices.get(4), myGraph.vertices.get(62));
-			Pedestrian ped = Generator.generatePed(person11);
-			ped.setStreet(Util.getPedStreet(42, 4));
-			
-			int dd;
-			if (ped.getStreet()[0].clDir)
-			{
-				dd = 0;
-			}
-			else
-			{
-				dd = ped.getStreet()[0].cellList.length - 1;
-			}
-			ped.setCurrentCell(ped.getStreet()[0].cellList[dd]);
-			pGraph.calcWeightedShortestPath(ped);
-			
-			pList.add(ped);*/
-			
-			
-		
+		//personList.addAll(personList1);
+		//personList.addAll(personList2);
+/*
+			Person person10 = new Person(50, "", "", "", "", "", "", "", true);
+			person10.setAllVertices(myGraph.vertices.get(41), myGraph.vertices.get(40), myGraph.vertices.get(52));
+			Vehicle car = Generator.generateCar(person10);
+			car.setLaneNr(0);
+			vehicleList.add(car);
+		*/
 		tm.start();
 	}	
 
@@ -141,10 +80,10 @@ public class ContentPanel extends JPanel implements ActionListener {
 	
 	    g.drawImage(bgImage, 0, 0, 1000, 1000, null);
 	    
-	  /*  myGraph.paintEdges(g);
-	    myGraph.paintVertices(g);
-	    pGraph.paintEdges(g);
-	    pGraph.paintVertices(g);*/
+	    //myGraph.paintEdges(g);
+	    //myGraph.paintVertices(g);
+	    //pGraph.paintEdges(g);
+	    //pGraph.paintVertices(g);
 	    
 	    for(Vehicle v : vehicleList) {
 	    	v.paint(g, v.getColor());
@@ -186,11 +125,19 @@ public class ContentPanel extends JPanel implements ActionListener {
 		}		
 		
 		min1 = Integer.parseInt(timerValueStr.split(":")[1]);
-		hrs1 = Integer.parseInt(timerValueStr.split(":")[0]);		
-		sec1 = Integer.parseInt(timerValueStr.split(":")[2]);
+		hrs1 = Integer.parseInt(timerValueStr.split(":")[0]);
 		
-		if (sec1 < 5)
-		{	
+		if (timerValueStr.substring(6,8).equals("00"))
+		{
+			
+			
+			if(min1 % 2 == 0) {
+				Person person10 = new Person(50, "", "", "", "", "", "", "", true);
+				person10.setAllVertices(myGraph.vertices.get(41), myGraph.vertices.get(40), myGraph.vertices.get(47));
+				Vehicle car = Generator.generateCar(person10);
+				car.setLaneNr(0);
+				vehicleList.add(car);
+			}
 			PublicTransport pubTran = Util.spawnPubTran(timerValueStr.substring(0, 5));
 			if (pubTran != null)
 			{
@@ -201,8 +148,6 @@ public class ContentPanel extends JPanel implements ActionListener {
 			while (iter.hasNext())
 			{ 
 				Person person = iter.next();
-				if(person.spawned) continue;
-				
 				try
 				{
 					if (person.isGoingBack)
@@ -232,20 +177,13 @@ public class ContentPanel extends JPanel implements ActionListener {
 					{
 						if (person.getIsDriving())
 						{
-							//
-							Vehicle car = Generator.generateCar(person);
-							if(person.lane) {
-								car.setLaneNr(1);
-							}
-							
-							vehicleList.add(car);
+							vehicleList.add(Generator.generateCar(person));
 						}
 						else
 						{
 							pList.add(Generator.generatePed(person));	
 						}
 						person.isGoingBack = !person.isGoingBack;
-						person.spawned = true;
 					}
 					catch (Exception exc) 
 					{ 
@@ -253,13 +191,6 @@ public class ContentPanel extends JPanel implements ActionListener {
 						continue;
 					}
 				}
-			}
-		}
-		else if(sec1 >4 && sec1 < 10) 
-		{
-			for(Person p : personList)
-			{
-				p.spawned = false;
 			}
 		}
 		
@@ -273,10 +204,10 @@ public class ContentPanel extends JPanel implements ActionListener {
 			stopArray[i] = "";
 		}
 		
-		/*if (hrs1 == 12 && min1 == 10)
+		if (hrs1 == 12 && min1 == 10)
 		{
 			myGraph.graph.removeEdge(myGraph.getEdge(38, 39));
-		}*/
+		}
 		
 		if (timerValueStr.substring(0,  2).equals("11") ||Integer.parseInt(timerValueStr.substring(0,  2)) % 2 == 0)
 		{

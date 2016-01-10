@@ -16,7 +16,10 @@ public class Person
 	private String lastName;
 	
 	public boolean driving;
+	public boolean lane;
 	public boolean isGoingBack;
+	public boolean spawned;
+	
 	
 	Person(int _age, String _residence, String _destination, String _from, String _goingOut, String _goingBack, 
 			String _firstName, String _lastName, boolean _driving)

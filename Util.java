@@ -120,7 +120,7 @@ public class Util {
 	
 	public static PublicTransport spawnPubTran(String time)
 	{
-		String[] l8_1 = {"05:12", "05:43", "12:03", "8", "1"};
+		String[] l8_1 = {"05:12", "05:43", "12:05", " 12:06", " 12:07","12:09", "8", "1"};
 		
 		for (int i = 0; i < l8_1.length - 2; i++)
 		{
@@ -142,7 +142,7 @@ public class Util {
 		int sec = (timVa * 2) % 60;
 		int hrs = min/60;
 		min = min % 60;
-		hrs = (12 + hrs) % 24;
+		hrs = (16 + hrs) % 24;
 		
 		String hrs1 = String.format("%02d", hrs);
 		String min1 = String.format("%02d", min);
@@ -2046,6 +2046,7 @@ public class Util {
 
 		Lane[] street17_18 = new Lane[1];
 		street17_18[0] = edge.street[0];
+		streetList.add(street17_18);
 
 		// ---------------------
 
@@ -2499,6 +2500,7 @@ public class Util {
 
 		Lane[] street41_40 = new Lane[1];
 		street41_40[0] = edge.street[0];
+		streetList.add(street41_40);
 
 		// ----------------------------------------
 
@@ -2680,6 +2682,7 @@ public class Util {
 		edge.street[0].setSpeedLimit(2);
 		Lane[] street42_18 = new Lane[1];
 		street42_18[0] = edge.street[0];
+		streetList.add(street42_18);
 
 		// -------------------------------------------
 
@@ -3513,7 +3516,12 @@ public class Util {
 		}
 
 		street15_16[0].forward = street16_13;
-
+		
+		street33_32[0].forward = street32_30;
+		street33_32[0].right = street32_12;
+		street33_32[0].left = street32_40;
+		
+		
 		street13_12[0].forward = street12_32;
 		street13_12[0].left = street12_11;
 
