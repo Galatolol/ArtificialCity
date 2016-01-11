@@ -33,6 +33,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 	private ArrayList<Person> personList;
 	private ArrayList<Person> personList3 = new ArrayList<Person>();
 	private int min1, min2, hrs1, hrs2, sec1;
+	private boolean pubTranSpawned;
 	
 
 	ContentPanel(int population, int time) {
@@ -184,9 +185,10 @@ public class ContentPanel extends JPanel implements ActionListener {
 		if (sec1 < 5)
 		{	
 			PublicTransport pubTran = Util.spawnPubTran(timerValueStr.substring(0, 5));
-			if (pubTran != null)
+			if (!pubTranSpawned && pubTran != null)
 			{
 				vehicleList.add(pubTran);
+				pubTranSpawned = true;
 			}
 			
 			ListIterator<Person> iter = personList.listIterator();
@@ -249,6 +251,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 		}
 		else if(sec1 >4 && sec1 < 10) 
 		{
+			pubTranSpawned = false;
 			for(Person p : personList)
 			{
 				p.spawned = false;
