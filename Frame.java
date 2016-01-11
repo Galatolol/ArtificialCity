@@ -152,7 +152,7 @@ public class Frame {
 		Component rigidArea_6 = Box.createRigidArea(new Dimension(15, 15));
 		buttonsPanel.add(rigidArea_6);
 		
-		JLabel liczbaLudzi = new JLabel("liczba ludzi:");
+		JLabel liczbaLudzi = new JLabel("Population");
 		buttonsPanel.add(liczbaLudzi);
 		
 		ludzieVal = new JTextField();
@@ -172,7 +172,7 @@ public class Frame {
 		Component rigidArea_10 = Box.createRigidArea(new Dimension(15, 15));
 		buttonsPanel.add(rigidArea_10);
 		
-		JLabel godzina = new JLabel("godzina:");
+		JLabel godzina = new JLabel("Set hour");
 		buttonsPanel.add(godzina);
 		
 		godzinaVal = new JTextField();

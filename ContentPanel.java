@@ -36,6 +36,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 	
 
 	ContentPanel(int population, int time) {
+		Util.baseTime = time;
 		stopArray = new String[64];
 		MediaTracker mt = new MediaTracker(this);
 		bgImage = Toolkit.getDefaultToolkit().getImage("res/map.jpg");
@@ -54,7 +55,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 	    Util.createStreets(myGraph);
 		Util.createPedestriansStreets(pGraph);
 		
-		addPopulation();
+		addPopulation(population);
 		
 		tm.start();
 	}	
@@ -87,12 +88,12 @@ public class ContentPanel extends JPanel implements ActionListener {
 		}
 	}
 	
-	public void addPopulation()
+	public void addPopulation(int population)
 	{
 		ArrayList<Person> personList2 = new ArrayList<Person>();
 		ArrayList<Person> personList1 = new ArrayList<Person>();
-		Generator.generate(20000, personList2, false);
-		Generator.generate(30000, personList1, true);
+		Generator.generate(population, personList2, false);
+		Generator.generate(population, personList1, true);
 		for (Person p : personList1)
 		{
 			p.driving = true;

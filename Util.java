@@ -7,7 +7,7 @@ public class Util {
 	private static ArrayList<Lane[]> streetList = new ArrayList<Lane[]>();
 	private static ArrayList<Lane[]> pedestriansStreetList = new ArrayList<Lane[]>();
 	public static PedestriansGraph pGraph;
-	public static int timeBase;
+	public static int baseTime;
 
 	public static String getHour(String time) {
 		String[] parts = time.split(":");
@@ -142,7 +142,7 @@ public class Util {
 		int sec = (timVa * 2) % 60;
 		int hrs = min/60;
 		min = min % 60;
-		hrs = (16 + hrs) % 24;
+		hrs = (baseTime + hrs) % 24;
 		
 		String hrs1 = String.format("%02d", hrs);
 		String min1 = String.format("%02d", min);
