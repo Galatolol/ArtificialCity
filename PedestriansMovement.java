@@ -129,7 +129,8 @@ public class PedestriansMovement
 		{
 			return false;
 		}
-		if (Util.isStop(ped.getStreet()[0].getBegin(), ped.controller.getDestination()))
+		if ((ped.controller.getDestination().equals("A") || ped.controller.getDestination().equals("C") || 
+				ped.controller.getDestination().equals("D")) && Util.isStop(ped.getStreet()[0].getBegin(), ped.controller.getDestination()))
 		{
 			ped.isWaiting = true;
 		}
