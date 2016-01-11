@@ -54,84 +54,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 	    Util.createStreets(myGraph);
 		Util.createPedestriansStreets(pGraph);
 		
-		ArrayList<Person> personList2 = new ArrayList<Person>();
-		ArrayList<Person> personList1 = new ArrayList<Person>();
-		
-		Generator.generate(20000, personList2, false);
-		Generator.generate(30000, personList1, true);
-		for (Person p : personList1)
-		{
-			p.driving = true;
-		}
-		ArrayList<Person> personList3 = new ArrayList<Person>();
-		
-		Generator.generate(1000, personList3, true);
-		for (Person p : personList3)
-		{
-			p.driving = true;
-			//p.setCurrentVertex(myGraph.vertices.get(4));
-			p.setAllVertices(myGraph.vertices.get(81), myGraph.vertices.get(80), myGraph.vertices.get(87));
-			//vehicleList.add(Generator.generateCar(p));			
-		}
-		
-		ArrayList<Person> personList4 = new ArrayList<Person>();
-		Generator.generate(1000, personList3, true);
-		for (Person p : personList3)
-		{
-			p.driving = true;
-			//p.setCurrentVertex(myGraph.vertices.get(4));
-			p.setAllVertices(myGraph.vertices.get(81), myGraph.vertices.get(80), myGraph.vertices.get(87));
-			//vehicleList.add(Generator.generateCar(p));
-			p.lane = true;
-		}
-		ArrayList<Person> personList5 = new ArrayList<Person>();
-		Generator.generate(1000, personList3, true);
-		for (Person p : personList3)
-		{
-			p.driving = true;
-			//p.setCurrentVertex(myGraph.vertices.get(4));
-			p.setAllVertices(myGraph.vertices.get(4), myGraph.vertices.get(14), myGraph.vertices.get(98));
-			//vehicleList.add(Generator.generateCar(p));
-			
-		}
-		ArrayList<Person> personList6 = new ArrayList<Person>();
-		Generator.generate(1000, personList3, true);
-		for (Person p : personList3)
-		{
-			p.driving = true;
-			//p.setCurrentVertex(myGraph.vertices.get(4));
-			p.setAllVertices(myGraph.vertices.get(4), myGraph.vertices.get(14), myGraph.vertices.get(98));
-			//vehicleList.add(Generator.generateCar(p));
-			p.lane =  true;
-		}
-		personList = new ArrayList<Person>();
-		personList.addAll(personList1);
-		personList.addAll(personList2);
-		personList.addAll(personList3);
-		personList.addAll(personList4);
-		personList.addAll(personList5);
-		personList.addAll(personList6);
-
-			/*Person person11 = new Person(50, "", "C", "", "", "", "", "", true);
-			person11.setAllVertices(myGraph.vertices.get(42), myGraph.vertices.get(4), myGraph.vertices.get(62));
-			Pedestrian ped = Generator.generatePed(person11);
-			ped.setStreet(Util.getPedStreet(42, 4));
-			
-			int dd;
-			if (ped.getStreet()[0].clDir)
-			{
-				dd = 0;
-			}
-			else
-			{
-				dd = ped.getStreet()[0].cellList.length - 1;
-			}
-			ped.setCurrentCell(ped.getStreet()[0].cellList[dd]);
-			pGraph.calcWeightedShortestPath(ped);
-			
-			pList.add(ped);*/
-			
-			
+		addPopulation();
 		
 		tm.start();
 	}	
@@ -162,6 +85,74 @@ public class ContentPanel extends JPanel implements ActionListener {
 			Generator.generate(1000, personList2, false);
 			personList.addAll(personList2);
 		}
+	}
+	
+	public void addPopulation()
+	{
+		ArrayList<Person> personList2 = new ArrayList<Person>();
+		ArrayList<Person> personList1 = new ArrayList<Person>();
+		Generator.generate(20000, personList2, false);
+		Generator.generate(30000, personList1, true);
+		for (Person p : personList1)
+		{
+			p.driving = true;
+		}
+		ArrayList<Person> personList3 = new ArrayList<Person>();
+		
+		Generator.generate(1000, personList3, true);
+		for (Person p : personList3)
+		{
+			p.driving = true;
+			p.setAllVertices(myGraph.vertices.get(81), myGraph.vertices.get(80), myGraph.vertices.get(87));		
+		}
+		
+		ArrayList<Person> personList4 = new ArrayList<Person>();
+		Generator.generate(1000, personList4, true);
+		for (Person p : personList4)
+		{
+			p.driving = true;
+			p.setAllVertices(myGraph.vertices.get(81), myGraph.vertices.get(80), myGraph.vertices.get(87));
+			p.lane = true;
+		}
+		ArrayList<Person> personList5 = new ArrayList<Person>();
+		Generator.generate(1000, personList5, true);
+		for (Person p : personList5)
+		{
+			p.driving = true;
+			p.setAllVertices(myGraph.vertices.get(4), myGraph.vertices.get(14), myGraph.vertices.get(98));
+			
+		}
+		ArrayList<Person> personList6 = new ArrayList<Person>();
+		Generator.generate(1000, personList6, true);
+		for (Person p : personList6)
+		{
+			p.driving = true;
+			p.setAllVertices(myGraph.vertices.get(4), myGraph.vertices.get(14), myGraph.vertices.get(98));
+			p.lane =  true;
+		}
+		ArrayList<Person> personList7 = new ArrayList<Person>();
+		Generator.generate(200, personList7, true);
+		for (Person p : personList7)
+		{
+			p.driving = true;
+			p.setAllVertices(myGraph.vertices.get(12), myGraph.vertices.get(11), myGraph.vertices.get(7));
+		}
+		ArrayList<Person> personList8 = new ArrayList<Person>();
+		Generator.generate(200, personList8, true);
+		for (Person p : personList8)
+		{
+			p.driving = true;
+			p.setAllVertices(myGraph.vertices.get(64), myGraph.vertices.get(74), myGraph.vertices.get(71));
+		}
+		personList = new ArrayList<Person>();
+		personList.addAll(personList1);
+		personList.addAll(personList2);
+		personList.addAll(personList3);
+		personList.addAll(personList4);
+		personList.addAll(personList5);
+		personList.addAll(personList6);
+		personList.addAll(personList7);
+		personList.addAll(personList8);
 	}
 	
 	public void actionPerformed(ActionEvent e) {		

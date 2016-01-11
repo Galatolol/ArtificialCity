@@ -7,6 +7,7 @@ public class Util {
 	private static ArrayList<Lane[]> streetList = new ArrayList<Lane[]>();
 	private static ArrayList<Lane[]> pedestriansStreetList = new ArrayList<Lane[]>();
 	public static PedestriansGraph pGraph;
+	public static int timeBase;
 
 	public static String getHour(String time) {
 		String[] parts = time.split(":");
@@ -126,7 +127,6 @@ public class Util {
 		{
 			if (time.equals(l8_1[i]))
 			{
-				System.out.println("jest");
 				return Generator.generatePubTran(Integer.parseInt(l8_1[l8_1.length - 2]), Integer.parseInt(l8_1[l8_1.length - 1]));
 			}
 		}
@@ -493,13 +493,13 @@ public class Util {
 		edge = pGraph.getEdge(13, 15);
 		Lane[] street13_15 = new Lane[1];
 		street13_15[0] = edge.street[0];
-		street13_15[0].clDir = false;
+		street13_15[0].clDir = true;
 		pedestriansStreetList.add(street13_15);
 		 
 		Lane[] street15_13 = new Lane[1]; 
 		l = new Lane(edge.street[0]);
 		street15_13[0] = l;
-		street15_13[0].clDir = true;
+		street15_13[0].clDir = false;
 		pedestriansStreetList.add(street15_13); 
 		
 		//------------------------------------------------
@@ -633,13 +633,13 @@ public class Util {
 		edge = pGraph.getEdge(20, 16);
 		Lane[] street20_16 = new Lane[1];
 		street20_16[0] = edge.street[0];
-		street20_16[0].clDir = false;
+		street20_16[0].clDir = true;
 		pedestriansStreetList.add(street20_16);
 		 
 		Lane[] street16_20 = new Lane[1]; 
 		l = new Lane(edge.street[0]);
 		street16_20[0] = l;
-		street16_20[0].clDir = true;
+		street16_20[0].clDir = false;
 		pedestriansStreetList.add(street16_20); 
 		
 		//------------------------------------------------
@@ -1431,6 +1431,7 @@ public class Util {
 		street7_8[0].right = street8_1;
 		street7_8[0].left = street8_10;
 	    street8_7[0].forward = street7_6;
+	    street8_7[0].right = street7_10;
 	    street8_7[0].left = street7_2;
 		
 		street8_9[0].forward = streetToNowhere;
@@ -1459,6 +1460,7 @@ public class Util {
 	    street4_41[0].left = street41_48;
 	    
 	    street4_42[0].forward = street42_3;
+	    street4_42[0].right = street42_43;
 	    street42_4[0].left = street4_44;
 	    street42_4[0].right = street4_2;
 	    street42_4[0].forward = street4_41;
@@ -1468,6 +1470,8 @@ public class Util {
 	    street3_42[0].left = street42_43;
 	    
 	    street3_2[0].forward = street2_7;
+	    street3_2[0].right = street2_1;
+	    street3_2[0].left = street2_4;
 	    street2_3[0].forward = street3_42;
 	    
 	    street2_7[0].forward = street7_10;
@@ -1501,6 +1505,13 @@ public class Util {
 	    street13_10[0].right = street10_7;
 	    street13_10[0].left = street10_11;
 	    
+	    street13_15[0].forward = street15_16;
+	    street13_15[0].right = street15_17;
+	    street13_15[0].left = street15_14;
+	    street15_13[0].forward = street13_10;
+	    street15_13[0].right = street13_14;
+	    street15_13[0].left = street13_12;
+	    
 	    street10_11[0].forward = street11_12;
 	    street11_10[0].forward = street10_7;
 	    street11_10[0].right = street10_13;
@@ -1529,7 +1540,7 @@ public class Util {
 	    
 	    street18_20[0].forward = street20_38;
 	    street18_20[0].left = street20_16;
-	    street20_18[0].forward = street18_20;
+	    street20_18[0].forward = street18_12;
 	    street20_18[0].right = street18_17;
 	    street20_18[0].left = street18_19;
 	    
@@ -1540,7 +1551,7 @@ public class Util {
 	    
 	    street38_19[0].forward = street19_18;
 	    street19_38[0].forward = street38_39;
-	    street19_38[0].forward = street38_20;
+	    street19_38[0].left = street38_20;
 	    
 	    street19_18[0].forward = street18_17;
 	    street19_18[0].right = street18_20;
@@ -1853,9 +1864,8 @@ public class Util {
 	    street2_4[0].forward = street4_44;
 	    street2_4[0].right = street4_41;
 	    street2_4[0].left = street4_42;
-	    
 	    street4_2[0].forward = street2_1;
-	    street4_2[0].right = street2_1;
+	    street4_2[0].right = street2_3;
 	    street4_2[0].left = street2_7;
 	}
 	
@@ -3490,6 +3500,7 @@ public class Util {
 
 			street4_14[i].forward = street14_15;
 			street4_14[i].right = street14_3;
+			street4_14[i].left = street14_13;
 
 			street14_15[i].forward = street15_17;
 			street14_15[i].left = street15_16;
@@ -3547,6 +3558,7 @@ public class Util {
 
 		street6_8[0].forward = street8_39;
 		street6_8[0].left = street8_7;
+		street6_8[0].right = street8_9;
 
 		street9_8[0].right = street8_39;
 		street9_8[0].forward = street8_7;
@@ -3562,6 +3574,7 @@ public class Util {
 		street10_11[0].forward = street11_12;
 
 		street11_12[0].left = street12_32;
+		street11_12[0].right = street12_13; //na
 
 		street37_36[0].right = street36_35;
 
@@ -3604,6 +3617,7 @@ public class Util {
 		street42_18[0].forward = street18_17;
 
 		street18_17[0].forward = street17_21;
+		street18_17[0].left = street17_20;
 
 		street18_42[0].forward = street42_73;
 		street18_42[0].left = street42_41;
@@ -3736,6 +3750,8 @@ public class Util {
 		street12_13[0].forward = street13_14;
 
 		street13_14[0].forward = street14_3;
+		street13_14[0].right = street14_3;
+		street13_14[0].left = street14_3;
 
 		street40_53[0].right = street53_74;
 		street40_53[0].forward = street53_54;

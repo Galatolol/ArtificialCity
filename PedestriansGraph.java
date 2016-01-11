@@ -64,7 +64,7 @@ public class PedestriansGraph {
 			return "backward";
 		}
 		else {
-			System.out.println("Problem z polaczeniem ulic. Początek krawędzi: " + lane.getBegin() + " Koniec: " + lane.getEnd() + " Następny wierzchołek: " + vertex);
+			//System.out.println("Problem z polaczeniem ulic. Początek krawędzi: " + lane.getBegin() + " Koniec: " + lane.getEnd() + " Następny wierzchołek: " + vertex);
 			return "";
 		}
 	}

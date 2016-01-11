@@ -6,7 +6,6 @@ class Signaling
 		if ((signaling1 == false && ContentPanel.counter % 30 == 0) || (signaling1 == true && ContentPanel.counter % 10 == 0))
 		{
 			signaling1 = !signaling1;
-			System.out.println(signaling1);
 			
 			Lane[] street = Util.getStreet(20, 76);
 			Lane[] street1 = Util.getStreet(81, 80);

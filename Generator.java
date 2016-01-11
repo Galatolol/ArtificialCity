@@ -21,7 +21,7 @@ public class Generator
 			residence = generateResidence();
 			while(true)
 			{
-				destination = generateDestination(profession); 
+				destination = generateDestination(); 
 				if (!destination.equals(residence))
 				{
 					break;
@@ -256,16 +256,16 @@ public class Generator
 	
 	private static String generateResidence()
 	{
-		int r = rand.nextInt(13);
+		int r = rand.nextInt(12);
 		if (r < 1)
 		{
 			return "S";
 		}
-		else if (r < 4)
+		else if (r < 5)
 		{
 			return "A";
 		}
-		else if (r < 7)
+		else if (r < 6)
 		{
 			return "B";
 		}
@@ -279,26 +279,21 @@ public class Generator
 		}
 	}
 	
-	private static String generateDestination(int profession)
+	private static String generateDestination()
 	{
-		if (profession == 1)
+		int r = rand.nextInt(5);
+		switch(r)
 		{
-			int r = rand.nextInt(6);
-			switch(r)
-			{
-				case 0: 
-					return "S";	
-				case 1:
-					return "A";
-				case 2:
-					return "B";
-				case 3:
-					return "C";
-				case 4:
-					return "D";
-				//case 6:
-					//return "AGH";
-			}
+			case 0: 
+				return "S";	
+			case 1:
+				return "A";
+			case 2:
+				return "B";
+			case 3:
+				return "C";
+			case 4:
+				return "D";
 		}
 		return generateResidence();
 	}
