@@ -25,6 +25,7 @@ import javax.swing.Box;
 import javax.swing.ImageIcon;
 import java.awt.Component;
 import javax.swing.JTextField;
+import javax.swing.JCheckBox;
 
 public class Frame {
 
@@ -83,7 +84,7 @@ public class Frame {
 		
 		JPanel buttonsPanel = new JPanel();
 		controlPanel.add(buttonsPanel, BorderLayout.NORTH);
-		buttonsPanel.setPreferredSize(new Dimension(100, 400));
+		buttonsPanel.setPreferredSize(new Dimension(100, 600));
 		
 		Component rigidArea_3 = Box.createRigidArea(new Dimension(18, 15));
 		buttonsPanel.add(rigidArea_3);
@@ -91,13 +92,18 @@ public class Frame {
 		JLabel timeLabel = new JLabel("Time: ");
 		buttonsPanel.add(timeLabel);
 		
-		
+		JButton slowerBtn = new JButton("Slower");
 		JButton fasterBtn = new JButton("Faster");
 		fasterBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// tutaj pisac co sie ma dziac
 				if (contentPanel.tm.getDelay() >= 100) {
 					contentPanel.tm.setDelay(contentPanel.tm.getDelay() - 100);
+					fasterBtn.setEnabled(true);
+					slowerBtn.setEnabled(true);
+				} else {
+					fasterBtn.setEnabled(false);
+					//slowerBtn.setEnabled(true);
 				}
 			}
 		});
@@ -119,11 +125,16 @@ public class Frame {
 		fasterBtn.setPreferredSize(new Dimension(90, 30));
 		buttonsPanel.add(fasterBtn);
 		
-		JButton slowerBtn = new JButton("Slower");
+		
 		slowerBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (contentPanel.tm.getDelay() <= 900) {
+				if (contentPanel.tm.getDelay() <= 600) {
 					contentPanel.tm.setDelay(contentPanel.tm.getDelay() + 100);
+					slowerBtn.setEnabled(true);
+					fasterBtn.setEnabled(true);
+				} else {
+					slowerBtn.setEnabled(false);
+					//fasterBtn.setEnabled(true);
 				}
 			}
 		});
@@ -200,12 +211,45 @@ public class Frame {
 				scrollpane.setAutoscrolls(true);
 				frame.getContentPane().add(scrollpane, BorderLayout.CENTER);
 				
+				restartBtn.setEnabled(false);
+				
 			}
 		});
 		
 		Component rigidArea_11 = Box.createRigidArea(new Dimension(15, 15));
 		buttonsPanel.add(rigidArea_11);
 		buttonsPanel.add(restartBtn);
+		
+		Component rigidArea_12 = Box.createRigidArea(new Dimension(15, 15));
+		buttonsPanel.add(rigidArea_12);
+		
+		JCheckBox pointVert = new JCheckBox("Paint vertices");
+		pointVert.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(pointVert.isSelected())
+					contentPanel.paintVertices = true;
+				
+				else
+					contentPanel.paintVertices = false;
+				
+			}
+		});
+		buttonsPanel.add(pointVert);
+		
+		JCheckBox paintEdg = new JCheckBox("Paint edges  ");
+		paintEdg.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(paintEdg.isSelected())
+					contentPanel.paintEdges = true;
+				
+				else
+					contentPanel.paintEdges = false;
+				
+			}
+		});
+		buttonsPanel.add(paintEdg);
 		
 		
 		//frame.pack();

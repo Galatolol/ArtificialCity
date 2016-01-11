@@ -34,6 +34,8 @@ public class ContentPanel extends JPanel implements ActionListener {
 	private ArrayList<Person> personList3 = new ArrayList<Person>();
 	private int min1, min2, hrs1, hrs2, sec1;
 	private boolean pubTranSpawned;
+	public boolean paintVertices = false;
+	public boolean paintEdges = false;
 	
 
 	ContentPanel(int population, int time) {
@@ -66,10 +68,19 @@ public class ContentPanel extends JPanel implements ActionListener {
 	
 	    g.drawImage(bgImage, 0, 0, 1000, 1000, null);
 	    
-	  /*  myGraph.paintEdges(g);
-	    myGraph.paintVertices(g);
-	    pGraph.paintEdges(g);
-	    pGraph.paintVertices(g);*/
+	    if(paintEdges) {
+	    	myGraph.paintEdges(g);		    
+		    pGraph.paintEdges(g);
+	    }
+	    
+	    if(paintVertices) {
+	    	myGraph.paintVertices(g);
+	    	pGraph.paintVertices(g);
+	    }
+	    
+	   
+	  /*  
+	    */
 	    
 	    for(Vehicle v : vehicleList) {
 	    	v.paint(g, v.getColor());
