@@ -156,6 +156,7 @@ public class Frame {
 		buttonsPanel.add(liczbaLudzi);
 		
 		ludzieVal = new JTextField();
+		ludzieVal.setText("10000");
 		buttonsPanel.add(ludzieVal);
 		ludzieVal.setPreferredSize(new Dimension(90, 20));
 		
@@ -175,6 +176,7 @@ public class Frame {
 		buttonsPanel.add(godzina);
 		
 		godzinaVal = new JTextField();
+		godzinaVal.setText("12");
 		buttonsPanel.add(godzinaVal);
 		godzinaVal.setPreferredSize(new Dimension(90, 20));
 		
@@ -183,10 +185,13 @@ public class Frame {
 		restartBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				int l = Integer.valueOf(ludzieVal.getText());
+				int g = Integer.valueOf(godzinaVal.getText());
+				
 				frame.remove(scrollpane);
 				//contentPanel.re
 				//scrollpane.remove(contentPanel);
-				contentPanel = new ContentPanel();
+				contentPanel = new ContentPanel(l, g);
 				contentPanel.setPreferredSize(new Dimension(1000, 1000));
 				
 				scrollpane = new JScrollPane(contentPanel);

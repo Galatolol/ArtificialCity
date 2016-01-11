@@ -35,7 +35,7 @@ public class ContentPanel extends JPanel implements ActionListener {
 	private int min1, min2, hrs1, hrs2, sec1;
 	
 
-	ContentPanel() {
+	ContentPanel(int population, int time) {
 		stopArray = new String[64];
 		MediaTracker mt = new MediaTracker(this);
 		bgImage = Toolkit.getDefaultToolkit().getImage("res/map.jpg");
