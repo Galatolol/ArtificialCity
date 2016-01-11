@@ -24,6 +24,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import java.awt.Component;
+import javax.swing.JTextField;
 
 public class Frame {
 
@@ -32,6 +33,8 @@ public class Frame {
 	JScrollPane scrollpane;
 	public static JLabel timerValue;
 	private boolean stopped;
+	private JTextField ludzieVal;
+	private JTextField godzinaVal;
 
 	/**
 	 * Launch the application.
@@ -65,8 +68,8 @@ public class Frame {
 		frame.setMaximumSize(new Dimension(1050, 1050));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		contentPanel = new ContentPanel();
-		contentPanel.setPreferredSize(new Dimension(1000, 1000));
+		//contentPanel = new ContentPanel();
+		//contentPanel.setPreferredSize(new Dimension(1000, 1000));
 		
 		scrollpane = new JScrollPane(contentPanel);
 		scrollpane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -80,16 +83,14 @@ public class Frame {
 		
 		JPanel buttonsPanel = new JPanel();
 		controlPanel.add(buttonsPanel, BorderLayout.NORTH);
-		buttonsPanel.setPreferredSize(new Dimension(100, 250));
+		buttonsPanel.setPreferredSize(new Dimension(100, 400));
 		
-		timerValue = new JLabel("0");
-		buttonsPanel.add(timerValue);
+		Component rigidArea_3 = Box.createRigidArea(new Dimension(18, 15));
+		buttonsPanel.add(rigidArea_3);
 		
-		Component rigidArea = Box.createRigidArea(new Dimension(15, 15));
-		buttonsPanel.add(rigidArea);
+		JLabel timeLabel = new JLabel("Time: ");
+		buttonsPanel.add(timeLabel);
 		
-		JLabel lblNewLabel = new JLabel("Time");
-		buttonsPanel.add(lblNewLabel);
 		
 		JButton fasterBtn = new JButton("Faster");
 		fasterBtn.addActionListener(new ActionListener() {
@@ -100,6 +101,21 @@ public class Frame {
 				}
 			}
 		});
+		
+		Component rigidArea_4 = Box.createRigidArea(new Dimension(15, 15));
+		buttonsPanel.add(rigidArea_4);
+		
+		Component rigidArea_5 = Box.createRigidArea(new Dimension(15, 15));
+		buttonsPanel.add(rigidArea_5);
+		
+		timerValue = new JLabel("0");
+		buttonsPanel.add(timerValue);
+		
+		Component rigidArea_1 = Box.createRigidArea(new Dimension(15, 15));
+		buttonsPanel.add(rigidArea_1);
+		
+		Component rigidArea_2 = Box.createRigidArea(new Dimension(15, 15));
+		buttonsPanel.add(rigidArea_2);
 		fasterBtn.setPreferredSize(new Dimension(90, 30));
 		buttonsPanel.add(fasterBtn);
 		
@@ -115,7 +131,7 @@ public class Frame {
 		buttonsPanel.add(slowerBtn);
 		buttonsPanel.add(Box.createRigidArea(new Dimension(15,15)));
 		
-		JButton stopBtn = new JButton("\u25B6||");
+		JButton stopBtn = new JButton("\u25B6  ||");
 		stopBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (stopped) {
@@ -130,13 +146,60 @@ public class Frame {
 		stopBtn.setPreferredSize(new Dimension(90, 30));
 		buttonsPanel.add(stopBtn);
 		
-		JButton restartBtn = new JButton("Restart");
+		Component rigidArea = Box.createRigidArea(new Dimension(15, 15));
+		buttonsPanel.add(rigidArea);
+		
+		Component rigidArea_6 = Box.createRigidArea(new Dimension(15, 15));
+		buttonsPanel.add(rigidArea_6);
+		
+		JLabel liczbaLudzi = new JLabel("liczba ludzi:");
+		buttonsPanel.add(liczbaLudzi);
+		
+		ludzieVal = new JTextField();
+		buttonsPanel.add(ludzieVal);
+		ludzieVal.setPreferredSize(new Dimension(90, 20));
+		
+		Component rigidArea_7 = Box.createRigidArea(new Dimension(15, 15));
+		buttonsPanel.add(rigidArea_7);
+		
+		Component rigidArea_8 = Box.createRigidArea(new Dimension(15, 15));
+		buttonsPanel.add(rigidArea_8);
+		
+		Component rigidArea_9 = Box.createRigidArea(new Dimension(15, 15));
+		buttonsPanel.add(rigidArea_9);
+		
+		Component rigidArea_10 = Box.createRigidArea(new Dimension(15, 15));
+		buttonsPanel.add(rigidArea_10);
+		
+		JLabel godzina = new JLabel("godzina:");
+		buttonsPanel.add(godzina);
+		
+		godzinaVal = new JTextField();
+		buttonsPanel.add(godzinaVal);
+		godzinaVal.setPreferredSize(new Dimension(90, 20));
+		
+		JButton restartBtn = new JButton("Start");
+		restartBtn.setPreferredSize(new Dimension(90, 40));
 		restartBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				contentPanel.tm.restart();			
+				
+				frame.remove(scrollpane);
+				//contentPanel.re
+				//scrollpane.remove(contentPanel);
+				contentPanel = new ContentPanel();
+				contentPanel.setPreferredSize(new Dimension(1000, 1000));
+				
+				scrollpane = new JScrollPane(contentPanel);
+				scrollpane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+				scrollpane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+				scrollpane.setAutoscrolls(true);
+				frame.getContentPane().add(scrollpane, BorderLayout.CENTER);
+				
 			}
 		});
-		restartBtn.setPreferredSize(new Dimension(90, 30));
+		
+		Component rigidArea_11 = Box.createRigidArea(new Dimension(15, 15));
+		buttonsPanel.add(rigidArea_11);
 		buttonsPanel.add(restartBtn);
 		
 		
